@@ -72,9 +72,6 @@ export default {
     padding-bottom: 1em;
     padding-top: 1em;
     border-top: #DDDDDD solid 0.5px;
-    &:active{
-      background: black;
-    }
     &__btn{
       color: #FFFFFF;
       background-color: #AFAFAF;
@@ -83,6 +80,9 @@ export default {
       padding-top: 0.5em;
       padding-bottom: 0.5em;
       border-radius: 0.3em;
+      &:active{
+      background: black;
+    }
     }
 }
 
