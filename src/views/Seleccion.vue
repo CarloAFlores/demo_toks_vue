@@ -29,7 +29,7 @@
   </div>
 
   <div class="footer">
-    <button class="footer__btn">Ir al menu</button>
+    <button class="footer__btn" @click="$router.push('menu')">Ir al menu</button>
   </div>
 </template>
 
