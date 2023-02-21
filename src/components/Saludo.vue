@@ -27,8 +27,11 @@ export default {
       font-size: .7em;
       letter-spacing: .1em;
       font-weight: lighter;
-      
+      b{
+        font-weight: 800;
+      }
     }
   }
 }
+
 </style>

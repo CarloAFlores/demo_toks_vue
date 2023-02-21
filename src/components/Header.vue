@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-    <button class="header__btn--return header__regresar">
+    <button class="header__btn--return header__regresar"  @click="$router.go(-1)">
       <img src="@/assets/atras.svg" alt="boton-regresar">
     </button>
 
@@ -29,7 +29,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  position: sticky;
+  position: fixed;
   top:0;
   &__btn--return{
     padding-left: 1em;
@@ -50,10 +50,11 @@ export default {
 
 @media (min-width: 700px) {
   .header{
+    height: 13vh;
     &__regresar{
       margin-top: 0.5em;
       width: 2.6em;
-      height: 2.6em;
+      height: 2.4em;
     }
   }
 }
