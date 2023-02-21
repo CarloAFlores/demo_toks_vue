@@ -68,14 +68,12 @@ export default {
 
 <style lang="scss" scoped>
 .seleccion{
-    position: absolute;
     background-color: white;
     width: 100%;
     margin-top: 5em;
     height: 100%;
-    z-index: -1;
     .search{
-    margin-top: 1%;
+    margin-top: 15%;
     width: 100%;
     height: 6em;
     &__div{

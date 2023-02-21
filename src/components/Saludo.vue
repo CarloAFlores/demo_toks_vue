@@ -17,7 +17,10 @@ export default {
 
 <style lang="scss" scoped>
 .div{
-  margin-top: 4em;
+  position: sticky;
+  top: 7.5%;
+  margin-top: 1em;
+  z-index: 1;
   &__user{
     font-size: 1em;
     background: #e5e5e5;
@@ -33,5 +36,10 @@ export default {
     }
   }
 }
-
+@media (min-width: 700px) {
+  .div{
+    top: 12%;
+      margin-top: .2em;
+  }
+}
 </style>

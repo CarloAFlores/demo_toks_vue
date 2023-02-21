@@ -29,8 +29,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  position: fixed;
+  position: sticky;
   top:0;
+  z-index: 2;
   &__btn--return{
     padding-left: 1em;
     width: 2.2em;
