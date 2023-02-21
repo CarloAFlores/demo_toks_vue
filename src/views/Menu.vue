@@ -70,10 +70,9 @@ export default {
 .seleccion{
     background-color: white;
     width: 100%;
-    margin-top: 5em;
+    // margin-top: 5em;
     height: 100%;
     .search{
-    margin-top: 15%;
     width: 100%;
     height: 6em;
     &__div{

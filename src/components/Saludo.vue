@@ -19,7 +19,6 @@ export default {
 .div{
   position: sticky;
   top: 7.5%;
-  margin-top: 1em;
   z-index: 1;
   &__user{
     font-size: 1em;

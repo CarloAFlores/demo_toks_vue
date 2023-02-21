@@ -7,29 +7,29 @@
     <form action="" method="post" class="seleccion__form">
       <div class="seleccion__form__input">
         <p>1 persona</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="1" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>2 personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="2" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>3 personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="3" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>4 personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="4" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>5 o mas personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="5" v-model="optionSelected">
       </div>
     </form>
   </div>
 
   <div class="footer">
-    <button class="footer__btn" @click="$router.push('menu')">Ir al menu</button>
+    <button class="footer__btn" :class="{active: goMenuBtnActive}" :disabled="!goMenuBtnActive" @click="$router.push('menu')">Ir al menu</button>
   </div>
 </template>
 
@@ -37,7 +37,21 @@
 import Header from "@/components/Header.vue";
 import Saludo from "@/components/Saludo.vue";
 export default {
-    components:{Header,Saludo}
+    components:{
+      Header,
+      Saludo
+      },
+    data(){
+      return{
+        optionSelected: 0,
+        }
+    },
+    computed:{
+      goMenuBtnActive(){
+        return this.optionSelected > 0 ? true : false;
+      }
+    }      
+    
 
 }
 </script>
@@ -80,9 +94,10 @@ export default {
       padding-top: 0.5em;
       padding-bottom: 0.5em;
       border-radius: 0.3em;
-      &:active{
-      background: black;
+      
     }
+    .active{
+      background: black;
     }
 }
 
