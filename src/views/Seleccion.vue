@@ -86,4 +86,19 @@ export default {
     }
 }
 
+@media (max-height: 600px) {
+    .footer{
+        border-top: 0;
+    }
+  }
+@media (min-width: 700px) {
+    .seleccion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__form{
+        width: 50%;
+        }
+    }
+  }
 </style>

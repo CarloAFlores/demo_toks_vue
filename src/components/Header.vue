@@ -1,6 +1,6 @@
 <template>
   <section class="header">
-    <button class="header__btn--return regresar">
+    <button class="header__btn--return header__regresar">
       <img src="@/assets/atras.svg" alt="boton-regresar">
     </button>
 
@@ -48,4 +48,14 @@ export default {
   }
 }
 
+@media (min-width: 700px) {
+  .header{
+    &__regresar{
+      margin-top: 0.5em;
+      width: 2.6em;
+      height: 2.6em;
+    }
+  }
+}
 </style>
+
