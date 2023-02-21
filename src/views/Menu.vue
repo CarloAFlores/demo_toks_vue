@@ -10,7 +10,11 @@
         </div>
     </div>
 
-    <div>
+    <div class="sugerencias">
+        <div class="sugerencias__informacin">
+            <h3>Hola </h3>
+            <p></p>
+        </div>
 
     </div>
   </div>
@@ -60,6 +64,17 @@ export default {
             top: 50%;
             transform: translateY(-50%);
         }
+    }
+  }
+  .sugerencias{
+    background: red;
+    margin-top: 1%;
+    width: 100%;
+    &__informacin{
+        position: relative;
+        width: 90%;
+        top: 25%;
+        left: 5%;
     }
   }
 
