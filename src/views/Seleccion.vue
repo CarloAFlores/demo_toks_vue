@@ -36,6 +36,7 @@
 <script>
 import Header from "@/components/Header.vue";
 import Saludo from "@/components/Saludo.vue";
+import store from '@/store';
 export default {
     components:{
       Header,
@@ -43,14 +44,29 @@ export default {
       },
     data(){
       return{
-        optionSelected: 0,
+        optionSelected: null,
         }
     },
+    mounted(){
+      this.optionSelected = store.state.dinersCount;
+    },
     computed:{
+      // Determina si existe una opción seleccionada para activar o desactivar el botón de ir al menu
       goMenuBtnActive(){
         return this.optionSelected > 0 ? true : false;
       }
-    }      
+    },
+    methods:{
+      // Setea la selección de manera global a través del store de VUEX
+      changeDinersCount(){
+        store.commit('setDinersCount',this.optionSelected)
+      }
+    },
+    watch:{
+      optionSelected(value){
+        this.changeDinersCount()
+      }
+    }
     
 
 }
