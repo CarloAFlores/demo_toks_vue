@@ -1,8 +1,21 @@
 <template>
   <Carousel :items-to-show="2.5" :wrap-around="true">
-    <Slide v-for="slide in 10" :key="slide">
-      <div class="carousel__item">{{ slide }}</div>
+    <Slide slide="1">
+      <div class="carousel__item">
+        <img src="@/assets/lasana.jpg" class="carousel__item__img">
+      </div>
     </Slide>
+    <Slide slide="2">
+      <div class="carousel__item">
+        <img src="@/assets/lasana.jpg" class="carousel__item__img">
+      </div>
+    </Slide>
+    <Slide slide="3">
+      <div class="carousel__item">
+        <img src="@/assets/lasana.jpg" class="carousel__item__img">
+      </div>
+    </Slide>
+    
 
     <template #addons>
       <Navigation />
@@ -32,5 +45,8 @@ export default defineComponent({
     width: 60%;
     height: 13vh;
     margin-top: 1rem;
+    &__img{
+      height: 13vh;
+    }
 }
 </style>

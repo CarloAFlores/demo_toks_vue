@@ -1,7 +1,19 @@
 <template>
   <Carousel :items-to-show="2.5" :wrap-around="true">
-    <Slide v-for="slide in 10" :key="slide">
-      <div class="carousel__item">{{ slide }}</div>
+    <Slide slide="1">
+      <div class="carousel__item">
+        <img src="@/assets/comida_1.jpg" class="carousel__item__img">
+      </div>
+    </Slide>
+    <Slide slide="2">
+      <div class="carousel__item">
+        <img src="@/assets/comida_3.jpg" class="carousel__item__img">
+      </div>
+    </Slide>
+    <Slide slide="3">
+      <div class="carousel__item">
+        <img src="@/assets/comida_5.jpg" class="carousel__item__img">
+      </div>
     </Slide>
 
     <template #addons>
@@ -29,8 +41,18 @@ export default defineComponent({
 <style lang="scss">
 .carousel__item{
     background: green;
-    width: 60%;
-    height: 13vh;
+    width: 90%;
+    height: auto;
     margin-top: 1rem;
+    &::before{
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    width: 90%;
+    height: 88%;
+    position: absolute;
+    content: "";
+    top: 13%;
+    left: 5%;
+    }
 }
 </style>

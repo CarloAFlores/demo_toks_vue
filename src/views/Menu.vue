@@ -12,43 +12,134 @@
 
     <div class="sugerencias">
         <div class="sugerencias__informacion">
-            <h2 class="sugerencias__informacion__h2"><b> Recomendacion del chef </b></h2>
-            <p class="sugerencias__informacin__p">Es momento de consentirse</p>
-            <Slider_recomendacion/>
+            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
+            <p class="sugerencias__informacion__p">Es momento de consentirse</p>
+            <Slider_recomendacion class="sugerencias__informacion__slider"/>
         </div>
 
         <div class="sugerencias__informacion">
-            <h2 class="sugerencias__informacion__h2"><b> Sugrencias para ti </b></h2>
-            <p class="sugerencias__informacin__p">Creamos sugerencias para ti basado
+            <p class="sugerencias__informacion__h2"><b> Sugerencias para ti </b></p>
+            <p class="sugerencias__informacion__p">Creamos sugerencias para ti basado
                 en tus ultimos pedidos para ayudarte a elegir
             </p>
-            <Slider_sugerencia/>
+            <Slider_sugerencia class="sugerencias__informacion__slider"/>
         </div>
     </div>
 
     <div class="menu">
-        <h2>Comida</h2>
-        <p>Servicios de 12 a 18 horas</p>
+        <h2 class="menu__h2">Comida</h2>
+        <p class="menu__p">Servicios de 12 a 18 horas</p>
 
         <div class="menu__eleccion">
-            <button class="menu__eleccion--click">Desayuno</button>
-            <button class="menu__eleccion--click">Comida</button>
-            <button class="menu__eleccion--click">Cena</button>
+            <button class="menu__eleccion--click">Desayunos</button>
+            <button class="menu__eleccion--click">Comidas</button>
+            <button class="menu__eleccion--click">Cenas</button>
         </div>
 
         <div class="comida">
-            <div class="items">Grid item1</div>
-            <div class="items">Grid item2</div>
-            <div class="items">Grid item3</div>
-            <div class="items">Grid item4</div>
-            <div class="items">Grid item5</div>
-            <div class="items">Grid item6</div>
-            <div class="items">Grid item7</div>
-            <div class="items">Grid item8</div>
-            <div class="items">Grid item9</div>
-            <div class="items">Grid item10</div>
-            <div class="items">Grid item11</div>
-            <div class="items">Grid item12</div>
+            <div class="items">
+                <img src="@/assets/arroz.png" class="items__img">
+                <div class="items__div">
+                    <h2> Comida del dia</h2>
+                    <p class="items__div__p">Platillo especial del Chef</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_1.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Sabores de temporada</h2>
+                    <p class="items__div__p">Conoce los sabores que tenemos para ti</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_2.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Entradas y Tacos</h2>
+                    <p class="items__div__p">Comparte el plap y el momento</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_3.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Sopas y Caldos</h2>
+                    <p class="items__div__p">Con nuestro sazon</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_4.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Ensaladas</h2>
+                    <p class="items__div__p">El perfecto balance de ingredientes</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_5.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Hamburguesa y Sandwiches</h2>
+                    <p class="items__div__p">Autenticas combinaciones en nuestro pan casero</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_6.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Carnes al Grill</h2>
+                    <p class="items__div__p">Cortes de alta calidad que se disfruta</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_7.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Aves</h2>
+                    <p class="items__div__p">Para toda la ocasion frescura y sabor</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_8.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Pesca del dia</h2>
+                    <p class="items__div__p">Lo mejor del mar para disfrutar en casa</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_9.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Enchiladas</h2>
+                    <p class="items__div__p">Recetas creadas para traer devuelta al presente</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_10.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Postres</h2>
+                    <p class="items__div__p">Consientete con un dulce antojo</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_11.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Cafes y bebidas calientes</h2>
+                    <p class="items__div__p">100% mexicanos</p>
+                </div>
+            </div>
+
+            <div class="items">
+                <img src="@/assets/comida_12.jpg" class="items__img">
+                <div class="items__div">
+                    <h2>Toks a Mano</h2>
+                    <p class="items__div__p">Disfruta de nuestos productos artesanales</p>
+                </div>
+            </div>
         </div>
     </div>
   </div>
@@ -109,7 +200,17 @@ export default {
         top: 25%;
         left: 5%;
         &__h2{
+            font-family: var(--tipo-principal);
             font-size: 1.5em;
+            font-weight:bolder;
+        }
+        &__p{
+            margin-top: 3%;
+            font-family: var(--tipo-secundaria);
+            font-weight: 300;
+        }
+        &__slider{
+            margin-top: 5%;
         }
     }
   }
@@ -118,11 +219,25 @@ export default {
     width: 90%;
     top: 5%;
     left: 5%;
+    margin-top: 12%;
+    &__h2{
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    &__p{
+        color: #666666;
+        font-family: var(--tipo-secundaria);
+    }
     &__eleccion{
         display: flex;
         justify-content: space-evenly;
-        
+        font-family: var(--tipo-secundaria);
+        font-size: 1.3em;
         &--click{
+            width: 33.3%;
+            margin-top: 5%;
+            color: #666666;
+            
             &:focus{
                 transition: all 0.2s ease-out;
                 border-bottom: 5px solid orange;
@@ -132,21 +247,206 @@ export default {
     }
   }
   .items{
-  padding: 1rem;
+  position: relative;
+  
   font-size: 1.25rem;
   background-color: #666;
+  &__img{
+    width: 100%;
+    height: 7em;
+  }
+}
+.items::before{
+  background-color: rgba(0, 0, 0, 0.61);
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
 }
 .comida{
     display: grid;
     grid-template-columns: repeat(aut-fit,auto);
-    gap: .5rem;
+    gap: .9rem;
+    margin-top: 8%;
+    
     .items:nth-child(1){
-        background: rgb(46, 224, 40);
-        grid-column: span 2;
+        background: palevioletred;
+        grid-column: span 4;
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            text-align: center;
+            &__p{
+                font-size: 90%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(2){
+        background: palevioletred;
+        grid-column: span 4;
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 30%;
+            left: 8%;
+            text-align: center;
+            &__p{
+                font-size: 90%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(3){
+        background: palevioletred;
+        grid-column: span 3;
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 24%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(4){
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 30%;
+            left: 8%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(5){
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(6){
+        color: white;
+        background: palevioletred;
+        grid-column: span 3;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(7){
+        color: white;
+        background: palevioletred;
+        grid-column: span 3;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(8){
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(9){
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(10){
+        color: white;
+        background: palevioletred;
+        grid-column: span 3;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(11){
+        color: white;
+        background: palevioletred;
+        grid-column: span 3;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
     }
     .items:nth-child(12){
-        background: rgb(46, 224, 40);;
-        grid-column: span 2;
+        color: white;
+        .items__div{
+            position: absolute;
+            top: 20%;
+            text-align: center;
+            &__p{
+                font-size: 70%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .items:nth-child(13){
+        color: white;
+        background: palevioletred;
+        grid-column: span 4;
+        .items__div{
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            text-align: center;
+            &__p{
+                font-size: 80%;
+                font-family: var(--tipo-secundaria);
+            }
+        }
     }
 }
 

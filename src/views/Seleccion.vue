@@ -68,7 +68,6 @@ export default {
       }
     }
     
-
 }
 </script>
 
@@ -116,7 +115,6 @@ export default {
       background: black;
     }
 }
-
 @media (max-height: 600px) {
     .footer{
         border-top: 0;
