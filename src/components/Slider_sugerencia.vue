@@ -45,14 +45,14 @@ export default defineComponent({
     height: auto;
     margin-top: 1rem;
     &::before{
-        background-color: rgba(0, 0, 0, 0.5);
-  display: block;
-  width: 66%;
-  height: 90%;
-  position: absolute;
-  content: "";
-  top: 10%;
-  left: 16%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    width: 60%;
+    height: 85%;
+    position: absolute;
+    content: "";
+    top: 15%;
+    left: 20%;
     }
 }
 </style>

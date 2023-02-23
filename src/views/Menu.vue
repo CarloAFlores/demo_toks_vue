@@ -13,13 +13,13 @@
     <div class="sugerencias">
         <div class="sugerencias__informacion">
             <h2 class="sugerencias__informacion__h2"><b> Recomendacion del chef </b></h2>
-            <p class="sugerencias__informacin__p">Es momento de consentirse</p>
+            <p class="sugerencias__informacion__p">Es momento de consentirse</p>
             <Slider_recomendacion/>
         </div>
 
         <div class="sugerencias__informacion">
             <h2 class="sugerencias__informacion__h2"><b> Sugrencias para ti </b></h2>
-            <p class="sugerencias__informacin__p">Creamos sugerencias para ti basado
+            <p class="sugerencias__informacion__p">Creamos sugerencias para ti basado
                 en tus ultimos pedidos para ayudarte a elegir
             </p>
             <Slider_sugerencia/>
@@ -27,8 +27,8 @@
     </div>
 
     <div class="menu">
-        <h2>Comida</h2>
-        <p>Servicios de 12 a 18 horas</p>
+        <h2 class="menu__h2">Comida</h2>
+        <p class="menu__p">Servicios de 12 a 18 horas</p>
 
         <div class="menu__eleccion">
             <button class="menu__eleccion--click">Desayuno</button>
@@ -201,6 +201,10 @@ export default {
         left: 5%;
         &__h2{
             font-size: 1.5em;
+            font-weight: bold;
+        }
+        &__p{
+            font-family: var(--tipo-secundaria);
         }
     }
   }
@@ -209,11 +213,23 @@ export default {
     width: 90%;
     top: 5%;
     left: 5%;
+    margin-top: 20%;
+    &__h2{
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    &__p{
+        color: #666666;
+        font-family: var(--tipo-secundaria);
+    }
     &__eleccion{
         display: flex;
         justify-content: space-evenly;
         
         &--click{
+            margin-top: 5%;
+            color: #666666;
+            font-family: var(--tipo-secundaria);
             &:focus{
                 transition: all 0.2s ease-out;
                 border-bottom: 5px solid orange;
@@ -233,7 +249,7 @@ export default {
   }
 }
 .items::before{
-                  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.61);
   display: block;
   width: 100%;
   height: 100%;
@@ -258,6 +274,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 90%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -272,6 +289,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 90%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -285,6 +303,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -297,6 +316,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -308,6 +328,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -321,6 +342,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -334,6 +356,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -345,6 +368,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -356,6 +380,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -369,6 +394,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -382,6 +408,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -393,6 +420,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 70%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }
@@ -407,6 +435,7 @@ export default {
             text-align: center;
             &__p{
                 font-size: 80%;
+                font-family: var(--tipo-secundaria);
             }
         }
     }

@@ -7,38 +7,67 @@
     <form action="" method="post" class="seleccion__form">
       <div class="seleccion__form__input">
         <p>1 persona</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="1" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>2 personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="2" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>3 personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="3" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>4 personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="4" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
         <p>5 o mas personas</p>
-        <input type="radio" name="num_person" id="">
+        <input type="radio" name="num_person" value="5" v-model="optionSelected">
       </div>
     </form>
   </div>
 
   <div class="footer">
-    <button class="footer__btn" @click="$router.push('menu')">Ir al menu</button>
+    <button class="footer__btn" :class="{active: goMenuBtnActive}" :disabled="!goMenuBtnActive" @click="$router.push('menu')">Ir al menu</button>
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import Saludo from "@/components/Saludo.vue";
+import store from '@/store';
 export default {
-    components:{Header,Saludo}
-
+    components:{
+      Header,
+      Saludo
+      },
+    data(){
+      return{
+        optionSelected: null,
+        }
+    },
+    mounted(){
+      this.optionSelected = store.state.dinersCount;
+    },
+    computed:{
+      // Determina si existe una opción seleccionada para activar o desactivar el botón de ir al menu
+      goMenuBtnActive(){
+        return this.optionSelected > 0 ? true : false;
+      }
+    },
+    methods:{
+      // Setea la selección de manera global a través del store de VUEX
+      changeDinersCount(){
+        store.commit('setDinersCount',this.optionSelected)
+      }
+    },
+    watch:{
+      optionSelected(value){
+        this.changeDinersCount()
+      }
+    }
+    
 }
 </script>
 
@@ -80,12 +109,12 @@ export default {
       padding-top: 0.5em;
       padding-bottom: 0.5em;
       border-radius: 0.3em;
-      &:active{
+      
+    }
+    .active{
       background: black;
     }
-    }
 }
-
 @media (max-height: 600px) {
     .footer{
         border-top: 0;
