@@ -18,7 +18,7 @@ export default {
 <style lang="scss" scoped>
 .div{
   position: sticky;
-  top: 7.5%;
+  top: 4.2rem;
   z-index: 1;
   &__user{
     font-size: 1em;
