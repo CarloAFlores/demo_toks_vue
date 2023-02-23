@@ -2,17 +2,26 @@
   <Carousel :items-to-show="2.5" :wrap-around="true">
     <Slide slide="1">
       <div class="carousel__item">
-        <img src="@/assets/comida_1.jpg" class="carousel__item__img">
+        <img src="@/assets/comida_9.jpg" class="carousel__item__img">
+        <div class="carousel__item__div">
+            <p></p>
+        </div>
       </div>
     </Slide>
     <Slide slide="2">
       <div class="carousel__item">
         <img src="@/assets/comida_3.jpg" class="carousel__item__img">
+        <div class="carousel__item__div">
+            <p></p>
+        </div>
       </div>
     </Slide>
     <Slide slide="3">
       <div class="carousel__item">
-        <img src="@/assets/comida_5.jpg" class="carousel__item__img">
+        <img src="@/assets/comida_4.jpg" class="carousel__item__img">
+        <div class="carousel__item__div">
+            <p></p>
+        </div>
       </div>
     </Slide>
 
@@ -38,7 +47,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .carousel__item{
     background: green;
     width: 90%;
@@ -54,5 +63,34 @@ export default defineComponent({
     top: 13%;
     left: 5%;
     }
+}
+
+.carousel__item__div{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 50%;
+    left: 30%;
+    font-size: 1.5em;
+}
+.carousel__item__div-2{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 5%;
+    font-size: 1.5em;
+    width: 90%;
+
+}
+.carousel__item__div-3{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 5%;
+    font-size: 1.5em;
+    width: 90%;
+
 }
 </style>

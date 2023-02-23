@@ -4,23 +4,23 @@
       <div class="carousel__item">
         <img src="@/assets/lasana.jpg" class="carousel__item__img">
         <div class="carousel__item__div">
-            <p></p>
+            <p>2 X 1</p>
         </div>
       </div>
     </Slide>
     <Slide slide="2">
       <div class="carousel__item">
         <img src="@/assets/lasana.jpg" class="carousel__item__img">
-        <div class="carousel__item__div">
-            <p></p>
+        <div class="carousel__item__div-2">
+            <p>Cupon de $150</p>
         </div>
       </div>
     </Slide>
     <Slide slide="3">
       <div class="carousel__item">
         <img src="@/assets/lasana.jpg" class="carousel__item__img">
-        <div class="carousel__item__div">
-            <p></p>
+        <div class="carousel__item__div-3">
+            <p>10% adicional</p>
         </div>
       </div>
     </Slide>

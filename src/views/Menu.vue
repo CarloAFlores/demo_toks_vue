@@ -24,6 +24,14 @@
             </p>
             <Slider_sugerencia class="sugerencias__informacion__slider"/>
         </div>
+
+        <div class="sugerencias__informacion">
+            <p class="sugerencias__informacion__h2"><b>Promociones</b></p>
+            <p class="sugerencias__informacion__p">Es momento de consentirse
+            </p>
+            <Slider_promociones class="sugerencias__informacion__slider"/>
+        </div>
+
     </div>
 
     <div class="menu">
@@ -37,7 +45,7 @@
         </div>
 
         <div class="comida">
-            <div class="items">
+            <div class="items"  @click="$router.push('platillo')">
                 <img src="@/assets/arroz.png" class="items__img">
                 <div class="items__div">
                     <h2> Comida del dia</h2>
@@ -151,8 +159,10 @@ import Header from "@/components/Header.vue";
 import Saludo from "@/components/Saludo.vue";
 import Slider_recomendacion from "@/components/Slider_recomendacion.vue";
 import Slider_sugerencia from "@/components/Slider_sugerencia.vue";
+import Slider_promociones from "@/components/Slider_promociones.vue";
 export default {
-    components:{Header,Saludo,Slider_sugerencia,Slider_recomendacion}
+    components:{Header,Saludo,Slider_sugerencia,Slider_recomendacion,
+    Slider_promociones}
 
 }
 </script>
