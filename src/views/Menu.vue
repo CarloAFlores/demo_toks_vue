@@ -37,7 +37,7 @@
         </div>
 
         <div class="comida">
-            <div class="items">
+            <div class="items" @click="$router.push('platillo')">
                 <img src="@/assets/arroz.png" class="items__img">
                 <div class="items__div">
                     <h2> Comida del dia</h2>
