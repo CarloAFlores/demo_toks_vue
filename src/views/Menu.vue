@@ -26,8 +26,8 @@
         </div>
 
         <div class="sugerencias__informacion recomendaciones_chef">
-            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
-            <p class="sugerencias__informacion__p">Las mejores delicias</p>
+            <p class="sugerencias__informacion__h2">Promociones</p>
+            <p class="sugerencias__informacion__p">Es momento de consentirse</p>
             <Slider_promociones class="sugerencias__informacion__slider"/>
         </div>
 

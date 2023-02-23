@@ -110,5 +110,33 @@ export default defineComponent({
     left: 5%;
     }
   }
+  .carousel__item__div{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 46%;
+    font-size: 1.5em;
+}
+.carousel__item__div-2{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 5%;
+    font-size: 1.5em;
+    width: 90%;
+
+}
+.carousel__item__div-3{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 5%;
+    font-size: 1.5em;
+    width: 90%;
+
+}
 }
 </style>
