@@ -12,25 +12,25 @@
 
     <div class="sugerencias">
         <div class="sugerencias__informacion">
-            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
-            <p class="sugerencias__informacion__p">Es momento de consentirse</p>
-            <Slider_recomendacion class="sugerencias__informacion__slider"/>
-        </div>
-
-        <div class="sugerencias__informacion">
             <p class="sugerencias__informacion__h2"><b> Sugerencias para ti </b></p>
             <p class="sugerencias__informacion__p">Creamos sugerencias para ti basado
                 en tus ultimos pedidos para ayudarte a elegir
             </p>
             <Slider_sugerencia class="sugerencias__informacion__slider"/>
         </div>
+        
+        <div class="sugerencias__informacion recomendaciones_chef">
+            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
+            <p class="sugerencias__informacion__p">Las mejores delicias</p>
+            <Slider_recomendacion class="sugerencias__informacion__slider"/>
+        </div>
 
-        <div class="sugerencias__informacion">
-            <p class="sugerencias__informacion__h2"><b>Promociones</b></p>
-            <p class="sugerencias__informacion__p">Es momento de consentirse
-            </p>
+        <div class="sugerencias__informacion recomendaciones_chef">
+            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
+            <p class="sugerencias__informacion__p">Las mejores delicias</p>
             <Slider_promociones class="sugerencias__informacion__slider"/>
         </div>
+
 
     </div>
 
@@ -179,7 +179,7 @@ export default {
     &__div{
         position: relative;
         width: 90%;
-        top: 25%;
+        top: 30%;
         left: 5%;
         &__input{
             box-sizing: border-box;
@@ -201,29 +201,34 @@ export default {
     }
   }
   .sugerencias{
-    margin-top: 1%;
+    margin-top: 0;
     width: 100%;
     &__informacion{
-        margin-top: 10%;
+        margin-top: 1%;
         position: relative;
         width: 90%;
         top: 25%;
         left: 5%;
         &__h2{
             font-family: var(--tipo-principal);
-            font-size: 1.5em;
-            font-weight:bolder;
+            font-size: 1.2em;
+            font-weight:900;
         }
         &__p{
-            margin-top: 3%;
+            margin-top: 2%;
             font-family: var(--tipo-secundaria);
-            font-weight: 300;
+            font-weight: 100;
+            color: #474747;
+            font-size: 0.85em;
         }
         &__slider{
-            margin-top: 5%;
+            margin-top: 3%;
         }
     }
   }
+  .recomendaciones_chef{
+            margin-top: 10%;
+        }
   .menu{
     position: relative;
     width: 90%;
