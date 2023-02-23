@@ -93,4 +93,22 @@ export default defineComponent({
     width: 90%;
 
 }
+@media (min-width: 700px) {
+  .carousel__item{
+    background: green;
+    width: 90%;
+    height: auto;
+    margin-top: 1rem;
+    &::before{
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    content: "";
+    top: 6%;
+    left: 5%;
+    }
+  }
+}
 </style>
