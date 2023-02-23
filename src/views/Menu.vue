@@ -12,17 +12,17 @@
 
     <div class="sugerencias">
         <div class="sugerencias__informacion">
-            <h2 class="sugerencias__informacion__h2"><b> Recomendacion del chef </b></h2>
+            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
             <p class="sugerencias__informacion__p">Es momento de consentirse</p>
-            <Slider_recomendacion/>
+            <Slider_recomendacion class="sugerencias__informacion__slider"/>
         </div>
 
         <div class="sugerencias__informacion">
-            <h2 class="sugerencias__informacion__h2"><b> Sugrencias para ti </b></h2>
+            <p class="sugerencias__informacion__h2"><b> Sugerencias para ti </b></p>
             <p class="sugerencias__informacion__p">Creamos sugerencias para ti basado
                 en tus ultimos pedidos para ayudarte a elegir
             </p>
-            <Slider_sugerencia/>
+            <Slider_sugerencia class="sugerencias__informacion__slider"/>
         </div>
     </div>
 
@@ -31,9 +31,9 @@
         <p class="menu__p">Servicios de 12 a 18 horas</p>
 
         <div class="menu__eleccion">
-            <button class="menu__eleccion--click">Desayuno</button>
-            <button class="menu__eleccion--click">Comida</button>
-            <button class="menu__eleccion--click">Cena</button>
+            <button class="menu__eleccion--click">Desayunos</button>
+            <button class="menu__eleccion--click">Comidas</button>
+            <button class="menu__eleccion--click">Cenas</button>
         </div>
 
         <div class="comida">
@@ -41,7 +41,7 @@
                 <img src="@/assets/arroz.png" class="items__img">
                 <div class="items__div">
                     <h2> Comida del dia</h2>
-                    <p class="items__div__p">Platillo especial del chef</p>
+                    <p class="items__div__p">Platillo especial del Chef</p>
                 </div>
             </div>
 
@@ -200,11 +200,17 @@ export default {
         top: 25%;
         left: 5%;
         &__h2{
+            font-family: var(--tipo-principal);
             font-size: 1.5em;
-            font-weight: bold;
+            font-weight:bolder;
         }
         &__p{
+            margin-top: 3%;
             font-family: var(--tipo-secundaria);
+            font-weight: 300;
+        }
+        &__slider{
+            margin-top: 5%;
         }
     }
   }
@@ -213,7 +219,7 @@ export default {
     width: 90%;
     top: 5%;
     left: 5%;
-    margin-top: 20%;
+    margin-top: 12%;
     &__h2{
         font-size: 1.5em;
         font-weight: bold;
@@ -225,11 +231,13 @@ export default {
     &__eleccion{
         display: flex;
         justify-content: space-evenly;
-        
+        font-family: var(--tipo-secundaria);
+        font-size: 1.3em;
         &--click{
+            width: 33.3%;
             margin-top: 5%;
             color: #666666;
-            font-family: var(--tipo-secundaria);
+            
             &:focus{
                 transition: all 0.2s ease-out;
                 border-bottom: 5px solid orange;
@@ -262,6 +270,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(aut-fit,auto);
     gap: .9rem;
+    margin-top: 8%;
     
     .items:nth-child(1){
         background: palevioletred;

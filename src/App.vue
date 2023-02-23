@@ -92,7 +92,7 @@ html {
 /* Desactivamos estilos por defecto de las principales etiquetas de texto */
 h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
   font-size: 1em;
-  font-weight: inherit;
+  font-weight: inherit; 
   font-style: inherit;
   text-decoration: none;
   color: inherit;

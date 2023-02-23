@@ -41,18 +41,18 @@ export default defineComponent({
 <style lang="scss">
 .carousel__item{
     background: green;
-    width: 60%;
+    width: 90%;
     height: auto;
     margin-top: 1rem;
     &::before{
     background-color: rgba(0, 0, 0, 0.5);
     display: block;
-    width: 60%;
-    height: 85%;
+    width: 90%;
+    height: 88%;
     position: absolute;
     content: "";
-    top: 15%;
-    left: 20%;
+    top: 13%;
+    left: 5%;
     }
 }
 </style>
