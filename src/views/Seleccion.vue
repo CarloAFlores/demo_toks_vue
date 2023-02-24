@@ -135,7 +135,7 @@ export default {
         &__btn{
 
           width: 70%;
-          height: 3rem;
+          height: 2rem;
         }
     }
   }

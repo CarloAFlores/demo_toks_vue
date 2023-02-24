@@ -79,9 +79,8 @@ export default defineComponent({
     font-weight: bold;
     top: 40%;
     left: 5%;
-    font-size: 1.2em;
+    font-size: 1.5em;
     width: 90%;
-    word-spacing: 0.1em;
 
 }
 .carousel__item__div-3{
