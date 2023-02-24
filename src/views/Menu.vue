@@ -45,15 +45,15 @@
         </div>
 
         <div class="comida">
-            <div class="items"  @click="$router.push('platillo')">
-                <img src="@/assets/arroz.png" class="items__img">
+            <div class="items principal"  @click="$router.push('platillo')">
                 <div class="items__div">
                     <h2 class="items__div__h2"> Comidas del dia</h2>
                     <p class="items__div__p">Platillo especial del Chef</p>
                 </div>
+                <img src="@/assets/arroz.png" class="items__img">
             </div>
 
-            <div class="items">
+            <div class="items principal">
                 <img src="@/assets/comida_1.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Sabores de temporada</h2>
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_2.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Entradas y Tacos</h2>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_3.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Sopas y Caldos</h2>
@@ -77,7 +77,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_4.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Ensaladas</h2>
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_5.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Hamburguesa y Sandwiches</h2>
@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_6.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Carnes al Grill</h2>
@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_7.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Aves</h2>
@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_8.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Pesca del dia</h2>
@@ -117,7 +117,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_9.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Enchiladas</h2>
@@ -125,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_10.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Postres</h2>
@@ -133,7 +133,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_11.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Cafes y bebidas calientes</h2>
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items principal">
                 <img src="@/assets/comida_12.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Toks a Mano</h2>
@@ -304,7 +304,7 @@ export default {
 .comida{
     display: grid;
     grid-template-columns: repeat(aut-fit,auto);
-    gap: .9rem;
+    gap: .8rem;
     margin-top: 8%;
     margin-bottom: 8%;
     
@@ -312,6 +312,12 @@ export default {
     .items{
         color: white;
         .items__div{
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
             
             &__h2{
                 font-size: 1em;
@@ -324,271 +330,21 @@ export default {
         }
     }
 
-    .items:nth-child(1){
+    .principal{
         background: palevioletred;
         grid-column: span 4;
         color: white;
-        .items__div{
-            position: absolute;
-            top: 40%;
-            left: 25%;
-            text-align: center;
-        }
     }
 
-    .items:nth-child(2){
-        background: palevioletred;
-        grid-column: span 4;
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 30%;
-            left: 8%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(3){
+    .secundaria{
         background: palevioletred;
         grid-column: span 3;
         color: white;
-        .items__div{
-            position: absolute;
-            top: 24%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(4){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 30%;
-            left: 8%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(5){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(6){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(7){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(8){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(9){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(10){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(11){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(12){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(13){
-        color: white;
-        background: palevioletred;
-        grid-column: span 4;
-        .items__div{
-            position: absolute;
-            top: 40%;
-            left: 10%;
-            text-align: center;
+        img{
+            width: 100%;
         }
     }
 }
 }
-@media (min-width: 700px) {
-    .seleccion{
-    .comida{
-    .items:nth-child(1){
-        background: palevioletred;
-        grid-column: span 4;
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 40%;
-            left: 40%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(2){
-        background: palevioletred;
-        grid-column: span 4;
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 30%;
-            left: 35%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(3){
-        background: palevioletred;
-        grid-column: span 3;
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 24%;
-            left: 35%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(4){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 30%;
-            left: 35%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(5){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(6){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 30%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(7){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 35%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(8){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 22%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(9){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 15%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(10){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 30%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(11){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 34%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(12){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            text-align: center;
-        }
-    }
-    .items:nth-child(13){
-        color: white;
-        background: palevioletred;
-        grid-column: span 4;
-        .items__div{
-            position: absolute;
-            top: 40%;
-            left: 30%;
-            text-align: center;
-        }
-    }
 
-  }
-}
-}
 </style>
