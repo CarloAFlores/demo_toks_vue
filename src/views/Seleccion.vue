@@ -116,8 +116,13 @@ export default {
     }
 }
 @media (max-height: 600px) {
-    .footer{
-        border-top: 0;
+      .footer{
+        height: 1rem;
+        &__btn{
+          margin-top: -.5rem;
+          width: 50%;
+          height: 2rem;
+        }
     }
   }
 @media (min-width: 700px) {
@@ -131,15 +136,4 @@ export default {
     }
   }
 
-@media(max-height:535px){
-      .footer{
-        height: 1rem;
-        &__btn{
-          margin-top: -.5rem;
-          width: 50%;
-          height: 2rem;
-        }
-    }
-
-}
 </style>
