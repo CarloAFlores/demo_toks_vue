@@ -129,10 +129,12 @@ export default {
 
 @media (max-height: 600px) {
       .footer{
+
         height: 1rem;
+        top: 100%;
         &__btn{
-          margin-top: 2rem;
-          width: 50%;
+
+          width: 70%;
           height: 2rem;
         }
     }
