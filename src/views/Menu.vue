@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-            <div class="items secundaria">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_8.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Pesca del dia</h2>
@@ -117,7 +117,7 @@
                 </div>
             </div>
 
-            <div class="items secundaria-1">
+            <div class="items secundaria">
                 <img src="@/assets/comida_9.jpg" class="items__img">
                 <div class="items__div">
                     <h2 class="items__div__h2">Enchiladas</h2>
