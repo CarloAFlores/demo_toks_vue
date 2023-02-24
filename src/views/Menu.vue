@@ -151,19 +151,20 @@
         </div>
     </div>
   </div>
-
+   <Footer/>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import Saludo from "@/components/Saludo.vue";
+import Footer from "@/components/Footer.vue";
 import Slider_recomendacion from "@/components/Slider_recomendacion.vue";
 import Slider_sugerencia from "@/components/Slider_sugerencia.vue";
 import Slider_promociones from "@/components/Slider_promociones.vue";
 export default {
     components:{
         Header,Saludo,Slider_sugerencia,Slider_recomendacion,
-    Slider_promociones
+    Slider_promociones,Footer
     },
     data(){
         return{
@@ -227,7 +228,7 @@ export default {
         &__h2{
             font-family: var(--tipo-principal);
             font-size: 1.5em;
-            font-weight: bold;
+            font-weight: 800;
         }
         &__p{
             margin-top: 2%;
