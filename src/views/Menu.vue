@@ -26,7 +26,7 @@
         </div>
 
         <div class="sugerencias__informacion recomendaciones_chef">
-            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
+            <p class="sugerencias__informacion__h2">Promociones</p>
             <p class="sugerencias__informacion__p">Las mejores delicias</p>
             <Slider_promociones class="sugerencias__informacion__slider"/>
         </div>
@@ -39,16 +39,16 @@
         <p class="menu__p">Servicios de 12 a 18 horas</p>
 
         <div class="menu__eleccion">
-            <button class="menu__eleccion--click">Desayunos</button>
-            <button class="menu__eleccion--click">Comidas</button>
-            <button class="menu__eleccion--click">Cenas</button>
+            <button @click="setCategorie(1)" :class="{active: categorieSelected === 1}" class="menu__eleccion--click">Desayunos</button>
+            <button @click="setCategorie(2)" :class="{active: categorieSelected === 2}" class="menu__eleccion--click">Comidas</button>
+            <button @click="setCategorie(3)" :class="{active: categorieSelected === 3}" class="menu__eleccion--click">Cenas</button>
         </div>
 
         <div class="comida">
             <div class="items"  @click="$router.push('platillo')">
                 <img src="@/assets/arroz.png" class="items__img">
                 <div class="items__div">
-                    <h2> Comida del dia</h2>
+                    <h2 class="items__div__h2"> Comidas del dia</h2>
                     <p class="items__div__p">Platillo especial del Chef</p>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="items">
                 <img src="@/assets/comida_1.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Sabores de temporada</h2>
+                    <h2 class="items__div__h2">Sabores de temporada</h2>
                     <p class="items__div__p">Conoce los sabores que tenemos para ti</p>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <div class="items">
                 <img src="@/assets/comida_2.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Entradas y Tacos</h2>
+                    <h2 class="items__div__h2">Entradas y Tacos</h2>
                     <p class="items__div__p">Comparte el plap y el momento</p>
                 </div>
             </div>
@@ -161,8 +161,23 @@ import Slider_recomendacion from "@/components/Slider_recomendacion.vue";
 import Slider_sugerencia from "@/components/Slider_sugerencia.vue";
 import Slider_promociones from "@/components/Slider_promociones.vue";
 export default {
-    components:{Header,Saludo,Slider_sugerencia,Slider_recomendacion,
-    Slider_promociones}
+    components:{
+        Header,Saludo,Slider_sugerencia,Slider_recomendacion,
+    Slider_promociones
+    },
+    data(){
+        return{
+            categorieSelected : null
+        }
+    },
+    mounted(){
+        this.categorieSelected = 2;
+    },
+    methods:{
+        setCategorie(categorie){
+            this.categorieSelected = categorie;
+        }
+    }
 
 }
 </script>
@@ -211,8 +226,8 @@ export default {
         left: 5%;
         &__h2{
             font-family: var(--tipo-principal);
-            font-size: 1.2em;
-            font-weight:900;
+            font-size: 1.5em;
+            font-weight: bold;
         }
         &__p{
             margin-top: 2%;
@@ -242,24 +257,29 @@ export default {
     &__p{
         color: #666666;
         font-family: var(--tipo-secundaria);
+        margin-top: 0.5em;
     }
     &__eleccion{
         display: flex;
         justify-content: space-evenly;
         font-family: var(--tipo-secundaria);
-        font-size: 1.3em;
+        font-size: 1em;
+        border-bottom: solid 1px #dedede;
+        
         &--click{
             width: 33.3%;
             margin-top: 5%;
             color: #666666;
             
-            &:focus{
-                transition: all 0.2s ease-out;
-                border-bottom: 5px solid orange;
-                color: orange;
-            }
+            
         }
     }
+    .active{
+                transition: all 0.4s ease-out;
+                border-bottom: 3px solid orange;
+                color: orange;
+                padding-bottom: 0.3em;
+            }
   }
   .items{
   position: relative;
@@ -286,7 +306,23 @@ export default {
     grid-template-columns: repeat(aut-fit,auto);
     gap: .9rem;
     margin-top: 8%;
+    margin-bottom: 8%;
     
+    .items{
+        color: white;
+        .items__div{
+            
+            &__h2{
+                font-size: 1.2em;
+                font-weight: bolder;
+            }
+            &__p{
+                font-size: 0.7em;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+
     .items:nth-child(1){
         background: palevioletred;
         grid-column: span 4;
@@ -294,14 +330,11 @@ export default {
         .items__div{
             position: absolute;
             top: 40%;
-            left: 20%;
+            left: 25%;
             text-align: center;
-            &__p{
-                font-size: 90%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
+
     .items:nth-child(2){
         background: palevioletred;
         grid-column: span 4;
@@ -311,10 +344,6 @@ export default {
             top: 30%;
             left: 8%;
             text-align: center;
-            &__p{
-                font-size: 90%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(3){
@@ -325,10 +354,6 @@ export default {
             position: absolute;
             top: 24%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(4){
@@ -338,10 +363,6 @@ export default {
             top: 30%;
             left: 8%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(5){
@@ -350,10 +371,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(6){
@@ -364,10 +381,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(7){
@@ -378,10 +391,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(8){
@@ -390,10 +399,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(9){
@@ -402,10 +407,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(10){
@@ -416,10 +417,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(11){
@@ -430,10 +427,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(12){
@@ -442,10 +435,6 @@ export default {
             position: absolute;
             top: 20%;
             text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
     .items:nth-child(13){
@@ -457,10 +446,6 @@ export default {
             top: 40%;
             left: 10%;
             text-align: center;
-            &__p{
-                font-size: 80%;
-                font-family: var(--tipo-secundaria);
-            }
         }
     }
 }
