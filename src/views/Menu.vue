@@ -72,7 +72,7 @@
             <div class="items">
                 <img src="@/assets/comida_3.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Sopas y Caldos</h2>
+                    <h2 class="items__div__h2">Sopas y Caldos</h2>
                     <p class="items__div__p">Con nuestro sazon</p>
                 </div>
             </div>
@@ -80,7 +80,7 @@
             <div class="items">
                 <img src="@/assets/comida_4.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Ensaladas</h2>
+                    <h2 class="items__div__h2">Ensaladas</h2>
                     <p class="items__div__p">El perfecto balance de ingredientes</p>
                 </div>
             </div>
@@ -88,7 +88,7 @@
             <div class="items">
                 <img src="@/assets/comida_5.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Hamburguesa y Sandwiches</h2>
+                    <h2 class="items__div__h2">Hamburguesa y Sandwiches</h2>
                     <p class="items__div__p">Autenticas combinaciones en nuestro pan casero</p>
                 </div>
             </div>
@@ -96,7 +96,7 @@
             <div class="items">
                 <img src="@/assets/comida_6.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Carnes al Grill</h2>
+                    <h2 class="items__div__h2">Carnes al Grill</h2>
                     <p class="items__div__p">Cortes de alta calidad que se disfruta</p>
                 </div>
             </div>
@@ -104,7 +104,7 @@
             <div class="items">
                 <img src="@/assets/comida_7.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Aves</h2>
+                    <h2 class="items__div__h2">Aves</h2>
                     <p class="items__div__p">Para toda la ocasion frescura y sabor</p>
                 </div>
             </div>
@@ -112,7 +112,7 @@
             <div class="items">
                 <img src="@/assets/comida_8.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Pesca del dia</h2>
+                    <h2 class="items__div__h2">Pesca del dia</h2>
                     <p class="items__div__p">Lo mejor del mar para disfrutar en casa</p>
                 </div>
             </div>
@@ -120,7 +120,7 @@
             <div class="items">
                 <img src="@/assets/comida_9.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Enchiladas</h2>
+                    <h2 class="items__div__h2">Enchiladas</h2>
                     <p class="items__div__p">Recetas creadas para traer devuelta al presente</p>
                 </div>
             </div>
@@ -128,7 +128,7 @@
             <div class="items">
                 <img src="@/assets/comida_10.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Postres</h2>
+                    <h2 class="items__div__h2">Postres</h2>
                     <p class="items__div__p">Consientete con un dulce antojo</p>
                 </div>
             </div>
@@ -136,7 +136,7 @@
             <div class="items">
                 <img src="@/assets/comida_11.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Cafes y bebidas calientes</h2>
+                    <h2 class="items__div__h2">Cafes y bebidas calientes</h2>
                     <p class="items__div__p">100% mexicanos</p>
                 </div>
             </div>
@@ -144,7 +144,7 @@
             <div class="items">
                 <img src="@/assets/comida_12.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Toks a Mano</h2>
+                    <h2 class="items__div__h2">Toks a Mano</h2>
                     <p class="items__div__p">Disfruta de nuestos productos artesanales</p>
                 </div>
             </div>
@@ -308,16 +308,17 @@ export default {
     margin-top: 8%;
     margin-bottom: 8%;
     
+    
     .items{
         color: white;
         .items__div{
             
             &__h2{
-                font-size: 1.2em;
+                font-size: 1em;
                 font-weight: bolder;
             }
             &__p{
-                font-size: 0.7em;
+                font-size: 0.6em;
                 font-family: var(--tipo-secundaria);
             }
         }
