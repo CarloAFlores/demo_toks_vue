@@ -340,9 +340,6 @@ export default {
         background: palevioletred;
         grid-column: span 3;
         color: white;
-        img{
-            width: 100%;
-        }
     }
 }
 }
