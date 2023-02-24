@@ -94,4 +94,50 @@ export default defineComponent({
     width: 90%;
 
 }
+@media (min-width: 700px) {
+  .carousel__item{
+    background: green;
+    width: 90%;
+    height: auto;
+    margin-top: 1rem;
+    &::before{
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    content: "";
+    top: 6%;
+    left: 5%;
+    }
+  }
+  .carousel__item__div{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 46%;
+    font-size: 1.5em;
+}
+.carousel__item__div-2{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 5%;
+    font-size: 1.5em;
+    width: 90%;
+
+}
+.carousel__item__div-3{
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: 40%;
+    left: 5%;
+    font-size: 1.5em;
+    width: 90%;
+
+}
+}
 </style>

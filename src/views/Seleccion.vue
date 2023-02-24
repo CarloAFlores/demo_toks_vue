@@ -115,11 +115,7 @@ export default {
       background: black;
     }
 }
-@media (max-height: 600px) {
-    .footer{
-        border-top: 0;
-    }
-  }
+
 @media (min-width: 700px) {
     .seleccion{
         display: flex;
@@ -130,4 +126,18 @@ export default {
         }
     }
   }
+
+@media (max-height: 600px) {
+      .footer{
+
+        height: 1rem;
+        top: 100%;
+        &__btn{
+
+          width: 70%;
+          height: 2rem;
+        }
+    }
+  }
+
 </style>

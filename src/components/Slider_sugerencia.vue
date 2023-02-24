@@ -2,7 +2,7 @@
   <Carousel :items-to-show="2.5" :wrap-around="true">
     <Slide slide="1">
       <div class="carousel__item">
-        <img src="@/assets/comida_9.jpg" class="carousel__item__img">
+        <img src="@/assets/comida_8.jpg" class="carousel__item__img">
         <div class="carousel__item__div">
             <p></p>
         </div>
@@ -10,7 +10,7 @@
     </Slide>
     <Slide slide="2">
       <div class="carousel__item">
-        <img src="@/assets/comida_3.jpg" class="carousel__item__img">
+        <img src="@/assets/comida_5.jpg" class="carousel__item__img">
         <div class="carousel__item__div">
             <p></p>
         </div>
@@ -18,7 +18,7 @@
     </Slide>
     <Slide slide="3">
       <div class="carousel__item">
-        <img src="@/assets/comida_4.jpg" class="carousel__item__img">
+        <img src="@/assets/comida_6.jpg" class="carousel__item__img">
         <div class="carousel__item__div">
             <p></p>
         </div>
@@ -92,5 +92,23 @@ export default defineComponent({
     font-size: 1.5em;
     width: 90%;
 
+}
+@media (min-width: 700px) {
+  .carousel__item{
+    background: green;
+    width: 90%;
+    height: auto;
+    margin-top: 1rem;
+    &::before{
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    width: 90%;
+    height: 100%;
+    position: absolute;
+    content: "";
+    top: 6%;
+    left: 5%;
+    }
+  }
 }
 </style>
