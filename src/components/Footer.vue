@@ -34,7 +34,7 @@ export default {
   width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  padding: .5rem 0;
   position: sticky;
   bottom:0;
   z-index: 2;
