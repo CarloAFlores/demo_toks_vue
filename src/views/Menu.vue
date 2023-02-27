@@ -12,18 +12,26 @@
 
     <div class="sugerencias">
         <div class="sugerencias__informacion">
-            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
-            <p class="sugerencias__informacion__p">Es momento de consentirse</p>
-            <Slider_recomendacion class="sugerencias__informacion__slider"/>
-        </div>
-
-        <div class="sugerencias__informacion">
             <p class="sugerencias__informacion__h2"><b> Sugerencias para ti </b></p>
             <p class="sugerencias__informacion__p">Creamos sugerencias para ti basado
                 en tus ultimos pedidos para ayudarte a elegir
             </p>
             <Slider_sugerencia class="sugerencias__informacion__slider"/>
         </div>
+        
+        <div class="sugerencias__informacion recomendaciones_chef">
+            <p class="sugerencias__informacion__h2">Recomendaciones del Chef</p>
+            <p class="sugerencias__informacion__p">Las mejores delicias</p>
+            <Slider_recomendacion class="sugerencias__informacion__slider"/>
+        </div>
+
+        <div class="sugerencias__informacion recomendaciones_chef">
+            <p class="sugerencias__informacion__h2">Promociones</p>
+            <p class="sugerencias__informacion__p">Es momento de consentirse</p>
+            <Slider_promociones class="sugerencias__informacion__slider"/>
+        </div>
+
+
     </div>
 
     <div class="menu">
@@ -31,119 +39,118 @@
         <p class="menu__p">Servicios de 12 a 18 horas</p>
 
         <div class="menu__eleccion">
-            <button class="menu__eleccion--click">Desayunos</button>
-            <button class="menu__eleccion--click">Comidas</button>
-            <button class="menu__eleccion--click">Cenas</button>
+            <button @click="setCategorie(1)" :class="{active: categorieSelected === 1}" class="menu__eleccion--click">Desayunos</button>
+            <button @click="setCategorie(2)" :class="{active: categorieSelected === 2}" class="menu__eleccion--click">Comidas</button>
+            <button @click="setCategorie(3)" :class="{active: categorieSelected === 3}" class="menu__eleccion--click">Cenas</button>
         </div>
 
         <div class="comida">
-            <div class="items" @click="$router.push('platillo')">
-                <img src="@/assets/arroz.png" class="items__img">
+            <div class="items principal"  @click="$router.push('platillo')">
                 <div class="items__div">
-                    <h2> Comida del dia</h2>
+                    <h2 class="items__div__h2"> Comidas del dia</h2>
                     <p class="items__div__p">Platillo especial del Chef</p>
                 </div>
+                <img src="@/assets/arroz.png" class="items__img">
             </div>
 
-            <div class="items">
+            <div class="items principal">
                 <img src="@/assets/comida_1.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Sabores de temporada</h2>
+                    <h2 class="items__div__h2">Sabores de temporada</h2>
                     <p class="items__div__p">Conoce los sabores que tenemos para ti</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_2.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Entradas y Tacos</h2>
+                    <h2 class="items__div__h2">Entradas y Tacos</h2>
                     <p class="items__div__p">Comparte el plap y el momento</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_3.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Sopas y Caldos</h2>
+                    <h2 class="items__div__h2">Sopas y Caldos</h2>
                     <p class="items__div__p">Con nuestro sazon</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_4.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Ensaladas</h2>
+                    <h2 class="items__div__h2">Ensaladas</h2>
                     <p class="items__div__p">El perfecto balance de ingredientes</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_5.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Hamburguesa y Sandwiches</h2>
+                    <h2 class="items__div__h2">Hamburguesa y Sandwiches</h2>
                     <p class="items__div__p">Autenticas combinaciones en nuestro pan casero</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_6.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Carnes al Grill</h2>
+                    <h2 class="items__div__h2">Carnes al Grill</h2>
                     <p class="items__div__p">Cortes de alta calidad que se disfruta</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_7.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Aves</h2>
+                    <h2 class="items__div__h2">Aves</h2>
                     <p class="items__div__p">Para toda la ocasion frescura y sabor</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_8.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Pesca del dia</h2>
+                    <h2 class="items__div__h2">Pesca del dia</h2>
                     <p class="items__div__p">Lo mejor del mar para disfrutar en casa</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_9.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Enchiladas</h2>
+                    <h2 class="items__div__h2">Enchiladas</h2>
                     <p class="items__div__p">Recetas creadas para traer devuelta al presente</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria">
                 <img src="@/assets/comida_10.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Postres</h2>
+                    <h2 class="items__div__h2">Postres</h2>
                     <p class="items__div__p">Consientete con un dulce antojo</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items secundaria-1">
                 <img src="@/assets/comida_11.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Cafes y bebidas calientes</h2>
+                    <h2 class="items__div__h2">Cafes y bebidas calientes</h2>
                     <p class="items__div__p">100% mexicanos</p>
                 </div>
             </div>
 
-            <div class="items">
+            <div class="items principal">
                 <img src="@/assets/comida_12.jpg" class="items__img">
                 <div class="items__div">
-                    <h2>Toks a Mano</h2>
+                    <h2 class="items__div__h2">Toks a Mano</h2>
                     <p class="items__div__p">Disfruta de nuestos productos artesanales</p>
                 </div>
             </div>
         </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -151,9 +158,24 @@ import Header from "@/components/Header.vue";
 import Saludo from "@/components/Saludo.vue";
 import Slider_recomendacion from "@/components/Slider_recomendacion.vue";
 import Slider_sugerencia from "@/components/Slider_sugerencia.vue";
-export default {
-    components:{Header,Saludo,Slider_sugerencia,Slider_recomendacion}
 
+export default {
+    components:{
+        Header,Saludo,Slider_sugerencia,Slider_recomendacion,
+    },
+    data(){
+        return{
+            categorieSelected : null
+        }
+    },
+    mounted(){
+        this.categorieSelected = 2;
+    },
+    methods:{
+        setCategorie(categorie){
+            this.categorieSelected = categorie;
+        }
+    }
 }
 </script>
 
@@ -169,7 +191,7 @@ export default {
     &__div{
         position: relative;
         width: 90%;
-        top: 25%;
+        top: 30%;
         left: 5%;
         &__input{
             box-sizing: border-box;
@@ -191,29 +213,36 @@ export default {
     }
   }
   .sugerencias{
-    margin-top: 1%;
+    margin-top: 0;
     width: 100%;
     &__informacion{
-        margin-top: 10%;
+        margin-top: 1%;
         position: relative;
         width: 90%;
         top: 25%;
         left: 5%;
         &__h2{
             font-family: var(--tipo-principal);
-            font-size: 1.5em;
-            font-weight:bolder;
+                font-weight: 800;
+                color: #000000;
+                font-size: 16px;
+                line-height: 22px;
         }
         &__p{
-            margin-top: 3%;
+            margin-top: 2%;
             font-family: var(--tipo-secundaria);
-            font-weight: 300;
+            font-weight: 100;
+            color: #474747;
+            font-size: 0.85em;
         }
         &__slider{
-            margin-top: 5%;
+            margin-top: 3%;
         }
     }
   }
+  .recomendaciones_chef{
+            margin-top: 10%;
+        }
   .menu{
     position: relative;
     width: 90%;
@@ -227,24 +256,29 @@ export default {
     &__p{
         color: #666666;
         font-family: var(--tipo-secundaria);
+        margin-top: 0.5em;
     }
     &__eleccion{
         display: flex;
         justify-content: space-evenly;
         font-family: var(--tipo-secundaria);
-        font-size: 1.3em;
+        font-size: 1em;
+        border-bottom: solid 1px #dedede;
+        
         &--click{
             width: 33.3%;
             margin-top: 5%;
             color: #666666;
             
-            &:focus{
-                transition: all 0.2s ease-out;
-                border-bottom: 5px solid orange;
-                color: orange;
-            }
+            
         }
     }
+    .active{
+                transition: all 0.4s ease-out;
+                border-bottom: 3px solid orange;
+                color: orange;
+                padding-bottom: 0.3em;
+            }
   }
   .items{
   position: relative;
@@ -269,186 +303,41 @@ export default {
 .comida{
     display: grid;
     grid-template-columns: repeat(aut-fit,auto);
-    gap: .9rem;
+    gap: .8rem;
     margin-top: 8%;
+    margin-bottom: 8%;
     
-    .items:nth-child(1){
+    
+    .items{
+        color: white;
+        .items__div{
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            
+            &__h2{
+                font-size: 1em;
+                font-weight: bolder;
+            }
+            &__p{
+                font-size: 0.6em;
+                font-family: var(--tipo-secundaria);
+            }
+        }
+    }
+    .principal{
         background: palevioletred;
         grid-column: span 4;
         color: white;
-        .items__div{
-            position: absolute;
-            top: 40%;
-            left: 20%;
-            text-align: center;
-            &__p{
-                font-size: 90%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
     }
-    .items:nth-child(2){
-        background: palevioletred;
-        grid-column: span 4;
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 30%;
-            left: 8%;
-            text-align: center;
-            &__p{
-                font-size: 90%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(3){
+    .secundaria{
         background: palevioletred;
         grid-column: span 3;
         color: white;
-        .items__div{
-            position: absolute;
-            top: 24%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(4){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 30%;
-            left: 8%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(5){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(6){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(7){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(8){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(9){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(10){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(11){
-        color: white;
-        background: palevioletred;
-        grid-column: span 3;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(12){
-        color: white;
-        .items__div{
-            position: absolute;
-            top: 20%;
-            text-align: center;
-            &__p{
-                font-size: 70%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
-    }
-    .items:nth-child(13){
-        color: white;
-        background: palevioletred;
-        grid-column: span 4;
-        .items__div{
-            position: absolute;
-            top: 40%;
-            left: 10%;
-            text-align: center;
-            &__p{
-                font-size: 80%;
-                font-family: var(--tipo-secundaria);
-            }
-        }
     }
 }
-
 }
 </style>
