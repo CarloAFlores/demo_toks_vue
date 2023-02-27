@@ -3,7 +3,7 @@
     <div class="footer__button">
         <button class="footer__button__btn">
             <img src="@/assets/home-icon.svg" class="btn">
-            <p>Inicio</p>
+            <p class="selected">Inicio</p>
         </button>
         <button class="footer__button__btn">
             <img src="@/assets/asistencia.svg" class="btn">
@@ -38,8 +38,10 @@ export default {
   position: sticky;
   bottom:0;
   z-index: 2;
+  font-size: 0.625em;
+  border-top: #c8c8c8 1px solid;
   &__button{
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -50,7 +52,11 @@ export default {
         align-items: center;
     }
     .btn{
-        width: 2.3rem;
+        width: 1rem;
+        height: 1rem;
+    }
+    .selected{
+      color: black;
     }
   }
   }
