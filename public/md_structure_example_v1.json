@@ -1,0 +1,465 @@
+{
+    "unidad_id" : 22,
+    "unidad_nombre": "Hermanos Serdán",
+    "marca_id" : 1,
+    "menu":
+    {
+        "categorias" : 
+        [
+            {
+                "categoria_id": 1, 
+                "categoria_nombre":"Comida",
+                "categoria_descripcion":"Servidas de 12 a 18 horas",
+                "categoria_img":"https://storage.googleapis.com/rest_toks/imagenes/Enchiladas/Enchiladas%20Toks.jpg",
+                "categoria_horario_inicio":"12:00:00",
+                "categoria_horario_fin":"18:00:00",
+                "subcategorias":
+                [
+                    {
+                        "subcategoria_id": "MainComidasDia",
+                        "subcategoria_nombre": "Comidas del día",
+                        "subcategoria_descripcion_extracto":"Platillos especial del chef",
+                        "subcategoria_descripcion":"Todas nuestras comidas incluyen una bebida, una entrada  y un postre.",
+                        "subcategoria_informacion": "Todas nuestras comidas incluyen una bebida, (refresco de 355ml, limonada de 355 ml, naranjada de 355 ml, té helado refill de 500 ml, agua fresca del día* de 500 ml, agua embotellada de 600 ml, o café american refill de 240 ml) una entrada (arroz de 140 g, arroz con mole de 190 g, sopa del día* de 250 ml, consomé de pechuga de pollo de 250 ml, ensalada del día* de 130 g o coctel de frutas de 230 g y un postre (helado* de 60 g, nieve de limón de 60 g, buñuelos 2 piezas, o crepas de cajeta de 70 g aprox.).",
+                        "subcategoria_img":"https://storage.googleapis.com/rest_toks/imagenes/Enchiladas/Enchiladas%20Toks.jpg",
+                        "subcategoria_portada":"https://storage.googleapis.com/rest_toks/imagenes/Enchiladas/Enchiladas%20Toks.jpg",
+                        "productos":
+                        [
+                            {
+                                "producto_id":"P|60|Enchiladas Zacatecanas al gratín|",
+                                "producto_nombre":"Enchiladas Zacatecanas al gratín",
+                                "producto_descripción":"Vegetarianas de queso panela, calabaza y papa, con salsa de zanahoria al habanero, cebolla crocante, brocolí y amaranto.",
+                                "producto_info_detalle":"El platillo incluye una bebida, una entrada y un postre.",
+                                "producto_info_aclaracion":"",
+                                "producto_precio": 149.00,
+                                "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Enchiladas/Enchiladas%20de%20Mole%20Artesanal.jpg",
+                                "producto_icon_especial":[],
+                                "modificadores":[],
+                                "opciones_personalizacion":[],
+                                "tiempos":
+                                [
+                                    {
+                                        "tiempo_id":1,
+                                        "tiempo_nombre":"Elige tu bebida",
+                                        "tiempo_nombre_extracto": "Bebida",
+                                        "secciones_tiempo":
+                                        [
+                                            {
+                                                "seccion_tiempo_id": 2,
+                                                "seccion_tiempo_nombre":"Bebidas Refrescantes",
+                                                "seccion_tiempo_descripcion":"Frescas opciones para hidratarte.",
+                                                "seccion_tiempo_precio":0,
+                                                "seccion_tiempo_obligatorio":true,
+                                                "grupos":
+                                                [
+                                                    {
+                                                        "type":1,
+                                                        "grupo_id":1,
+                                                        "grupo_nombre": "Refrescos",
+                                                        "grupo_title": "Elige tu favorito",
+                                                        "grupo_img": "https://storage.googleapis.com/rest_toks/imagenes/Bebidas%20Fr%C3%ADas/Coca%20Cola%20sin%20Az%C3%BAcar.jpg",
+                                                        "grupo_descripcion": "355 ml",
+                                                        "grupo_precio": 0,
+                                                        "grupo_info":"",
+                                                        "grupo_items":
+                                                        [
+                                                            {
+                                                                "producto_id":"P|7056|DLY Coca Cola Reg|",
+                                                                "producto_nombre":"Coca Cola Regular",
+                                                                "producto_descripción":"Refresco en lata (355 ml).",
+                                                                "producto_info_detalle":"",
+                                                                "producto_info_aclaracion":"",
+                                                                "producto_precio": 41.00,
+                                                                "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Bebidas%20Fr%C3%ADas/Coca%20Cola.jpg",
+                                                                "producto_icon_especial":[],
+                                                                "modificadores":[],
+                                                                "opciones_personalizacion":
+                                                                [
+                                                                    {
+                                                                        "opcion_personalizacion_id":1,
+                                                                        "opcion_personalizacion_nombre":"Tamaño",
+                                                                        "opcion_personalizacion_descripcion":"",
+                                                                        "opcion_personalizacion_precio":0,
+                                                                        "opcion_personalizacion_obligatorio":true,
+                                                                        "items":
+                                                                        [
+                                                                            {
+                                                                                "item_id":1,
+                                                                                "item_nombre":"Mediano",
+                                                                                "item_descripcion":"355 ml",
+                                                                                "item_precio":0
+                                                                            },
+                                                                            {
+                                                                                "item_id":2,
+                                                                                "item_nombre":"Grande",
+                                                                                "item_descripcion":"600 ml",
+                                                                                "item_precio":10.00
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "opcion_personalizacion_id":2,
+                                                                        "opcion_personalizacion_nombre":"Hielo",
+                                                                        "opcion_personalizacion_descripcion":"Personaliza tu bebida",
+                                                                        "opcion_personalizacion_precio":0,
+                                                                        "opcion_personalizacion_obligatorio":true,
+                                                                        "items":
+                                                                        [
+                                                                            {
+                                                                                "item_id":3,
+                                                                                "item_nombre":"Con hielo",
+                                                                                "item_descripcion":"",
+                                                                                "item_precio":0
+                                                                            },
+                                                                            {
+                                                                                "item_id":4,
+                                                                                "item_nombre":"Sin Hielo",
+                                                                                "item_descripcion":"",
+                                                                                "item_precio":0
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "tiempos":[]
+                                                            },
+                                                            {
+                                                                "producto_id":"P|8093|DLY Sprite Reg|",
+                                                                "producto_nombre":"Sprite Regular",
+                                                                "producto_descripción":"Refresco en lata (355 ml).",
+                                                                "producto_info_detalle":"",
+                                                                "producto_info_aclaracion":"",
+                                                                "producto_precio": 41.00,
+                                                                "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Bebidas%20Fr%C3%ADas/Sprite.jpg",
+                                                                "producto_icon_especial":[],
+                                                                "modificadores":[],
+                                                                "opciones_personalizacion":
+                                                                [
+                                                                    {
+                                                                        "opcion_personalizacion_id":1,
+                                                                        "opcion_personalizacion_nombre":"Tamaño",
+                                                                        "opcion_personalizacion_descripcion":"",
+                                                                        "opcion_personalizacion_precio":0,
+                                                                        "opcion_personalizacion_obligatorio":true,
+                                                                        "items":
+                                                                        [
+                                                                            {
+                                                                                "item_id":1,
+                                                                                "item_nombre":"Mediano",
+                                                                                "item_descripcion":"355 ml",
+                                                                                "item_precio":0
+                                                                            },
+                                                                            {
+                                                                                "item_id":2,
+                                                                                "item_nombre":"Grande",
+                                                                                "item_descripcion":"600 ml",
+                                                                                "item_precio":10.00
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "opcion_personalizacion_id":2,
+                                                                        "opcion_personalizacion_nombre":"Hielo",
+                                                                        "opcion_personalizacion_descripcion":"Personaliza tu bebida",
+                                                                        "opcion_personalizacion_precio":0,
+                                                                        "opcion_personalizacion_obligatorio":true,
+                                                                        "items":
+                                                                        [
+                                                                            {
+                                                                                "item_id":3,
+                                                                                "item_nombre":"Con hielo",
+                                                                                "item_descripcion":"",
+                                                                                "item_precio":0
+                                                                            },
+                                                                            {
+                                                                                "item_id":4,
+                                                                                "item_nombre":"Sin Hielo",
+                                                                                "item_descripcion":"",
+                                                                                "item_precio":0
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "tiempos":[]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type":2,
+                                                        "producto_id":"P|8001|Limonada|", 
+                                                        "producto_nombre":"Limonada",
+                                                        "producto_descripción":"",
+                                                        "producto_info_detalle":"",
+                                                        "producto_info_aclaracion":"",
+                                                        "producto_precio": 41.00,
+                                                        "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Bebidas%20Fr%C3%ADas/AguaDiaDic.jpg",
+                                                        "producto_icon_especial":[],
+                                                        "modificadores":[],
+                                                        "opciones_personalizacion":
+                                                        [
+                                                            {
+                                                                "opcion_personalizacion_id":3,
+                                                                "opcion_personalizacion_nombre":"Azucar",
+                                                                "opcion_personalizacion_descripcion":"",
+                                                                "opcion_personalizacion_precio":0,
+                                                                "opcion_personalizacion_obligatorio":true,
+                                                                "opcion_items":
+                                                                [
+                                                                    {
+                                                                        "opcion_item_id":5,
+                                                                        "opcion_item_nombre":"Con azucar",
+                                                                        "opcion_item_descripcion":"",
+                                                                        "opción_item_img":"",
+                                                                        "opcion_item_precio":0
+                                                                    },
+                                                                    {
+                                                                        "opcion_item_id":6,
+                                                                        "opcion_item_nombre":"Sin Azucar",
+                                                                        "opcion_item_descripcion":"",
+                                                                        "opción_item_img":"",
+                                                                        "opcion_item_precio":0
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "opcion_personalizacion_id":4,
+                                                                "opcion_personalizacion_nombre":"Mineral",
+                                                                "opcion_personalizacion_descripcion":"",
+                                                                "opcion_personalizacion_precio":0,
+                                                                "opcion_personalizacion_obligatorio":true,
+                                                                "opcion_items":
+                                                                [
+                                                                    {
+                                                                        "opcion_item_id":7,
+                                                                        "opcion_item_nombre":"Mineral",
+                                                                        "opcion_item_descripcion":"",
+                                                                        "opción_item_img":"",
+                                                                        "opcion_item_precio":0
+                                                                    },
+                                                                    {
+                                                                        "opcion_item_id":8,
+                                                                        "opcion_item_nombre":"Natural",
+                                                                        "opcion_item_descripcion":"",
+                                                                        "opción_item_img":"",
+                                                                        "opcion_item_precio":0
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "tiempos":[]
+
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "tiempo_id":2,
+                                        "tiempo_nombre":"Elige tu entrada",
+                                        "tiempo_nombre_extracto":"Entrada",
+                                        "secciones_tiempo":
+                                        [
+                                            {
+                                                "seccion_tiempo_id": 2,
+                                                "seccion_tiempo_nombre":"Entrada",
+                                                "seccion_tiempo_descripcion":"Elige tu preferida para el primer tiempo.",
+                                                "seccion_tiempo_precio":0,
+                                                "seccion_tiempo_obligatorio":true,
+                                                "grupos":
+                                                [
+                                                    {
+                                                        "type":2,
+                                                        "producto_id":"P|9067|DLY Sopa Italiana|", 
+                                                        "producto_nombre":"Sopa Italiana",
+                                                        "producto_descripción":"250 ml",
+                                                        "producto_info_detalle":"Sopa del día",
+                                                        "producto_info_aclaracion":"",
+                                                        "producto_precio": 0.00,
+                                                        "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Sopas/Sopa%20de%20Fideo.jpg",
+                                                        "producto_icon_especial":[],
+                                                        "modificadores":[],
+                                                        "opciones_personalizacion":[],
+                                                        "tiempos":[]                                                    
+                                                    },
+                                                    {
+                                                        "type":2,
+                                                        "producto_id":"P|8200|DLY Arroz|", 
+                                                        "producto_nombre":"Arroz",
+                                                        "producto_descripción":"140 g",
+                                                        "producto_info_detalle":"",
+                                                        "producto_info_aclaracion":"",
+                                                        "producto_precio": 0.00,
+                                                        "producto_icon_especial":[],
+                                                        "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Toks%20en%20Casa%20por%20Kilo.                                                        %20Sirve%2C%20calienta%20y%20disfruta/Arroz%20a%20la%20Mexicana.jpg",
+                                                        "modificadores":[],
+                                                        "opciones_personalizacion":[],
+                                                        "tiempos":[]                                                    
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "tiempo_id":3,
+                                        "tiempo_nombre":"Elige tu postre",
+                                        "tiempo_nombre_extracto":"Postre",
+                                        "secciones_tiempo":
+                                        [
+                                            {
+                                                "seccion_tiempo_id": 3,
+                                                "seccion_tiempo_nombre":"Postre",
+                                                "seccion_tiempo_descripcion":"Por último, elige una dulce opción",
+                                                "seccion_tiempo_precio":0,
+                                                "seccion_tiempo_obligatorio":true,
+                                                "grupos":
+                                                [
+                                                    {
+                                                        "type":2,
+                                                        "producto_id":"P|9998|Helado|", 
+                                                        "producto_nombre":"Helado",
+                                                        "producto_descripción":"60 g",
+                                                        "producto_info_detalle":"",
+                                                        "producto_info_aclaracion":"",
+                                                        "producto_precio": 0.00,
+                                                        "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Sopas/Sopa%20de%20Fideo.jpg",
+                                                        "producto_icon_especial":[],
+                                                        "modificadores":[],
+                                                        "opciones_personalizacion":
+                                                        [
+                                                            {
+                                                                "opcion_personalizacion_id":38,
+                                                                "opcion_personalizacion_nombre":"Sabor",
+                                                                "opcion_personalizacion_descripcion":"¿Qué sabor prefiere?",
+                                                                "opcion_personalizacion_precio":0,
+                                                                "opcion_personalizacion_obligatorio":true,
+                                                                "opcion_items":
+                                                                [
+                                                                    {
+                                                                        "opcion_item_id":54,
+                                                                        "opcion_item_nombre":"Chocolate",
+                                                                        "opcion_item_descripcion":"https://e7.pngegg.com/pngimages/134/348/png-clipart-chocolate-ice-cream-roll-chocolate-ice-ball-food-ice-cream-thumbnail.png",
+                                                                        "opción_item_img":"",
+                                                                        "opcion_item_precio":0
+                                                                    },
+                                                                    {
+                                                                        "opcion_item_id":55,
+                                                                        "opcion_item_nombre":"https://img2.freepng.es/20180503/wlw/kisspng-ice-cream-frozen-custard-milk-four-ball-ice-cream-5aeb0205d9ea00.7822020715253509178926.jpg",
+                                                                        "opcion_item_descripcion":"",
+                                                                        "opción_item_img":"",
+                                                                        "opcion_item_precio":0
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "tiempos":[]                                                    
+                                                    },
+                                                    {
+                                                        "type":2,
+                                                        "producto_id":"P|-1008|BUÑUELOS P/M|", 
+                                                        "producto_nombre":"Bueñuelos",
+                                                        "producto_descripción":"2 piezas",
+                                                        "producto_info_detalle":"",
+                                                        "producto_info_aclaracion":"",
+                                                        "producto_precio": 0.00,
+                                                        "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Dulce%20Antojo/Capricho%20de%20Manzana.jpg",
+                                                        "producto_icon_especial":[],
+                                                        "modificadores":[],
+                                                        "opciones_personalizacion":[],
+                                                        "tiempos":[]                                                    
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "subcategoria_id": "MainSdwHamb",
+                        "subcategoria_nombre": "Hamburguesa y Sandwiches",
+                        "subcategoria_descripcion_extracto":"Auténticas combinaciones en nuestro pan casero ",
+                        "subcategoria_descripcion":"",
+                        "subcategoria_informacion": "",
+                        "subcategoria_img":"https://storage.googleapis.com/rest_toks/imagenes/supertoks/SuperToksHambNotChickenCrispy.jpg",
+                        "subcategoria_portada":"https://storage.googleapis.com/rest_toks/imagenes/S%C3%A1ndwiches%20y%20Hamburguesas/Club%20S%C3%A1ndwich.jpg",
+                        "productos":
+                        [
+                            {
+                                "producto_id":"P|9071|DLY Club Sandwich|",
+                                "producto_nombre":"Club Sandwich",
+                                "producto_descripción":"Con pechuga de pollo (40 g), tocino, jamón y queso americano.",
+                                "producto_info_detalle":"",
+                                "producto_info_aclaracion":"",
+                                "producto_precio": 199.00,
+                                "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/S%C3%A1ndwiches%20y%20Hamburguesas/Club%20S%C3%A1ndwich.jpg",
+                                "producto_icon_especial":[],
+                                "modificadores":[],
+                                "opciones_personalizacion":[],
+                                "tiempos":
+                                [
+                                    
+                                ]
+                            },
+                            {
+                                "producto_id":"P|12130|DLY Hamb Pavp|",
+                                "producto_nombre":"Hamburguesa de pavo a la parrilla",
+                                "producto_descripción":"Hamburguesa de pechuga de pavo (80 g), espinacas, germinado y aguacate, acompañado con ensalada o papas fritas.",
+                                "producto_info_detalle":"",
+                                "producto_info_aclaracion":"El gramaje se expresa en producto crudo de cárnicos y varía de acuerdo a su cocción.",
+                                "producto_precio": 195.00,
+                                "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/supertoks/SuperToksHambRegia.jpg",
+                                "producto_icon_especial":[],
+                                "modificadores":[],
+                                "opciones_personalizacion":[],
+                                "tiempos":
+                                [
+                                    {
+                                        "seccion_tiempo_id": 88,
+                                        "seccion_tiempo_nombre":"Guarnición",
+                                        "seccion_tiempo_descripcion":"Elige la que más te gusta",
+                                        "seccion_tiempo_precio":0,
+                                        "seccion_tiempo_obligatorio":true,
+                                        "grupos":
+                                        [
+                                            {
+                                                "type":2,
+                                                "producto_id":"P|11359|Papas canoa|", 
+                                                "producto_nombre":"Papas canoa",
+                                                "producto_descripción":"",
+                                                "producto_info_detalle":"",
+                                                "producto_info_aclaracion":"",
+                                                "producto_precio": 0.00,
+                                                "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Carnes%2C%20Aves%20y%20Pescados/PechugaPolloRellena.jpg",
+                                                "producto_icon_especial":[],
+                                                "modificadores":[],
+                                                "opciones_personalizacion":
+                                                [
+                                                ],
+                                                "tiempos":[]                                                    
+                                            },
+                                            {
+                                                "type":2,
+                                                "producto_id":"P|11411|DLY ENS huerto|", 
+                                                "producto_nombre":"Ensalada del huerto",
+                                                "producto_descripción":"",
+                                                "producto_info_detalle":"",
+                                                "producto_info_aclaracion":"",
+                                                "producto_precio": 0.00,
+                                                "producto_img":"https://storage.googleapis.com/rest_toks/imagenes/Ensaladas/Ensalada%20San%20Francisco.jpg",
+                                                "producto_icon_especial":[],
+                                                "modificadores":[],
+                                                "opciones_personalizacion":[],
+                                                "tiempos":[]                                                    
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+
+            }
+        ]
+    }
+}

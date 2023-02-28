@@ -24,7 +24,12 @@ const routes = [
     path:'/platillo',
     name:'platillo',
     component:() => import('../views/Paltillo.vue')
-  }
+  },
+  {
+    path:'/plato',
+    name:'plato',
+    component:()=> import('../views/Plato.vue')
+  },
 ]
 
 const router = createRouter({

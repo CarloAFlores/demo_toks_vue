@@ -33,7 +33,7 @@
     </div>
 
     <div class="card">
-        <div class="card__div"  @click="$router.push('menu')">
+        <div class="card__div"  @click="$router.push('plato')">
             <img src="@/assets/comida_1.jpg" class="card__div__img">
             <div class="informe">
                 <div class="informe__div">
@@ -194,7 +194,8 @@ export default {
                 &__div{
                     display: flex;
                     justify-content: space-between;
-                    padding: .5rem;
+                    padding: .6rem;
+
                     &__span{
                         background: #F58220;
                         width: 30%;
