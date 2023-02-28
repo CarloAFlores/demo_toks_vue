@@ -33,7 +33,7 @@
     </div>
 
     <div class="card">
-        <div class="card__div">
+        <div class="card__div"  @click="$router.push('menu')">
             <img src="@/assets/comida_1.jpg" class="card__div__img">
             <div class="informe">
                 <div class="informe__div">

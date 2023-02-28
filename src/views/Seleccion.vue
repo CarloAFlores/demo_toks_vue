@@ -6,24 +6,24 @@
     <p class="seleccion__pregunta">¿Cuantas personas ordenarán desde tu aplicación?</p>
     <form action="" method="post" class="seleccion__form">
       <div class="seleccion__form__input">
-        <p>1 persona</p>
-        <input type="radio" name="num_person" class="radio__color" value="1" v-model="optionSelected">
+        <label for="opcion__1" class="label">1 persona</label>
+        <input type="radio" name="num_person" class="radio__color" id="opcion__1" value="1" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
-        <p>2 personas</p>
-        <input type="radio" name="num_person" class="radio__color" value="2" v-model="optionSelected">
+        <label for="opcion__2" class="label">2 personas</label>
+        <input type="radio" name="num_person" class="radio__color" id="opcion__2" value="2" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
-        <p>3 personas</p>
-        <input type="radio" name="num_person" class="radio__color" value="3" v-model="optionSelected">
+        <label for="opcion__3" class="label">3 personas</label>
+        <input type="radio" name="num_person" class="radio__color" id="opcion__3" value="3" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
-        <p>4 personas</p>
-        <input type="radio" name="num_person" class="radio__color" value="4" v-model="optionSelected">
+        <label for="opcion__4" class="label">4 personas</label>
+        <input type="radio" name="num_person" class="radio__color" id="opcion__4" value="4" v-model="optionSelected">
       </div>
       <div class="seleccion__form__input">
-        <p>5 o mas personas</p>
-        <input type="radio" name="num_person" class="radio__color" value="5" v-model="optionSelected">
+        <label for="opcion__5" class="label">5 o mas personas</label>
+        <input type="radio" name="num_person" class="radio__color" id="opcion__5" value="5" v-model="optionSelected">
       </div>
     </form>
   </div>
@@ -98,6 +98,10 @@ export default {
       &[type=radio]:checked{
         background:#F58220;
       }
+    }
+    .label{
+      width: 100%;
+      height: 2rem;
     }
     #last-input{
       border-bottom: #DDDDDD solid 0.5px;
