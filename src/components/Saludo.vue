@@ -2,15 +2,19 @@
   <div class="div">
 
     <div class="div__user div__user--data_section">
-      <p class="div__user__bienvenida">Hola {{comensal}}, Nos encanta que estes aqui!</p>
-      <p class="div__user__informe">Restaurante: <b>Toks {{unidad}}</b> / Mesa: <b>{{mesa}}</b></p>
+      <p class="div__user__bienvenida">Hola {{Comensal}}, Nos encanta que estes aqui!</p>
+      <p class="div__user__informe">Restaurante: <b>Toks {{Unidad}}</b> / Mesa: <b>{{Mesa}}</b></p>
     </div>
+  </div>
 
+  <div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { useStore } from 'vuex'
+import { computed, onMounted } from 'vue'
 
 export default {
   data(){
@@ -36,6 +40,26 @@ export default {
   },
   created(){
     this.customerDataService();
+  },
+  setup(){
+    const store = useStore()
+    const Comensal = computed(()=>{
+      return store.state.Comensal
+    })
+    const Unidad = computed(()=>{
+      return store.state.Unidad
+    })
+    const Mesa = computed(()=>{
+      return store.state.Mesa
+    })
+    onMounted(()=>{
+      store.dispatch('setComensales')
+    })
+    return{
+      Comensal,
+      Unidad,
+      Mesa
+    }
   }
 
 }
