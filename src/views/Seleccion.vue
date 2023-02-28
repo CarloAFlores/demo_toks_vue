@@ -1,6 +1,6 @@
 <template>
-  <Header/>
-  <Saludo/>
+  <Header :currentPage="1" />
+  <Saludo />
 
   <div class="seleccion">
     <p class="seleccion__pregunta">¿Cuantas personas ordenarán desde tu aplicación?</p>
@@ -44,7 +44,7 @@ export default {
       },
     data(){
       return{
-        optionSelected: null,
+        optionSelected: null
         }
     },
     mounted(){
@@ -60,7 +60,9 @@ export default {
       // Setea la selección de manera global a través del store de VUEX
       changeDinersCount(){
         store.commit('setDinersCount',this.optionSelected)
-      }
+      },
+      
+      
     },
     watch:{
       optionSelected(value){

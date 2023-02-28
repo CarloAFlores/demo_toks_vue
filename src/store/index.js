@@ -12,10 +12,8 @@ export default createStore({
     }
   },
   actions: {
-    setDinersCount(state, value) {
-      state.commit('setDinersCount',value)
-  }
-  },
-  modules: {
+      setDinersCount(state, value) {
+        state.commit('setDinersCount',value)
+    }
   }
 })

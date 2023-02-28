@@ -1,5 +1,5 @@
 <template>
-  <Header/>  
+  <Header :currentPage="2"/>  
   <Saludo/>
   <div class="seleccion">
 
@@ -168,7 +168,8 @@ export default {
     },
     data(){
         return{
-            categorieSelected : null
+            categorieSelected : null,
+            currentPage: 2,
         }
     },
     mounted(){

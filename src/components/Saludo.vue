@@ -2,15 +2,41 @@
   <div class="div">
 
     <div class="div__user div__user--data_section">
-      <p class="div__user__bienvenida">Hola Lucas, Nos encanta que estes aqui!</p>
-      <p class="div__user__informe">Restaurante: <b>Toks MAQ</b> / Mesa: <b>10</b></p>
+      <p class="div__user__bienvenida">Hola {{comensal}}, Nos encanta que estes aqui!</p>
+      <p class="div__user__informe">Restaurante: <b>Toks {{unidad}}</b> / Mesa: <b>{{mesa}}</b></p>
     </div>
 
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  data(){
+    return{
+       customerData: null,
+       comensal: '',
+       unidad: '',
+       mesa: ''
+    }
+  },
+  methods:{
+    async customerDataService(){
+      await axios.get('http://127.0.0.1:8000/api/customers')
+      .then( response => {
+        this.customerData = JSON.parse(response.data.data)
+        this.comensal = this.customerData.comensal
+        this.unidad = this.customerData.unidad_nombre
+        this.mesa = this.customerData.mesa_no
+
+        console.log('Ejecutad');
+      })
+    }
+  },
+  created(){
+    this.customerDataService();
+  }
 
 }
 </script>
