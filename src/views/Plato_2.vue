@@ -1,16 +1,16 @@
 <template>
   <Header/>
-  <Plato_eleccion/>
+  <Plato_eleccion_2/>
   <div class="comenzar">
-    <button class="comenzar__btn"  @click="$router.push('plato_2')">Comenzar mi orden</button>
+    <button class="comenzar__btn">Comenzar mi orden</button>
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
-import Plato_eleccion from "@/components/Plato_eleccion.vue";
+import Plato_eleccion_2 from "@/components/Plato_eleccion_2.vue";
 export default {
-components:{Header, Plato_eleccion}
+components:{Header, Plato_eleccion_2}
 }
 </script>
 

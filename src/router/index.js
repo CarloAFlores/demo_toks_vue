@@ -30,6 +30,11 @@ const routes = [
     name:'plato',
     component:()=> import('../views/Plato.vue')
   },
+  {
+    path:'/plato_2',
+    name:'plato_2',
+    component:() => import('@/views/Plato_2.vue')
+  }
 ]
 
 const router = createRouter({

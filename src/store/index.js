@@ -25,9 +25,10 @@ export default createStore({
         const {data} = await axios.get('api.json')
         const {menu} = await data
         const {categorias} = await menu
-        const {subcategorias} = await categorias
-        console.log(categorias)
-        commit('setPlatillo',categorias)
+        const [categoria] = await categorias
+        const {subcategorias} = categoria
+        console.log(subcategorias)
+        commit('setPlatillo',subcategorias)
       } catch (error) {
         console.log(error)
       }
