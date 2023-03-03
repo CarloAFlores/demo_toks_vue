@@ -99,6 +99,7 @@ export default {
       border-radius: 50%;
       &[type=radio]:checked{
         background:#F58220;
+        border-color: #FFFFFF;
       }
     }
     #last-input{

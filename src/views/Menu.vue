@@ -35,17 +35,23 @@
     </div>
 
     <div class="menu">
-        <h2 class="menu__h2">Comida</h2>
-        <p class="menu__p">Servicios de 12 a 18 horas</p>
+        <h2 class="menu__h2">{{nombreCategoria}}</h2>
+        <p class="menu__p">{{descripcionCategoria}}</p>
 
         <div class="menu__eleccion">
-            <button @click="setCategorie(1)" :class="{active: categorieSelected === 1}" class="menu__eleccion--click">Desayunos</button>
-            <button @click="setCategorie(2)" :class="{active: categorieSelected === 2}" class="menu__eleccion--click">Comidas</button>
-            <button @click="setCategorie(3)" :class="{active: categorieSelected === 3}" class="menu__eleccion--click">Cenas</button>
+            <button v-for="category in menuData" :key="category.categoria_id" @click="setCategory(category)" :class="{active: categorieSelected === category.categoria_id}" class="menu__eleccion--click">{{category.categoria_nombre}}</button>
         </div>
 
-        <div class="comida">
-            <div class="items principal"  @click="$router.push('platillo')">
+        <div v-if="currentCategory" class="comida">
+
+            <div v-for="subcategory in currentCategory.subcategorias" :key="subcategory.subcategoria_id" class="items principal"  @click="$router.push('platillo')">
+                <div class="items__div">
+                    <h2 class="items__div__h2"> {{subcategory.subcategoria_nombre}}</h2>
+                    <p class="items__div__p">{{subcategory.subcategoria_descripcion}}</p>
+                </div>
+                <img :src='subcategory.subcategoria_img' class="items__img">
+            </div>
+            <!-- <div class="items principal"  @click="$router.push('platillo')">
                 <div class="items__div">
                     <h2 class="items__div__h2"> Comidas del dia</h2>
                     <p class="items__div__p">Platillo especial del Chef</p>
@@ -147,7 +153,7 @@
                     <h2 class="items__div__h2">Toks a Mano</h2>
                     <p class="items__div__p">Disfruta de nuestos productos artesanales</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
   </div>
@@ -161,23 +167,76 @@ import Footer from "@/components/Footer.vue";
 import Slider_recomendacion from "@/components/Slider_recomendacion.vue";
 import Slider_sugerencia from "@/components/Slider_sugerencia.vue";
 import Slider_promociones from "@/components/Slider_promociones.vue";
+import axios from 'axios';
 export default {
     components:{
-        Header,Saludo,Slider_sugerencia,Slider_recomendacion,
-    Slider_promociones,Footer
+        Header,
+        Saludo,
+        Slider_sugerencia,
+        Slider_recomendacion,
+        Slider_promociones,
+        Footer
     },
     data(){
         return{
-            categorieSelected : null,
+            // No. de pantalla actual
             currentPage: 2,
+            // Data general del menú
+            menuData: null,
+            // Id de categoria Seleccionada por defecto (Basada en el daypart)
+            categorieSelected : 0,
+            // Obj de categoria actual (Depende la hora )
+            currentCategory: null,
+            // Información de la fecha y hora
+            today: new Date(),
+            currentTime : null,
+
+            // Datos dinamicos para la sección de categorias
+            nombreCategoria: '',
+            descripcionCategoria: ''
         }
     },
+    created(){
+
+    },
     mounted(){
-        this.categorieSelected = 2;
+        // llamada para obtener la data
+        this.getMenu();
+        // llamada para obtener la hora y fecha
+        this.getHour();
+    },
+    updated(){
+        // this.getActiveCategory()
     },
     methods:{
-        setCategorie(categorie){
-            this.categorieSelected = categorie;
+        getHour(){
+            this.currentTime = this.today.toTimeString()
+        },
+        async getMenu(){
+            await axios.get('http://127.0.0.1:8000/api/menus/22').then(
+                response => this.menuData = response.data.menu.categorias
+            )
+        },
+        getActiveCategory(){   
+
+             const category = this.menuData.filter(obj => {
+                return this.currentTime > obj.categoria_horario_inicio && this.currentTime < obj.categoria_horario_fin;
+            })
+
+            this.setCategory(category[0])
+
+        },
+        setCategory(categoria){
+            console.log(categoria);
+            const category = this.menuData.filter(obj =>{
+                return obj.categoria_id === categoria.categoria_id;
+            })
+
+            this.currentCategory = category[0];
+            this.categorieSelected = this.currentCategory.categoria_id
+            this.nombreCategoria = this.currentCategory.categoria_nombre
+            this.descripcionCategoria = this.currentCategory.categoria_descripcion
+
         }
     }
 

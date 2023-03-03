@@ -34,7 +34,6 @@ export default {
         this.unidad = this.customerData.unidad_nombre
         this.mesa = this.customerData.mesa_no
 
-        console.log('Ejecutad');
       })
     }
   },
