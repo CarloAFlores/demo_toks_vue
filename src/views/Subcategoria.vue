@@ -52,7 +52,7 @@
     </div>
 
     <div v-for="producto in products" :key="producto.producto_id" class="card">
-        <div class="card__div"  @click="selectProduct()">
+        <div class="card__div"  @click="selectProduct(producto)">
             <img :src=producto.producto_img class="card__div__img">
             <div class="informe">
                 <div class="informe__div">
@@ -80,6 +80,7 @@ import store from '@/store';
 // MODAL
 import 'gitart-vue-dialog/dist/style.css'
 import { GDialog } from 'gitart-vue-dialog'
+import router from '@/router';
 
 // Toast
 
@@ -124,10 +125,17 @@ export default {
         setProducts(){
             this.products = this.subcategory.productos
         },
-        selectProduct(){
-            let isCategoryActive = this.checkDayPart()
+        selectProduct(producto){
+            let isCategoryActive = store.state.categoryData.categoria_id === store.state.dayPartCategory ? true : false;
 
-            isCategoryActive ? '' : this.$toast('Esta opción no se encuentra disponible en este momento', {
+            isCategoryActive ? this.goToProductPage(producto) : this.notAvailableProduct();
+        },
+        goToProductPage(producto){
+            store.dispatch('setProduct',producto)
+            router.push({path:'/producto/' + producto.producto_id})
+        },
+        notAvailableProduct(){
+            this.$toast('Esta opción no se encuentra disponible en este momento', {
                                                 duration: 3000,
                                                 styles:{
                                                     font: '10px Avenir, sans-serif',
@@ -139,9 +147,6 @@ export default {
                                                 },
                                                 disableClick: true,
                                                 });
-        },
-        checkDayPart(){
-           return store.state.categoryData.categoria_id === store.state.dayPartCategory ? true : false;
         }
     }
 

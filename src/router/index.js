@@ -29,6 +29,11 @@ const routes = [
     path:'/subcategoria/:category/:subcategory',
     name:'subcategoria',
     component:()=> import('../views/Subcategoria.vue')
+  },
+  {
+    path:'/producto/:producto_id',
+    name:'producto',
+    component:()=> import('../views/Articulo.vue')
   }
 ]
 

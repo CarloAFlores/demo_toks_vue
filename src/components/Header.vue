@@ -4,21 +4,28 @@
       <img src="@/assets/atras.svg" alt="boton-regresar">
     </button>
 
-    <div class="header__logo" v-if="currentPage < 2">
+    <div class="header__logo" v-if="currentPage === 1">
       <img src="@/assets/toks-logo.svg" alt="Logo de la marca">
     </div>
 
-    <div class="header__logo adjust" v-if="currentPage > 1">
+    <div class="header__logo adjust" v-if="currentPage === 2">
       <img src="@/assets/toks-logo.svg" alt="Logo de la marca">
     </div>
 
-    <button v-if="currentPage < 2" class="header__btn--menu menu">
+    <div class="titleProduct adjust" v-if="currentPage === 4">
+      <h2>{{titleArticle}}</h2>
+    </div>
+
+    <button v-if="currentPage === 1" class="header__btn--menu menu">
       <img src="@/assets/menu_hamburguesa.svg" alt="menu-hamburguesa">
     </button>
 
-    <div v-if="currentPage > 1" class="buttons-container">
-      <button class="footer__button__btn">
+    <div v-if="currentPage === 2 || currentPage === 4" class="buttons-container">
+      <button class="footer__button__btn" v-if="currentPage === 2">
             <img src="@/assets/cuenta-usuario.svg" class="user-count">
+      </button>
+      <button class="footer__button__btn" v-if="currentPage === 4">
+            <img src="@/assets/home-icon-white.svg" class="user-count">
       </button>
       <button class="footer__button__btn">
             <img src="@/assets/cart.svg" class="cart">
@@ -38,6 +45,10 @@ export default {
       type: Number,
       required: true
     },
+    titleArticle:{
+      type: String,
+      required: false
+    }
   }
 
 }
@@ -46,6 +57,15 @@ export default {
 <style lang="scss" scoped>
 .adjust{
   margin-left: 3em;
+}
+.titleProduct{
+  width: 13em;
+  color: white;
+  font-size: 0.8em;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 .header{
   background: black;

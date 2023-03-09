@@ -11,7 +11,8 @@ export default createStore({
     menuData: null,
     categoryData: null,
     subCategoryData: null,
-    dayPartCategory: null
+    dayPartCategory: null,
+    productData: null
   },
   getters: {
   },
@@ -42,6 +43,9 @@ export default createStore({
     },
     setDayPartCategory(state, payload){
       state.dayPartCategory = payload
+    },
+    setProduct(state,payload){
+      state.productData = payload
     }
   },
   actions: {
@@ -71,6 +75,9 @@ export default createStore({
     },
     setDayPartCategory({commit},value){
       commit('setDayPartCategory',value)
+    },
+    setProduct({commit},value){
+      commit('setProduct',value)
     }
   }
 })
