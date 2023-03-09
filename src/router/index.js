@@ -16,7 +16,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Seleccion.vue')
   },
   {
-    path:'/menu',
+    path:'/menu/:id',
     name:'menu',
     component:() => import('../views/Menu.vue')
   },
@@ -24,6 +24,11 @@ const routes = [
     path:'/platillo',
     name:'platillo',
     component:()=> import('../views/Platillo.vue')
+  },
+  {
+    path:'/subcategoria/:category/:subcategory',
+    name:'subcategoria',
+    component:()=> import('../views/Subcategoria.vue')
   }
 ]
 

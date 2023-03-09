@@ -1,6 +1,6 @@
 <template>
   <Header :currentPage="1" />
-  <Saludo />
+  <Saludo @getUnidadMenuId="getUnidadMenuId" />
 
   <div class="seleccion">
     <p class="seleccion__pregunta">¿Cuantas personas ordenarán desde tu aplicación?</p>
@@ -29,7 +29,7 @@
   </div>
 
   <div class="footer">
-    <button class="footer__btn" :class="{active: goMenuBtnActive}" :disabled="!goMenuBtnActive" @click="$router.push('menu')">Ir al menu</button>
+    <button class="footer__btn" :class="{active: goMenuBtnActive}" :disabled="!goMenuBtnActive" @click="$router.push('menu/'+ this.unidad_id)">Ir al menu</button>
   </div>
 </template>
 
@@ -44,7 +44,8 @@ export default {
       },
     data(){
       return{
-        optionSelected: null
+        optionSelected: null,
+        unidad_id: 0
         }
     },
     mounted(){
@@ -61,6 +62,9 @@ export default {
       changeDinersCount(){
         store.commit('setDinersCount',this.optionSelected)
       },
+      getUnidadMenuId(unidad_id){
+        this.unidad_id = unidad_id
+      }
       
       
     },

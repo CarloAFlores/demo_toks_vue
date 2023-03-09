@@ -35,125 +35,25 @@
     </div>
 
     <div class="menu">
-        <h2 class="menu__h2">{{nombreCategoria}}</h2>
-        <p class="menu__p">{{descripcionCategoria}}</p>
+        <h2 class="menu__h2">{{currentCategory.categoria_nombre}}</h2>
+        <p class="menu__p">{{currentCategory.categoria_descripcion}}</p>
 
         <div class="menu__eleccion">
             <button v-for="category in menuData" :key="category.categoria_id" @click="setCategory(category)" :class="{active: categorieSelected === category.categoria_id}" class="menu__eleccion--click">{{category.categoria_nombre}}</button>
+
         </div>
+            <p v-if="activeCategory != currentCategory.categoria_id" class="not_active_category">*Está opción no se encuentra disponible en este momento</p>
 
         <div v-if="currentCategory" class="comida">
 
-            <div v-for="subcategory in currentCategory.subcategorias" :key="subcategory.subcategoria_id" class="items principal"  @click="$router.push('platillo')">
+            <div v-for="subcategory in currentCategory.subcategorias" :key="subcategory.subcategoria_id" class="items" :class="{principal: subcategory.subcategoria_jerarquia === 1, secundaria_l: subcategory.subcategoria_jerarquia === 2, secundaria_c: subcategory.subcategoria_jerarquia === 3}"  @click="selectSubcategory(currentCategory.categoria_id,subcategory)">
                 <div class="items__div">
                     <h2 class="items__div__h2"> {{subcategory.subcategoria_nombre}}</h2>
                     <p class="items__div__p">{{subcategory.subcategoria_descripcion}}</p>
                 </div>
                 <img :src='subcategory.subcategoria_img' class="items__img">
             </div>
-            <!-- <div class="items principal"  @click="$router.push('platillo')">
-                <div class="items__div">
-                    <h2 class="items__div__h2"> Comidas del dia</h2>
-                    <p class="items__div__p">Platillo especial del Chef</p>
-                </div>
-                <img src="@/assets/arroz.png" class="items__img">
-            </div>
-
-            <div class="items principal">
-                <img src="@/assets/comida_1.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Sabores de temporada</h2>
-                    <p class="items__div__p">Conoce los sabores que tenemos para ti</p>
-                </div>
-            </div>
-
-            <div class="items secundaria">
-                <img src="@/assets/comida_2.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Entradas y Tacos</h2>
-                    <p class="items__div__p">Comparte el plap y el momento</p>
-                </div>
-            </div>
-
-            <div class="items secundaria-1">
-                <img src="@/assets/comida_3.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Sopas y Caldos</h2>
-                    <p class="items__div__p">Con nuestro sazon</p>
-                </div>
-            </div>
-
-            <div class="items secundaria-1">
-                <img src="@/assets/comida_4.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Ensaladas</h2>
-                    <p class="items__div__p">El perfecto balance de ingredientes</p>
-                </div>
-            </div>
-
-            <div class="items secundaria">
-                <img src="@/assets/comida_5.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Hamburguesa y Sandwiches</h2>
-                    <p class="items__div__p">Autenticas combinaciones en nuestro pan casero</p>
-                </div>
-            </div>
-
-            <div class="items secundaria">
-                <img src="@/assets/comida_6.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Carnes al Grill</h2>
-                    <p class="items__div__p">Cortes de alta calidad que se disfruta</p>
-                </div>
-            </div>
-
-            <div class="items secundaria-1">
-                <img src="@/assets/comida_7.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Aves</h2>
-                    <p class="items__div__p">Para toda la ocasion frescura y sabor</p>
-                </div>
-            </div>
-
-            <div class="items secundaria-1">
-                <img src="@/assets/comida_8.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Pesca del dia</h2>
-                    <p class="items__div__p">Lo mejor del mar para disfrutar en casa</p>
-                </div>
-            </div>
-
-            <div class="items secundaria">
-                <img src="@/assets/comida_9.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Enchiladas</h2>
-                    <p class="items__div__p">Recetas creadas para traer devuelta al presente</p>
-                </div>
-            </div>
-
-            <div class="items secundaria">
-                <img src="@/assets/comida_10.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Postres</h2>
-                    <p class="items__div__p">Consientete con un dulce antojo</p>
-                </div>
-            </div>
-
-            <div class="items secundaria-1">
-                <img src="@/assets/comida_11.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Cafes y bebidas calientes</h2>
-                    <p class="items__div__p">100% mexicanos</p>
-                </div>
-            </div>
-
-            <div class="items principal">
-                <img src="@/assets/comida_12.jpg" class="items__img">
-                <div class="items__div">
-                    <h2 class="items__div__h2">Toks a Mano</h2>
-                    <p class="items__div__p">Disfruta de nuestos productos artesanales</p>
-                </div>
-            </div> -->
+            
         </div>
     </div>
   </div>
@@ -168,6 +68,10 @@ import Slider_recomendacion from "@/components/Slider_recomendacion.vue";
 import Slider_sugerencia from "@/components/Slider_sugerencia.vue";
 import Slider_promociones from "@/components/Slider_promociones.vue";
 import axios from 'axios';
+import store from '@/store';
+import { mapState } from 'vuex';
+import router from '@/router';
+
 export default {
     components:{
         Header,
@@ -182,60 +86,67 @@ export default {
             // No. de pantalla actual
             currentPage: 2,
             // Data general del menú
-            menuData: null,
+            menuData: [],
             // Id de categoria Seleccionada por defecto (Basada en el daypart)
             categorieSelected : 0,
             // Obj de categoria actual (Depende la hora )
-            currentCategory: null,
+            currentCategory: [],
+            activeCategory: 0,
+            
             // Información de la fecha y hora
             today: new Date(),
             currentTime : null,
 
-            // Datos dinamicos para la sección de categorias
-            nombreCategoria: '',
-            descripcionCategoria: ''
+            subcategories:null,
+            secondarySubcategories: null
+
         }
     },
-    created(){
-
-    },
-    mounted(){
+    beforeMount(){
         // llamada para obtener la data
-        this.getMenu();
+        this.getMenuData();
         // llamada para obtener la hora y fecha
         this.getHour();
-    },
-    updated(){
-        // this.getActiveCategory()
     },
     methods:{
         getHour(){
             this.currentTime = this.today.toTimeString()
         },
-        async getMenu(){
-            await axios.get('http://127.0.0.1:8000/api/menus/22').then(
-                response => this.menuData = response.data.menu.categorias
-            )
-        },
-        getActiveCategory(){   
-
-             const category = this.menuData.filter(obj => {
-                return this.currentTime > obj.categoria_horario_inicio && this.currentTime < obj.categoria_horario_fin;
-            })
-
-            this.setCategory(category[0])
-
-        },
         setCategory(categoria){
-            console.log(categoria);
             const category = this.menuData.filter(obj =>{
                 return obj.categoria_id === categoria.categoria_id;
             })
 
             this.currentCategory = category[0];
+            this.subcategories = this.currentCategory.subcategorias;
             this.categorieSelected = this.currentCategory.categoria_id
-            this.nombreCategoria = this.currentCategory.categoria_nombre
-            this.descripcionCategoria = this.currentCategory.categoria_descripcion
+            store.dispatch('setCurrentCategory',category[0])
+
+
+        },
+    
+        async getMenuData(){
+            await axios.get('http://189.161.36.232:8000/api/menus/'+ this.$route.params.id).then(
+                response => this.menuData = response.data.menu.categorias
+            ).then(
+                response => {
+                    const category = response.filter(obj => {
+                    return this.currentTime > obj.categoria_horario_inicio && this.currentTime < obj.categoria_horario_fin;
+                })
+
+                     this.setCategory(category[0])
+                     this.activeCategory = category[0].categoria_id
+                     store.dispatch('setMenuData',response)
+                     store.dispatch('setDayPartCategory',category[0].categoria_id)
+                }
+            )
+        },
+        selectSubcategory(categoria_id,subcategoria){
+            // console.log({categoria_id,subcategoria});
+            store.dispatch('setCurrentSubcategory',subcategoria)
+            // TODO: Pasar a la siguiente pantalla con la data de la subcategoria seleccionada
+
+            router.push({path:'/subcategoria/'+categoria_id+'/'+subcategoria.subcategoria_id})
 
         }
     }
@@ -310,7 +221,7 @@ export default {
     width: 90%;
     top: 5%;
     left: 5%;
-    margin-top: 12%;
+    margin-top: 10%;
     &__h2{
         font-size: 1.5em;
         font-weight: bold;
@@ -334,6 +245,11 @@ export default {
             
             
         }
+    }
+    .not_active_category{
+        font-size: 0.6em;
+        color: #595959;
+        font-weight: lighter;
     }
     .active{
                 transition: all 0.4s ease-out;
@@ -366,7 +282,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(aut-fit,auto);
     gap: .8rem;
-    margin-top: 8%;
+    margin-top: 4%;
     margin-bottom: 8%;
     
     
@@ -397,9 +313,14 @@ export default {
         color: white;
     }
 
-    .secundaria{
+    .secundaria_l{
         background: palevioletred;
-        grid-column: span 3;
+        grid-column: span 2;
+        color: white;
+    }
+    .secundaria_c{
+        background: palevioletred;
+        grid-column: span 2;
         color: white;
     }
 }

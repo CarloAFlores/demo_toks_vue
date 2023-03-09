@@ -22,18 +22,20 @@ export default {
        customerData: null,
        comensal: '',
        unidad: '',
-       mesa: ''
+       mesa: '',
+       unidad_id: ''
     }
   },
   methods:{
     async customerDataService(){
-      await axios.get('http://127.0.0.1:8000/api/customers')
+      await axios.get('http://189.161.36.232:8000/api/customers')
       .then( response => {
         this.customerData = JSON.parse(response.data.data)
         this.comensal = this.customerData.comensal
         this.unidad = this.customerData.unidad_nombre
         this.mesa = this.customerData.mesa_no
-
+        this.unidad_id = this.customerData.unidad_id
+        this.$emit("getUnidadMenuId",this.unidad_id);
       })
     }
   },
@@ -51,13 +53,17 @@ export default {
     const Mesa = computed(()=>{
       return store.state.Mesa
     })
+    const Unidad_ID = computed(()=>{
+      return store.state.Unidad_ID
+    })
     onMounted(()=>{
       store.dispatch('setComensales')
     })
     return{
       Comensal,
       Unidad,
-      Mesa
+      Mesa,
+      Unidad_ID
     }
   }
 
