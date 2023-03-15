@@ -12,7 +12,7 @@
       <img src="@/assets/toks-logo.svg" alt="Logo de la marca">
     </div>
 
-    <div class="titleProduct adjust" v-if="currentPage === 4">
+    <div class="titleProduct adjust" v-if="currentPage >= 4">
       <h2>{{titleArticle}}</h2>
     </div>
 
@@ -20,11 +20,11 @@
       <img src="@/assets/menu_hamburguesa.svg" alt="menu-hamburguesa">
     </button>
 
-    <div v-if="currentPage === 2 || currentPage === 4" class="buttons-container">
+    <div v-if="currentPage === 2 || currentPage >= 4" class="buttons-container">
       <button class="footer__button__btn" v-if="currentPage === 2">
             <img src="@/assets/cuenta-usuario.svg" class="user-count">
       </button>
-      <button class="footer__button__btn" v-if="currentPage === 4">
+      <button class="footer__button__btn" v-if="currentPage >= 4">
             <img src="@/assets/home-icon-white.svg" class="user-count">
       </button>
       <button class="footer__button__btn">

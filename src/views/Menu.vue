@@ -94,7 +94,7 @@ export default {
             activeCategory: 0,
             
             // Información de la fecha y hora
-            today: new Date(),
+            today: new Date("2022-11-22 16:59:00"),
             currentTime : null,
 
             subcategories:null,

@@ -12,7 +12,8 @@ export default createStore({
     categoryData: null,
     subCategoryData: null,
     dayPartCategory: null,
-    productData: null
+    productData: null,
+    tiempoData: null,
   },
   getters: {
   },
@@ -46,6 +47,9 @@ export default createStore({
     },
     setProduct(state,payload){
       state.productData = payload
+    },
+    setTiempo(state, payload){
+      state.tiempoData = payload
     }
   },
   actions: {
@@ -78,6 +82,9 @@ export default createStore({
     },
     setProduct({commit},value){
       commit('setProduct',value)
+    },
+    setTiempo({commit},value){
+      commit('setTiempo',value)
     }
   }
 })
