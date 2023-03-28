@@ -1,0 +1,87 @@
+[
+    {
+        "id":1,
+        "nombre": "Refresco",
+        "img": "https://menugrg.com.mx:7443/menudigital/Articulos/Coca-Cola-Original-355-ml-Lata%20(3)_min.1629086910.jpg",
+        "precio":199,
+        "descripcion":"Nuestro tradicional pastel de queso (rebanada individual).",
+        "opciones_personalizacion":[
+            {
+                "id": 1,
+                "nombre":"Cheescake con fresas"
+            },
+            {
+                "id": 2,
+                "nombre":"Cheescake con salsa de guayaba"
+            }
+        ]
+    },
+    {
+        "id":2,
+        "nombre": "Tacos de pollo",
+        "img": "https://menugrg.com.mx:7443/menudigital/Articulos/Tacos_pollo_min.1629087262.jpg",
+        "precio":199,
+        "descripcion":"Nuestro tradicional pastel de queso (rebanada individual).",
+        "opciones_personalizacion":[
+            {
+                "id": 1,
+                "nombre":"Cheescake con fresas"
+            },
+            {
+                "id": 2,
+                "nombre":"Cheescake con salsa de guayaba"
+            }
+        ]
+    },
+    {
+        "id":3,
+        "nombre": "Cheescake",
+        "img": "https://menugrg.com.mx:7443/menudigital/Articulos/CHEESECAKE_min.1594330301.jpg",
+        "precio":199,
+        "descripcion":"Nuestro tradicional pastel de queso (rebanada individual).",
+        "opciones_personalizacion":[
+            {
+                "id": 1,
+                "nombre":"Cheescake con fresas"
+            },
+            {
+                "id": 2,
+                "nombre":"Cheescake con salsa de guayaba"
+            }
+        ]
+    },
+    {
+        "id":4,
+        "nombre": "Limonada",
+        "img": "https://menugrg.com.mx:7443/menudigital/Articulos/LIMONADA_min.1629086780.jpg",
+        "precio":199,
+        "descripcion":"Nuestro tradicional pastel de queso (rebanada individual).",
+        "opciones_personalizacion":[
+            {
+                "id": 1,
+                "nombre":"Cheescake con fresas"
+            },
+            {
+                "id": 2,
+                "nombre":"Cheescake con salsa de guayaba"
+            }
+        ]
+    },
+    {
+        "id":5,
+        "nombre": "Agua",
+        "img": "https://menugrg.com.mx:7443/menudigital/Articulos/LIMONADA_min.1629086780.jpg",
+        "precio":199,
+        "descripcion":"Nuestro tradicional pastel de queso (rebanada individual).",
+        "opciones_personalizacion":[
+            {
+                "id": 1,
+                "nombre":"Cheescake con fresas"
+            },
+            {
+                "id": 2,
+                "nombre":"Cheescake con salsa de guayaba"
+            }
+        ]
+    }
+]

@@ -80,6 +80,8 @@ import store from '@/store';
 // MODAL
 import 'gitart-vue-dialog/dist/style.css'
 import { GDialog } from 'gitart-vue-dialog'
+
+
 import router from '@/router';
 
 // Toast
@@ -92,9 +94,10 @@ export default {
     },
     data(){
         return{
+            // No. de pantalla actual
+            currentPage: 3,
             subcategory: {},
             subcategoryID: null,
-            categoryData: null,
             value: false,
             products: {}
 

@@ -39,12 +39,19 @@ const routes = [
     path:'/producto/:producto_id/:tiempo_id',
     name:'producto-pasos',
     component:() => import('../views/ArticuloPasos.vue')
+  },
+  {
+    path:'/resumen',
+    name: 'resumen',
+    component: () => import('../views/ResumenOrden.vue')
   }
 ]
+
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
 
 export default router

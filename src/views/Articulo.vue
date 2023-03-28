@@ -1,5 +1,24 @@
 <template>
   <Header :currentPage="4" :titleArticle=product.producto_nombre />  
+  <GDialog border-radius="10px" persistent v-model="modalValue">
+  <div class="modal-cart">
+      <div class="modal-cart__content">
+        <p class="modal-cart__content__p">
+          ¡Tu orden ha sido agregada al carrito!
+        </p>
+        <button class="modal-cart__content__boton-carro">
+            Ver carrito
+        </button>
+
+        <button @click="$router.push({ path: '/menu/'+this.Unidad_ID })" class="modal-cart__content__boton-continuar">
+            Agregar algo más
+        </button>
+
+      </div>
+
+      
+    </div>
+</GDialog>
 
     <div class="section">
         <img :src="product.producto_img" class="section__img">
@@ -33,7 +52,7 @@
 
                 <div class="steps__options">
                 
-                    <div v-for="grupo in product.tiempos[0].grupos" :key="grupo.grupo_id" class="steps__options__card">
+                    <div :class="{'card-inactive' : grupo.producto_id != optionSelected.producto_id, 'card-active' : grupo.producto_id === optionSelected.producto_id}" @click="selectOption(grupo)" v-for="grupo in product.tiempos[0].grupos" :key="grupo.grupo_id" class="steps__options__card">
                         <img class="steps__options__card__img" v-if="grupo.type === 1" :src=grupo.grupo_img alt="img-grupo">
                         <img class="steps__options__card__img" v-if="grupo.type === 2" :src=grupo.producto_img alt="img-grupo">
                         <h5 class="steps__options__card__h5" v-if="grupo.type === 1">{{grupo.grupo_nombre}}</h5>
@@ -46,7 +65,7 @@
                 </div>
 
                     <div class="guarnicion-option">
-                        <input class="guarnicion-option__input" type="checkbox" id="checkbox" v-model="guarnicionOption" />
+                        <input class="guarnicion-option__input" type="checkbox" id="checkbox" v-model="sinGuarnicionOption" />
                     <label for="checkbox">Sin guarnición</label>
                     </div>
             </div>
@@ -75,7 +94,7 @@
         </div>
 
         <div class="footer">
-                <button v-if="product.tiempos.length === 1" class="footer__btn">Agregar al carrito | {{product.producto_precio}}</button>
+                <button @click="addToCart()" :class="{'active': optionSelected.producto_id || sinGuarnicionOption}" :disabled="sinGuarnicionOption" v-if="product.tiempos.length === 1" class="footer__btn">Agregar al carrito | ${{product.producto_precio}}</button>
 
                 <button v-if="product.tiempos.length > 1" class="footer__btn active" @click="goToSteps()">Agregar a la orden</button>
         </div>
@@ -90,25 +109,51 @@
 import Header from '@/components/Header.vue'
 import store from '@/store';
 import router from '@/router';
+
+// MODAL
+import 'gitart-vue-dialog/dist/style.css'
+import { GDialog } from 'gitart-vue-dialog'
+import { mapState } from 'vuex';
+
+
 export default {
 
     components:{
-        Header
+        Header,
+        GDialog,
+
     },
 
     data(){
         return{
             currentPage: 4,
             product:{},
-            sinGuarnicionOption: false
+            sinGuarnicionOption: false,
+            productStepsCount: 0,
+            currentProductSteps: 0,
+            optionSelected: {},
+            modalValue: false,
+
         }
     },
     created(){
         this.getProduct()
     },
     methods:{
+        addToCart(){
+            store.dispatch('addProduct',{"producto":this.product,"opciones_seleccionadas":this.optionSelected}).then( ()=> {
+                     this.modalValue = true
+
+            })
+        },
+        selectOption(option){
+            this.optionSelected = option
+            this.sinGuarnicionOption = false
+        },
         getProduct(){
             this.product = store.state.productData
+            this.countSteps()
+
         },
         goToSteps(){
             let currentStep = 0;
@@ -123,14 +168,74 @@ export default {
 
             store.dispatch('setTiempo',this.product.tiempos[currentStep - 1]);
 
+            let currentDish = {
+                "producto_principal": this.product,
+                "opciones_seleccionadas": []
+            }
+
+
+            store.dispatch('setPartialOrder',currentDish)
+
             router.push({path:'/producto/'+this.product.producto_id+'/'+currentStep})
+        },
+        countSteps(){
+            this.productStepsCount = this.product.tiempos.length
+            this.currentProductSteps = this.product.tiempos
+        },
+    },
+    watch:{
+        sinGuarnicionOption(value){
+            value ? this.optionSelected = {} : ''
         }
+    },
+    computed:{
+        ...mapState(
+            [
+                'Unidad_ID'
+            ]
+        )
     }
+    
+    
 
 }
 </script>
 
 <style lang="scss" scooped>
+
+.modal-cart{
+    padding: 2em;
+    &__content{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        row-gap: 1em;
+            
+        &__p{
+            font-size: 0.875em;
+            width: 18em;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 1.5em;
+        }
+        &__boton-carro{
+            font-size: 0.875em;
+            border-radius: 0.7em;
+            width: 12em;
+            padding: 0.8em;
+            border: 1px solid black;
+        }
+        &__boton-continuar{
+            font-size: 0.875em;
+            border-radius: 0.7em;
+            width: 12em;
+            padding: 0.8em;
+            background-color: black;
+            color: white;
+        }
+    }
+}
 
 .vl {
   border-left: 1px solid lightgray;
@@ -226,6 +331,14 @@ export default {
     }
 }
 
+.card-active{
+    border: #F58220 0.5px solid;
+}
+
+.card-inactive{
+    border: #ddd 0.5px solid;
+}
+
 .steps{
    &__title{
         padding-top: 1em;
@@ -262,18 +375,21 @@ export default {
         display: grid;
         gap: .8rem;
         &__card{
+            width: 6.25em;
             text-align: center;
-            padding: 1em;
-            border: #666666 1px solid;
+            padding: 1em 1em 0;
             border-radius: 10px;
             background: white;
             &__h5{
-                font-size: 0.9em;
+                padding: 0.5em 0;
+                font-size: 0.8em;
+                font-weight: 200;
+                line-height: 1em;
             }
             &__p{
                 font-size: 0.5em;
             }
-        }
+        } 
    }
 
    &__content{

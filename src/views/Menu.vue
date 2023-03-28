@@ -1,5 +1,5 @@
 <template>
-  <Header :currentPage="2"/>  
+  <Header @cartActive="cartActive" :currentPage="2"/>  
   <Saludo/>
   <div class="seleccion">
 
@@ -64,6 +64,8 @@
 import Header from "@/components/Header.vue";
 import Saludo from "@/components/Saludo.vue";
 import Footer from "@/components/Footer.vue";
+import CartOrders from '@/components/CartOrders.vue';
+
 import Slider_recomendacion from "@/components/Slider_recomendacion.vue";
 import Slider_sugerencia from "@/components/Slider_sugerencia.vue";
 import Slider_promociones from "@/components/Slider_promociones.vue";
@@ -79,7 +81,8 @@ export default {
         Slider_sugerencia,
         Slider_recomendacion,
         Slider_promociones,
-        Footer
+        Footer,
+        CartOrders,
     },
     data(){
         return{
@@ -94,11 +97,14 @@ export default {
             activeCategory: 0,
             
             // Información de la fecha y hora
-            today: new Date("2022-11-22 16:59:00"),
+            today: new Date("2022-11-22 08:59:00"),
             currentTime : null,
 
             subcategories:null,
-            secondarySubcategories: null
+            secondarySubcategories: null,
+            vuexCart: null
+
+
 
         }
     },
@@ -107,8 +113,19 @@ export default {
         this.getMenuData();
         // llamada para obtener la hora y fecha
         this.getHour();
+
+        this.startCart();
     },
     methods:{
+        startCart(){
+            if(this.cart.length > 0){
+                console.log('existe el carrito');
+            }else{
+                console.log('carrito vacio',this.cart.length);
+                store.dispatch('setCart')
+
+            }
+        },
         getHour(){
             this.currentTime = this.today.toTimeString()
         },
@@ -126,7 +143,8 @@ export default {
         },
     
         async getMenuData(){
-            await axios.get('http://189.161.36.232:8000/api/menus/'+ this.$route.params.id).then(
+            // await axios.get('http://189.161.36.232:8000/api/menus/'+ this.$route.params.id).then(
+            await axios.get('http://localhost:8000/api/menus/'+ this.$route.params.id).then(
                 response => this.menuData = response.data.menu.categorias
             ).then(
                 response => {
@@ -149,6 +167,13 @@ export default {
             router.push({path:'/subcategoria/'+categoria_id+'/'+subcategoria.subcategoria_id})
 
         }
+    },
+    computed:{
+        ...mapState(
+            [
+                'cart'
+            ]
+        )
     }
 
 }

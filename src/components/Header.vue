@@ -1,4 +1,6 @@
 <template>
+  <CartOrders :carroActivado="carroActivado"/>
+
   <section class="header">
     <button class="header__btn--return header__regresar"  @click="$router.go(-1)">
       <img src="@/assets/atras.svg" alt="boton-regresar">
@@ -12,7 +14,7 @@
       <img src="@/assets/toks-logo.svg" alt="Logo de la marca">
     </div>
 
-    <div class="titleProduct adjust" v-if="currentPage >= 4">
+    <div :class="{'titleAdjust':currentPage == 6}" class="titleProduct adjust" v-if="currentPage >= 4">
       <h2>{{titleArticle}}</h2>
     </div>
 
@@ -27,7 +29,7 @@
       <button class="footer__button__btn" v-if="currentPage >= 4">
             <img src="@/assets/home-icon-white.svg" class="user-count">
       </button>
-      <button class="footer__button__btn">
+      <button @click="activeCart()" class="footer__button__btn">
             <img src="@/assets/cart.svg" class="cart">
       </button>
       <button class="header__btn--menu menu">
@@ -39,7 +41,18 @@
 </template>
 
 <script>
+import CartOrders from './CartOrders.vue'
+
 export default {
+  components:{
+    CartOrders
+  },
+  data(){
+    return{
+      carroActivado: false
+      
+    }
+  },
   props:{
     currentPage:{
       type: Number,
@@ -49,6 +62,12 @@ export default {
       type: String,
       required: false
     }
+  },
+  methods:{
+    
+    activeCart(){
+      this.carroActivado = !this.carroActivado
+    },
   }
 
 }
@@ -57,6 +76,9 @@ export default {
 <style lang="scss" scoped>
 .adjust{
   margin-left: 3em;
+}
+.titleAdjust{
+  margin-left: 6em;
 }
 .titleProduct{
   width: 13em;

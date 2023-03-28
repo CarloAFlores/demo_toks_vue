@@ -37,7 +37,7 @@
 
                 <div class="content__steps-info__options">
                 
-                    <div v-for="grupo in seccion.grupos" :key="grupo.grupo_id" class="content__steps-info__options__card">
+                    <div v-for="grupo in seccion.grupos" :key="grupo.grupo_id" class="content__steps-info__options__card" @click="selectGroup(grupo)">
                         <img class="content__steps-info__options__card__img" v-if="grupo.type === 1" :src=grupo.grupo_img alt="img-grupo">
                         <img class="content__steps-info__options__card__img" v-if="grupo.type === 2" :src=grupo.producto_img alt="img-grupo">
                         <h5 class="content__steps-info__options__card__h5" v-if="grupo.type === 1">{{grupo.grupo_nombre}}</h5>
@@ -48,13 +48,72 @@
 
                 
                 </div>
+
+                <!--En caso de ser un grupo de productos  -->
+                <div v-if="groupSelected && groupSelected.type === 1" class="content__steps-info__group-items">
+                    <div class="content__steps-info__group-items__header">
+                        <h5 class="content__steps-info__group-items__header__title">{{groupSelected.grupo_title}}</h5>
+
+                        <span class="content__steps-info__group-items__header__span">Obligatorio</span>
+                    </div>
+                    <div v-if="groupSelected" class="content__steps-info__group-items__cards">
+                        <div  @click="selectItem(item)" v-for="item in groupSelected.grupo_items" :key="item.producto_id" class="content__steps-info__group-items__cards__card">
+
+                            <img class="content__steps-info__group-items__cards__card__img" :src=item.producto_img alt="card_img">
+
+                            <h5 class="content__steps-info__group-items__cards__card__h5">{{item.producto_nombre}}</h5>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div v-if="itemSelected" class="content__steps-info__customizable">
+                    <div v-for="(opcion, index) in itemSelected.opciones_personalizacion" :key="opcion.opcion_personalizacion_id" class="content__steps-info__customizable__custom-section">
+                        <div class="content__steps-info__customizable__custom-section__header">
+                            <h5 class="content__steps-info__customizable__custom-section__header__title">{{opcion.opcion_personalizacion_nombre}}</h5>
+
+                            <span v-if="opcion.opcion_personalizacion_obligatorio" class="content__steps-info__customizable__custom-section__header__span">Obligatorio</span>
+                        </div>
+
+                        <section>
+                            <div v-for="item in opcion.items" :key="item.item_id" class="content__steps-info__customizable__custom-section__content">
+                            <div class="content__steps-info__customizable__custom-section__content__text">
+                                <p class="content__steps-info__customizable__custom-section__content__text__p">{{item.item_nombre}}</p>
+                                <q class="content__steps-info__customizable__custom-section__content__text__q">{{item.item_descripcion}}</q>
+                                <b v-if="item.item_precio > 0" class="content__steps-info__customizable__custom-section__content__text__b">| +${{item.item_precio}}</b>
+                            </div>
+                            <div class="content__steps-info__customizable__custom-section__content__input">
+                                <input class="content__steps-info__customizable__custom-section__content__input__radio" v-model="arrayOptions[index].item_id" @change="arrayChanges(arrayOptions)" :value=item.item_id type="radio" name="" id="">
+                                <!-- v-model="itemOpciones[index].opcion_personalizacion_selected" -->
+                            </div>
+                        </div>
+                    </section>
+
+
+                    </div>
+
+                </div>
+
+                <!-- En caso de ser un producto -->
+
             </div>
                   
         
         </div>
 
-        <div class="footer">
-                <button class="footer__btn">Siguiente | {{product.producto_precio}}</button>
+        <div v-if="tiempo.tiempo_nombre_extracto != 'Postre'" class="footer">
+                <button v-if="tiempo.orden < currentProductSteps[currentProductSteps.length -1].orden" @click="nextStep()" :disabled="!requiredOptionsSelected" :class="{active: requiredOptionsSelected}" class="footer__btn">Siguiente | ${{product.producto_precio}}</button>
+
+                <button v-if="tiempo.orden == currentProductSteps[currentProductSteps.length -1].orden" @click="nextStep()" :disabled="!requiredOptionsSelected" :class="{active: requiredOptionsSelected}" class="footer__btn">Agregar al carrito | ${{product.producto_precio}}</button>
+        </div>
+
+        <div v-if="tiempo.tiempo_nombre_extracto == 'Postre'" class="footer-2">
+
+                <button class="footer-2__btn-remember-later">Recordarme mas tarde</button>
+
+                <button v-if="tiempo.orden == currentProductSteps[currentProductSteps.length -1].orden" @click="nextStep()" :disabled="!requiredOptionsSelected" :class="{active: requiredOptionsSelected}" class="footer-2__btn">Agregar al carrito | ${{product.producto_precio}}</button>
+
+                <button v-if="tiempo.orden < currentProductSteps[currentProductSteps.length -1].orden" @click="nextStep()" :disabled="!requiredOptionsSelected" :class="{active: requiredOptionsSelected}" class="footer-2__btn">Siguiente | ${{product.producto_precio}}</button>
         </div>
     </div> 
 
@@ -77,26 +136,186 @@ export default {
             currentPage: 5,
             product:{},
             tiempo:{},
-            sinGuarnicionOption: false
+            groupSelected:{},
+            itemSelected:null,
+            itemOpciones:null,
+            arrayOptions: [],
+            requiredOptionsSelected: false,
+            selectionData: [],
+            partialOrder: [],
+            showGrid: false,
+            productStepsCount: 0,
+            currentProductSteps: 0
+
         }
     },
     created(){
         this.getProduct()
-        this.getCurrentTime()
+        this.getCurrentStep()
     },
     methods:{
+        countSteps(){
+            this.productStepsCount = this.product.tiempos.length
+            const sortSteps = new Promise ( (resolve) => {
+                this.currentProductSteps = this.product.tiempos
+
+                resolve()
+            });
+
+            sortSteps.then(() => {
+                this.currentProductSteps.sort((a, b) => a.orden - b.orden);
+            })
+        },
         getProduct(){
             this.product = store.state.productData
+            this.partialOrder = store.state.partialOrder
+
+            this.countSteps()
         },
-        getCurrentTime(){
-            this.tiempo = store.state.tiempoData
+        getCurrentStep(){
+            const stepData = new Promise((resolve, reject) => {
+                this.tiempo = store.state.tiempoData
+                resolve()
+            })
+
+        },
+        changeNextStep(){
+            const changeStep = new Promise( (resolve) =>{
+                store.dispatch('setTiempo',this.product.tiempos[this.tiempo.tiempo_id]);
+                
+                this.itemSelected = null
+                this.itemOpciones = null
+                this.arrayOptions= []
+                this.requiredOptionsSelected = false;
+                this.groupSelected = null
+
+
+
+                resolve()
+            })
+
+            changeStep.then( () => {
+                this.tiempo = store.state.tiempoData
+            })
+
+
+        },
+        selectGroup(grupo){
+            this.itemSelected = null
+            this.itemOpciones = null
+            this.arrayOptions= []
+            this.requiredOptionsSelected = false;
+
+
+            this.groupSelected = grupo
+            this.groupSelected.type == 2 ? this.selectItem(this.groupSelected) : ''
+
+
+        },
+        selectItem(item){
+            this.itemSelected = item
+            this.itemOpciones = this.itemSelected.opciones_personalizacion
+           if(this.itemOpciones.length>0){
+             this.arrayChanges(this.itemOpciones)
+
+            this.generateOptionSelectModel(this.itemOpciones.length)
+           }else{
+            this.requiredOptionsSelected = true
+           }
+
+            
+        },
+        generateOptionSelectModel(itemOpcionesCount){
+            this.arrayOptions= []
+            for (let index = 0; index < itemOpcionesCount; index++) {
+                let opcionesElegidas = 
+                {
+                    "opcion_id":this.itemOpciones[index].opcion_personalizacion_id,
+                    "opcion_nombre":this.itemOpciones[index].opcion_personalizacion_nombre,
+                    "required":this.itemOpciones[index].opcion_personalizacion_obligatorio,
+                   "orden":index,
+                   "item_id":0,
+                }
+
+                this.arrayOptions.push(opcionesElegidas)
+                
+            }
+        },
+        isRequired(option){
+            return option.required
+        },
+        isSelected(option){
+            return option.item_id > 0
+        },
+        arrayChanges(value){
+            let statusRequiredOptions = [];
+            if(value.length > 0){
+                value.forEach(option => {
+                    if (this.isRequired(option)) {
+                        this.isSelected(option) ? statusRequiredOptions.push(true) : statusRequiredOptions.push(false)
+                    }
+                });
+                console.log(statusRequiredOptions);
+
+                if (statusRequiredOptions.length > 0) {
+                    statusRequiredOptions.every(this.isTrue) ? this.requiredOptionsSelected = true : this.requiredOptionsSelected = false;
+                }else{
+                    this.requiredOptionsSelected = false
+                }
+            }
+
+        },
+        isTrue(value){
+            return value === true;
+        },
+        nextStep(){
+            this.resumeStep()
+        },
+        resumeStep(){
+
+            let partialOpciones = []
+            let productoSeleccionado = null;
+            let personalizacionSeleccionada = null;
+
+            personalizacionSeleccionada = 
+            [
+                this.arrayOptions
+            ]
+            
+            productoSeleccionado = 
+            {
+                "id_producto": this.itemSelected.producto_id,
+                "nombre_producto": this.itemSelected.producto_nombre,
+                "personalizacion": personalizacionSeleccionada
+
+            }
+
+
+            partialOpciones =
+                                    {
+                                        "producto": productoSeleccionado
+                                    }
+
+            store.dispatch('addOptionsProductOrder',partialOpciones).then( ()=>{
+                this.changeNextStep()
+            }) 
+
+            
+
+            
         }
+    },
+    watch:{
+        
+        
     }
 
 }
 </script>
 
 <style lang="scss" scooped>
+
+
 
 .footer{
     display: flex;
@@ -115,6 +334,40 @@ export default {
       padding-bottom: 0.5em;
       border-radius: 0.3em;
       
+    }
+    .active{
+      background: black;
+    }
+}
+
+.footer-2{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 1em;
+    border-top: #DDDDDD solid 0.5px;
+    font-size: 0.875em;
+    gap: 1em;
+    &__btn{
+      color: #FFFFFF;
+      background-color: #AFAFAF;
+      padding-top: 0.3em;      
+      padding-bottom: 0.3em;
+      border-radius: 0.3em;
+      align-items: center;
+      width: 100%;
+      height: 2.5em;
+    }
+    &__btn-remember-later{
+        color: black;
+      background-color: white;
+      padding-top: 0.3em;      
+      padding-bottom: 0.3em;
+      border-radius: 0.3em;
+      align-items: center;
+      width: 100%;
+      height: 2.5em;
+      border: 1px solid black;
     }
     .active{
       background: black;
@@ -242,8 +495,8 @@ export default {
         gap: .8rem;
             &__card{
                 text-align: center;
-                padding: 1em;
-                border: #666666 1px solid;
+                padding: 1em 1em 0;
+                border: #dddddd 1px solid;
                 border-radius: 10px;
                 background: white;
                 &__h5{
@@ -255,7 +508,163 @@ export default {
             }
         }
 
+        &__group-items{
+            padding-top: 1em;
+            &__header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                    &__title{
+                    font-size: 1.2em;
+                    font-weight: 400;
+                    color: black;
+                    }            
+                    &__span{
+                    color: #F58220;
+                    background-color: #f8f5f2;
+                    padding: 0.4em 1em;
+                    border-radius: 10px;
+                    font-size: 0.7em;
+                    }
+            }
+            &__cards{
+                width: 100%;
+                display: grid;
+                gap: .8rem;
+                &__card{
+                    text-align: center;
+                    padding: 1em 1em 0;
+                    border: #dddddd 1px solid;
+                    border-radius: 10px;
+                    background: white;
+                    &__h5{
+                        padding: 0.5em 0;
+                        font-size: 0.8em;
+                        font-weight: 200;
+                        line-height: 1em;
+                    }
+                }
+            }
+            
+        }
+
+
+        &__customizable{
+            &__custom-section{
+            padding-top: 1em;
+            &__header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                    &__title{
+                    font-size: 1.2em;
+                    font-weight: 400;
+                    color: black;
+                    }            
+                    &__span{
+                    color: #F58220;
+                    background-color: #f8f5f2;
+                    padding: 0.4em 1em;
+                    border-radius: 10px;
+                    font-size: 0.7em;
+                    }
+            }
+            &__content{
+                padding-top: 0.5em;
+                display: flex;
+                justify-content: space-between;
+                &__text{
+                    display: flex;
+                    &__p{
+                        font-size: 0.8em;
+                        padding-right: 0.3em;
+                    }
+                    &__q{
+                        font-size: 0.8em;
+                        color: #808080;
+                        padding-right: 0.3em;
+
+                    }
+                    &__b{
+                        font-size: 0.8em;
+                        color: black;
+                        font-weight: bold;
+                    }
+                }
+                &__input{
+                    &__radio{
+                        appearance: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        width: 18px;
+                        height: 18px;
+                        border: 1px solid gray;
+                        border-radius: 50%;
+                        &[type=radio]:checked{
+                            background:#F58220;
+                            border-color: #FFFFFF;
+                        }
+                    }
+                }
+                &__cards{
+                    width: 100%;
+                    display: grid;
+                    gap: .8rem;
+                    &__card{
+                    text-align: center;
+                    padding: 1em 1em 0;
+                    border: #dddddd 1px solid;
+                    border-radius: 10px;
+                    background: white;
+                        &__h5{
+                            padding: 0.5em 0;
+                            font-size: 0.8em;
+                            font-weight: 200;
+                            line-height: 1em;
+                        }
+                    }
+
+                }
+                
+            }
+        }
+        }
+
+        @media (min-width: 360px) {
+            .content__steps-info__group-items{
+                &__cards{ 
+                    grid-template-columns: repeat(3, 1fr); 
+                } 
+            }
+        }
+
+        @media (max-width: 360px) {
+            .content__steps-info__group-items{
+                &__cards{ 
+                    grid-template-columns: repeat(2, 1fr); 
+                } 
+            }
+        }
+
+        @media (min-width: 360px) {
+            .content__steps-info__customizable__custom-section__content{
+                &__cards{ 
+                    grid-template-columns: repeat(3, 1fr); 
+                } 
+            }
+        }
+
+        @media (max-width: 360px) {
+            .content__steps-info__customizable__custom-section__content{
+                &__cards{ 
+                    grid-template-columns: repeat(2, 1fr); 
+                } 
+            }
+        }
+
     }
+
+    
 
     @media (min-width: 360px) {
         .content__steps-info{
