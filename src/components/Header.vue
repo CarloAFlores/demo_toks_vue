@@ -1,8 +1,9 @@
 <template>
   <CartOrders :carroActivado="carroActivado"/>
+  <PeopleList :listaPersonasActivado="listaPersonasActivado" />
 
   <section class="header">
-    <button class="header__btn--return header__regresar"  @click="$router.go(-1)">
+    <button v-if="currentPage != 7" class="header__btn--return header__regresar"  @click="$router.go(-1)">
       <img src="@/assets/atras.svg" alt="boton-regresar">
     </button>
 
@@ -14,7 +15,7 @@
       <img src="@/assets/toks-logo.svg" alt="Logo de la marca">
     </div>
 
-    <div :class="{'titleAdjust':currentPage == 6}" class="titleProduct adjust" v-if="currentPage >= 4">
+    <div :class="{'titleAdjust':currentPage == 6, 'titleAdjustExtend': currentPage == 7}" class="titleProduct adjust" v-if="currentPage >= 4">
       <h2>{{titleArticle}}</h2>
     </div>
 
@@ -22,14 +23,14 @@
       <img src="@/assets/menu_hamburguesa.svg" alt="menu-hamburguesa">
     </button>
 
-    <div v-if="currentPage === 2 || currentPage >= 4" class="buttons-container">
-      <button class="footer__button__btn" v-if="currentPage === 2">
+    <div  v-if="currentPage === 2 || currentPage >= 4" class="buttons-container">
+      <button @click="activeList()" class="footer__button__btn" v-if="currentPage === 2">
             <img src="@/assets/cuenta-usuario.svg" class="user-count">
       </button>
-      <button class="footer__button__btn" v-if="currentPage >= 4">
+      <button @click="$router.push({ path: '/menu/'+this.Unidad_ID })"  class="footer__button__btn" v-if="currentPage >= 4">
             <img src="@/assets/home-icon-white.svg" class="user-count">
       </button>
-      <button @click="activeCart()" class="footer__button__btn">
+      <button v-if="currentPage != 7" @click="activeCart()" class="footer__button__btn">
             <img src="@/assets/cart.svg" class="cart">
       </button>
       <button class="header__btn--menu menu">
@@ -41,15 +42,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import CartOrders from './CartOrders.vue'
+import PeopleList from './PeopleList.vue'
 
 export default {
   components:{
-    CartOrders
+    CartOrders,
+    PeopleList
   },
   data(){
     return{
-      carroActivado: false
+      carroActivado: false,
+      listaPersonasActivado: false
       
     }
   },
@@ -68,7 +73,17 @@ export default {
     activeCart(){
       this.carroActivado = !this.carroActivado
     },
-  }
+    activeList(){
+      this.listaPersonasActivado = !this.listaPersonasActivado
+    },
+  },
+    computed:{
+        ...mapState(
+            [
+                'Unidad_ID'
+            ]
+        )
+    }
 
 }
 </script>
@@ -79,6 +94,10 @@ export default {
 }
 .titleAdjust{
   margin-left: 6em;
+}
+.titleAdjustExtend{
+  margin-left: 10em;
+
 }
 .titleProduct{
   width: 13em;

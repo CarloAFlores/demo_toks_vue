@@ -1,6 +1,26 @@
 <template>
   <Header :currentPage="5" :titleArticle=product.producto_nombre />  
 
+  <GDialog border-radius="10px" persistent v-model="modalValue">
+  <div class="modal-cart">
+      <div class="modal-cart__content">
+        <p class="modal-cart__content__p">
+          ¡Tu orden ha sido agregada al carrito!
+        </p>
+        <button @click="$router.push({path: '/resumen'})" class="modal-cart__content__boton-carro">
+            Ver carrito
+        </button>
+
+        <button @click="$router.push({ path: '/menu/'+this.Unidad_ID })" class="modal-cart__content__boton-continuar">
+            Agregar algo más
+        </button>
+
+      </div>
+
+      
+    </div>
+</GDialog>
+
     <div class="section">
         <img :src="product.producto_img" class="section__img">
         <div class="section__info-img">
@@ -83,7 +103,7 @@
                                 <b v-if="item.item_precio > 0" class="content__steps-info__customizable__custom-section__content__text__b">| +${{item.item_precio}}</b>
                             </div>
                             <div class="content__steps-info__customizable__custom-section__content__input">
-                                <input class="content__steps-info__customizable__custom-section__content__input__radio" v-model="arrayOptions[index].item_id" @change="arrayChanges(arrayOptions)" :value=item.item_id type="radio" name="" id="">
+                                <input class="content__steps-info__customizable__custom-section__content__input__radio" v-model="arrayOptions[index].item_id" @change="arrayChanges(arrayOptions),addItemName(index,item.item_nombre)" :value=item.item_id type="radio" name="" id="">
                                 <!-- v-model="itemOpciones[index].opcion_personalizacion_selected" -->
                             </div>
                         </div>
@@ -125,10 +145,15 @@
 
 import Header from '@/components/Header.vue'
 import store from '@/store';
+// MODAL
+import 'gitart-vue-dialog/dist/style.css'
+import { GDialog } from 'gitart-vue-dialog'
+
 export default {
 
     components:{
-        Header
+        Header,
+        GDialog
     },
 
     data(){
@@ -145,15 +170,37 @@ export default {
             partialOrder: [],
             showGrid: false,
             productStepsCount: 0,
-            currentProductSteps: 0
+            currentProductSteps: 0,
+            modalValue: false,
+            seleccion:[]
 
         }
     },
     created(){
         this.getProduct()
         this.getCurrentStep()
+
+        // Recién carga el componente, hay que asignar el producto a la selección actual
+        if (this.seleccion.length == 0) {
+            this.agregarProductoInicial()
+        }
     },
     methods:{
+        agregarProductoInicial(){
+            let productoSeleccionado = {
+                "producto_seleccionado" :{},
+                "opciones_selecciondas": []
+            }
+
+            productoSeleccionado.producto_seleccionado = this.product
+
+            this.seleccion = productoSeleccionado
+
+        },
+        addItemName(index,name){
+            console.log({index,name});
+            this.arrayOptions[index].item_nombre = name
+        },
         countSteps(){
             this.productStepsCount = this.product.tiempos.length
             const sortSteps = new Promise ( (resolve) => {
@@ -235,6 +282,7 @@ export default {
                     "required":this.itemOpciones[index].opcion_personalizacion_obligatorio,
                    "orden":index,
                    "item_id":0,
+                   "item_nombre":''
                 }
 
                 this.arrayOptions.push(opcionesElegidas)
@@ -291,19 +339,28 @@ export default {
             }
 
 
-            partialOpciones =
-                                    {
-                                        "producto": productoSeleccionado
-                                    }
+            partialOpciones = productoSeleccionado
 
             store.dispatch('addOptionsProductOrder',partialOpciones).then( ()=>{
-                this.changeNextStep()
+                const lastElement = this.currentProductSteps[this.currentProductSteps.length - 1];
+
+                if (this.tiempo.tiempo_id != lastElement.tiempo_id) {
+                    this.changeNextStep()
+                }else{
+                    this.addToCart()
+                }
             }) 
 
             
 
             
-        }
+        },
+        addToCart(){
+            store.dispatch('addProduct',{"producto":this.partialOrder[0].producto_principal,"opciones_seleccionadas":this.partialOrder[0].opciones_seleccionadas,"para_llevar":false}).then( ()=> {
+                     this.modalValue = true
+
+            })
+        },
     },
     watch:{
         

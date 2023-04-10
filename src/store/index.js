@@ -88,7 +88,7 @@ export default createStore({
       const {data} = await axios.get("http://localhost:8000/api/customers")
       // const {data} = await axios.get("http://189.161.36.232:8000/api/customers")
       const data_dos =  JSON.parse(data.data)
-      const comensal = data_dos.comensal
+      const comensal = data_dos.comensal_nombre
       const unidad_nombre = data_dos.unidad_nombre
       const mesa_no = data_dos.mesa_no
       const unidad_id = data_dos.unidad_id
@@ -140,7 +140,8 @@ export default createStore({
     {
       let orden = {
         "productos": value.producto,
-        "opciones_selccionadas": value.opciones_seleccionadas
+        "opciones_selccionadas": value.opciones_seleccionadas,
+        "para_llevar": false
       }
       commit('addProduct',value)
     }

@@ -44,6 +44,31 @@ const routes = [
     path:'/resumen',
     name: 'resumen',
     component: () => import('../views/ResumenOrden.vue')
+  },
+  {
+    path:'/resumenCuenta',
+    name: 'resumenCuenta',
+    component: () => import('../views/ResumeCuenta.vue')
+  },
+  {
+    path:'/loading',
+    name: 'loading',
+    component: () => import('../views/LoadingOrder.vue')
+  },
+  {
+    path:'/opcionPago',
+    name: 'opcionPago',
+    component: () => import('../views/OpcionPago.vue')
+  },
+  {
+    path:'/pagoQr',
+    name: 'pagoQr',
+    component: () => import('../views/PagoCodigoQr.vue')
+  },
+  {
+    path:'/compartirQR',
+    name: 'compartirQR',
+    component: () => import('../views/CompartirQR.vue')
   }
 ]
 

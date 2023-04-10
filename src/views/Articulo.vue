@@ -6,7 +6,7 @@
         <p class="modal-cart__content__p">
           ¡Tu orden ha sido agregada al carrito!
         </p>
-        <button class="modal-cart__content__boton-carro">
+        <button @click="$router.push({path: '/resumen'})" class="modal-cart__content__boton-carro">
             Ver carrito
         </button>
 
@@ -96,6 +96,8 @@
         <div class="footer">
                 <button @click="addToCart()" :class="{'active': optionSelected.producto_id || sinGuarnicionOption}" :disabled="sinGuarnicionOption" v-if="product.tiempos.length === 1" class="footer__btn">Agregar al carrito | ${{product.producto_precio}}</button>
 
+                <button @click="addToCart()" v-if="product.tiempos.length === 0" class="footer__btn active">Agregar al carrito | ${{product.producto_precio}}</button>
+
                 <button v-if="product.tiempos.length > 1" class="footer__btn active" @click="goToSteps()">Agregar a la orden</button>
         </div>
     </div> 
@@ -141,10 +143,20 @@ export default {
     },
     methods:{
         addToCart(){
-            store.dispatch('addProduct',{"producto":this.product,"opciones_seleccionadas":this.optionSelected}).then( ()=> {
-                     this.modalValue = true
+            if (Object.keys(this.optionSelected).length > 0) {
+                store.dispatch('addProduct',{"producto":this.product,"opciones_seleccionadas":[this.optionSelected],"para_llevar":false}).then( ()=> {
+                         this.modalValue = true
+    
+                })
+                
+            }else{
+                store.dispatch('addProduct',{"producto":this.product,"opciones_seleccionadas":[],"para_llevar":true}).then( ()=> {
+                         this.modalValue = true
+    
+                })
+            }
 
-            })
+
         },
         selectOption(option){
             this.optionSelected = option

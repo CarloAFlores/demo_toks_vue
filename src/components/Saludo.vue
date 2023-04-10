@@ -29,11 +29,12 @@ export default {
   },
   methods:{
     async customerDataService(){
-      await axios.get('http://localhost:8000/api/customers')
+      await axios.get(this.base_url_services+'/api/customers')
       // await axios.get('http://189.161.36.232:8000/api/customers')
       .then( response => {
+        console.log(response);
         this.customerData = JSON.parse(response.data.data)
-        this.comensal = this.customerData.comensal
+        this.comensal = this.customerData.comensal_nombre
         this.unidad = this.customerData.unidad_nombre
         this.mesa = this.customerData.mesa_no
         this.unidad_id = this.customerData.unidad_id

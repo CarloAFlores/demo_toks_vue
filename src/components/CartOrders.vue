@@ -7,13 +7,21 @@
     <div class="cart__content">
         <p class="cart__content__p">Orden de {{comensal}}</p>
 
-        <img class="cart__content__icon-arrow" src="./../assets/arrow-down.svg" alt="">
+        <img @click="openList = true" v-if="!openList" class="cart__content__icon-arrow" src="./../assets/arrow-down.svg" alt="">
+        <img @click="openList = false" v-if="openList" class="cart__content__icon-arrow active-arrow" src="./../assets/arrow-down-orange.svg" alt="">
         <img class="cart__content__icon-pen" src="./../assets/edit-pen.svg" alt="">
         <img class="cart__content__icon-basura" src="./../assets/basura-icon.svg" alt="">
     </div>
 
+    <div v-if="openList">
+        <div  v-for="product in orders" :key="product" class="cart__order">
+            <p class="cart__order__product">{{product.producto.producto_nombre}}</p>
+            <!-- <p class="cart__order__opciones">Producto</p> -->
+        </div>
+    </div>
+
     <div class="cart__footer">
-        <button class="cart__footer__button">Ver orden</button>
+        <button @click="$router.push({ path: '/resumen' })" class="cart__footer__button">Ver orden</button>
     </div>
   </div>
 </template>
@@ -21,6 +29,7 @@
 <script>
 import store from '@/store'
 import axios from 'axios'
+import { mapState } from 'vuex'
 export default {
     props: [
         'carroActivado'
@@ -30,26 +39,67 @@ export default {
         return{
             orders: [],
             comensal:'',
+            ordenData: [],
+            openList: false
         }
     },
     mounted(){
         this.customerDataService()
+        this.getOrderData();
     },
     methods:{
         async customerDataService(){
             // await axios.get('http://189.161.36.232:8000/api/customers')
-            await axios.get('http://localhost:8000/api/customers')
+            await axios.get(this.base_url_services+'/api/customers')
             .then( response => {
                 this.customerData = JSON.parse(response.data.data)
                 this.comensal = this.customerData.comensal
             })
-            }
+            },
+        getOrderData(){
+            const setOrderData = new Promise ( (resolve) =>{
+                this.ordenData = this.findOrder()
+                resolve()
+            });
+
+            setOrderData.then( () =>{
+                let products = [];
+
+                this.ordenData.forEach(element => {
+                    products.push(element.productos_seleccionados[0])
+                });
+
+                this.orders = products;
+
+            })
+        },
+        findOrder(){
+            let ordenes = this.cart[0].ordenes;
+
+            let result = ordenes.filter(obj => {
+                return obj.comensal_id === this.Comensal_ID;
+            });
+
+            return result;
+        },
+    },
+    computed:{
+        ...mapState(
+            [
+                'cart',
+                'Comensal_ID'
+            ]
+        )
     }
 
 }
 </script>
 
 <style lang="scss" scoped>
+
+.active-arrow{
+    transform: rotate(180deg);
+}
 
 .cart{
     transition: visibility 0s, opacity 0.5s linear;
@@ -71,7 +121,7 @@ export default {
 
     }
     &__content{
-        padding: 1em;
+        padding: 1em 0 0 1em;
         font-size: 0.625em;
         display: flex;
         align-items: center;
@@ -94,6 +144,16 @@ export default {
             width: 12px;
             height: 16px;
         }
+    }
+    &__order{
+        font-weight: bold;
+        font-size: 0.6em;
+        padding: 0 1em;
+        &__opciones{
+            margin-left: 0.8em;
+
+        }
+
     }
     &__footer{
         display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <Header :currentPage="6" titleArticle="Resumen de tu orden" />
+  <Header :currentPage="7" titleArticle="Resumen de cuenta" />
   <!-- MODAL -->
   <!-- Modal se te antoja algo más -->
 <div :class="{'block': extraDialog}" id="myModal" class="modal">
@@ -177,6 +177,112 @@
 
 </div>
 
+<!-- Modal pago por persona -->
+<div :class="{'block': pagoPorPersonaDialog}" class="modal">
+
+  <!-- Modal content -->
+  
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-header__close-title">
+        <span @click="pagoPorPersonaDialog = false" class="close">&times;</span>
+        <div class="modal-header__close-title__text">
+            <h2>Pago por persona</h2>
+            <p class="modal-header__close-title__text__p">Selecciona las cuentas que quieres pagar o envíalas a 
+    través de un código QR a quiénes quieran pagarla en caja.</p>
+        </div>
+      </div>
+      <!-- <button class="modal-header__btn" :class="{'save-btn-active': editOptionSelectedFlag}">
+        Guardar
+      </button> -->
+    </div>
+    <div class="modal-body-pago-pago">
+            <div class="modal-body-pago__all">
+                <div class="modal-body-pago__all__element">
+                    <input class="modal-body-pago__all__element__input" type="checkbox" name="" id="">
+                    <p class="modal-body-pago__all__element__p">Seleccionar todas las cuentas disponibles</p>
+                </div>
+            </div>
+        <div class="modal-body-pago__elements">
+            <div class="modal-body-pago__elements__element">
+                <div class="modal-body-pago__elements__element__left">
+                    <input class="modal-body-pago__elements__element__left__input" type="checkbox" name="" id="">
+                    <p class="modal-body-pago__elements__element__left__p">Cuenta de Lucas</p>
+                    <img class="modal-body-pago__elements__element__left__img" src="@/assets/icon-acomer.svg" alt="a-comer-icon">
+                    <div v-if="false" class="modal-body-pago__elements__element__left__special">
+                        <img class="modal-body-pago__elements__element__left__special__img" src="@/assets/watch.svg" alt="process-icon">
+                        <p class="modal-body-pago__elements__element__left__special__p">En proceso de pago</p>
+                    </div>
+                </div>
+                <div class="modal-body-pago__elements__element__right">
+                    <img class="modal-body-pago__elements__element__right__img" src="@/assets/arrow-down.svg" alt="arrow-down-icon">
+                </div>
+            </div>
+
+            <div class="modal-body-pago__elements__element">
+                <div class="modal-body-pago__elements__element__left">
+                    <input class="modal-body-pago__elements__element__left__input" type="checkbox" name="" id="">
+                    <p class="modal-body-pago__elements__element__left__p">Cuenta de Andrés</p>
+                    <img v-if="false" class="modal-body-pago__elements__element__left__img" src="@/assets/icon-acomer.svg" alt="a-comer-icon">
+                    <div class="modal-body-pago__elements__element__left__special">
+                        <img class="modal-body-pago__elements__element__left__special__img" src="@/assets/watch.svg" alt="process-icon">
+                        <p class="modal-body-pago__elements__element__left__special__p">En proceso de pago</p>
+                    </div>
+                </div>
+                <div class="modal-body-pago__elements__element__right">
+                    <img class="modal-body-pago__elements__element__right__img" src="@/assets/arrow-down.svg" alt="arrow-down-icon">
+                </div>
+            </div>
+
+            <div class="modal-body-pago__elements__element">
+                <div class="modal-body-pago__elements__element__left">
+                    <input class="modal-body-pago__elements__element__left__input" type="checkbox" name="" id="">
+                    <p class="modal-body-pago__elements__element__left__p">Cuenta de Sofía</p>
+                    <img class="modal-body-pago__elements__element__left__img" src="@/assets/icon-acomer.svg" alt="a-comer-icon">
+                    <div v-if="false" class="modal-body-pago__elements__element__left__special">
+                        <img class="modal-body-pago__elements__element__left__special__img" src="@/assets/watch.svg" alt="process-icon">
+                        <p class="modal-body-pago__elements__element__left__special__p">En proceso de pago</p>
+                    </div>
+                </div>
+                <div class="modal-body-pago__elements__element__right">
+                    <img class="modal-body-pago__elements__element__right__img" src="@/assets/arrow-down.svg" alt="arrow-down-icon">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-footer__button">
+        Siguiente
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal aviso para borrar -->
+<GDialog border-radius="10px" persistent v-model="popUpPedirMas">
+  <span @click="popUpPedirMas = false" class="close-popup">&times;</span>
+  <div class="modal-cart">
+      <div class="modal-cart__content">
+        <p class="modal-cart__content__p">
+          Antes de irte, ¿no se te olvida pedir algo más?
+        </p>
+
+        <button @click="popUpPedirMas = false" class="modal-cart__content__boton-continuar separator-button">
+            Ver menú
+        </button>
+
+        <button @click="popUpPedirMas = false"  class="modal-cart__content__boton-carro">
+            Ir a pagar
+        </button>
+
+      </div>
+
+      
+    </div>
+</GDialog>
+
 <!-- Modal aviso para borrar -->
 <GDialog border-radius="10px" persistent v-model="validDeleteDialog">
   <div class="modal-cart">
@@ -227,14 +333,14 @@
   <div class="modal-cart">
       <div class="modal-cart__content">
         <p class="modal-cart__content__p">
-          ¿Para quien es la orden?
+          ¿Cómo quieres tu pedido?
         </p>
-        <button @click="$router.push({ path: '/menu/'+this.Unidad_ID })" class="modal-cart__content__boton-carro separator-button">
-            Para mí
+        <button class="modal-cart__content__boton-carro separator-button">
+            Para llevar
         </button>
 
-        <button @click="addGuestDialog = true" class="modal-cart__content__boton-continuar">
-            Nuevo invitado
+        <button class="modal-cart__content__boton-continuar">
+            Para comer aquí
         </button>
 
       </div>
@@ -246,79 +352,95 @@
 <!-- Modal -->
 
   <div class="container">
-  
-    <div class="container__header">
-        <img src="https://menugrg.com.mx:7443/recs_marcas/fondo_home.jpg" alt="bg-header" class="container__header__img">
-        <span class="container__header__span">
-            Imágen ilustrativa
-        </span>
-
-        <span v-if="someToTakeAway" class="container__header__span-right">
-           <img class="container__header__span-right__img" src="@/assets/para-llevar-icon.svg" alt=""> 
-           <p class="container__header__span-right__p">
-            Para llevar
-           </p>
-        </span>
-        
-    </div>
-
     <div class="container__content">
     
         <div class="container__content__general-info">
             <h2 class="container__content__general-info__h2">
-                Resumen de tu orden
+                Tu cuenta
             </h2>
 
+            <p class="container__content__general-info__p">
+            Revisa la orden de cada persona. Puedes pagar el total o dividir cuentas y pagar por persona.
+            </p>
+
             <div class="container__content__general-info__detail">
-                <div v-for="product in productsSort" :key="product">
-                    <div class="container__content__general-info__detail__main-title">
-                    <div class="container__content__general-info__detail__main-title__text">
-                    <span v-if="product.para_llevar" class="icon-llevar-container"><img src="@/assets/para-llevar-icon.svg" alt=""></span>
-                        <p class="container__content__general-info__detail__main-title__text__p" :class="{'custom-totakeaway':product.para_llevar}">
-                            {{product.producto.producto_nombre}}
+
+                <div class="container__content__general-info__detail__header">
+                <Carousel :items-to-show="3.5" >
+                    <Slide slide="1">
+                    <div @click="totalSelected = true; customerTabSelected = false" class="container__content__general-info__detail__header__title" :class="{'active': totalSelected}">
+                        <p class="container__content__general-info__detail__header__title__p ">
+                        Total
                         </p>
-                        <img @click="editDialog = true" class="container__content__general-info__detail__main-title__text__icon" src="./../assets/edit-pen.svg" alt="">
-                        <img @click="deleteProduct()" class="container__content__general-info__detail__main-title__text__icon" src="./../assets/basura-icon-small.svg" alt="">
+                        <img v-show="false" class="container__content__general-info__detail__header__title__img" src="@/assets/icon-acomer.svg" alt="icon-a-comer-club">
                     </div>
-                    <div class="container__content__general-info__detail__main-title__price">
-                        ${{product.producto.producto_precio}}
+                    </Slide>
+                    <Slide slide="2">
+                    <div @click="totalSelected = false; customerTabSelected = true" class="container__content__general-info__detail__header__title" :class="{'active': customerTabSelected}">
+                        <p class="container__content__general-info__detail__header__title__p">
+                        Lucas
+                        </p>
+                        <img class="container__content__general-info__detail__header__title__img" src="@/assets/icon-acomer.svg" alt="icon-a-comer-club">
                     </div>
-                </div>
-                
-                <!-- TODO: Determinar si se trata de un producto con mas de una opcion seleccionada -->
+                    </Slide>
+                    <Slide slide="3">
+                    <div @click="totalSelected = false; customerTabSelected = true" class="container__content__general-info__detail__header__title" :class="{'active': customerTabSelected}">
+                        <p class="container__content__general-info__detail__header__title__p">
+                        Andrés
+                        </p>
+                        <img v-show="false" class="container__content__general-info__detail__header__title__img" src="@/assets/icon-acomer.svg" alt="icon-a-comer-club">
+                    </div>
+                    </Slide>
+                    <Slide slide="4">
+                    <div @click="totalSelected = false; customerTabSelected = true" class="container__content__general-info__detail__header__title" :class="{'active': customerTabSelected}">
+                        <p class="container__content__general-info__detail__header__title__p">
+                        Juan
+                        </p>
+                        <img v-show="false" class="container__content__general-info__detail__header__title__img" src="@/assets/icon-acomer.svg" alt="icon-a-comer-club">
+                    </div>
+                    </Slide>
 
-                <!-- Solo una opción -->
-                <div v-if="product.opciones_seleccionadas.length == 1">
-                    <div v-for="opcion in product.opciones_seleccionadas" :key="opcion" class="container__content__general-info__detail__options">
-                        <div class="container__content__general-info__detail__options__text">
-                            <p class="container__content__general-info__detail__options__text__p">  {{opcion.producto_nombre}}</p>
-                        </div>
-                        <div class="container__content__general-info__detail__options__price">
-                            ${{opcion.producto_precio || 0}}
-                        </div>
-                    </div>
+                    <template>
+                    <Navigation />
+                    </template>
+                </Carousel>
                 </div>
 
-                <div v-if="product.opciones_seleccionadas.length > 1">
-                    <div v-for="opcion in product.opciones_seleccionadas" :key="opcion">
-                        <div class="container__content__general-info__detail__options">
-                            <div class="container__content__general-info__detail__options__text">
-                            <p class="container__content__general-info__detail__options__text__p">  {{opcion.nombre_producto}}</p>
-                            </div>
-                            <div class="container__content__general-info__detail__options__price">
-                                ${{opcion.producto_precio || 0}}
-                            </div>
+                <div v-if="totalSelected" class="container__content__general-info__detail__content">
+
+                    <div v-if="totalSelected" class="container__content__general-info__detail__content__clients">
+                        <div class="container__content__general-info__detail__content__clients__client">
+                            <p class="container__content__general-info__detail__content__clients__client__p">
+                            Lucas
+                            </p>
+                            <span class="container__content__general-info__detail__content__clients__client__span">
+                            $320
+                            </span>
                         </div>
-                        <p class="container__content__general-info__detail__item" v-for="item in opcion.personalizacion[0]" :key="item">- {{item.item_nombre}}</p>
+
+                        <div class="container__content__general-info__detail__content__clients__client">
+                            <p class="container__content__general-info__detail__content__clients__client__p">
+                            Andrés
+                            </p>
+                            <span class="container__content__general-info__detail__content__clients__client__span">
+                            $180
+                            </span>
+                        </div>
+
+                        <div class="container__content__general-info__detail__content__clients__client">
+                            <p class="container__content__general-info__detail__content__clients__client__p">
+                            Juan
+                            </p>
+                            <span class="container__content__general-info__detail__content__clients__client__span">
+                            $340
+                            </span>
+                        </div>
                     </div>
+
                     
                 </div>
 
-
-
-                </div>
-
-                <div class="container__content__general-info__detail__total">
+                <div v-if="totalSelected" class="container__content__general-info__detail__total">
                     <div class="container__content__general-info__detail__total__text">
                         <p class="container__content__general-info__detail__total__text__p">Total a pagar
                         
@@ -326,29 +448,84 @@
                                 <button v-tooltip="{
                                     content: 'Todos nuestros precios incluyen IVA y se expresan en M.N.',
                                     theme: 'tooltip-menu'
-                                    }"><img src="@/assets/info-icon.svg" alt="" class="icon-tooltip">
+                                    }"><img src="@/assets/info-icon-orange.svg" alt="" class="icon-tooltip">
                                 </button>
                             </b>
                         </p>
                     </div>
                     <div class="container__content__general-info__detail__total__price">
-                        ${{totalBill}}
+                        $1000
+                    </div>
+                </div>
+
+            
+            </div>
+
+            <div v-if="customerTabSelected" class="container__content__general-info__detail">
+                        <div> 
+                            <div class="container__content__general-info__detail__main-title">
+                            <div class="container__content__general-info__detail__main-title__text">
+                            <span class="icon-llevar-container"><img src="@/assets/para-llevar-icon.svg" alt=""></span>
+                                <p class="container__content__general-info__detail__main-title__text__p custom-totakeaway">Paquete enchiladas zacatecanas</p>
+                            </div>
+                            <div class="container__content__general-info__detail__main-title__price">
+                                $ 149
+                            </div>
+                        </div>
+                        
+                        <!-- TODO: Determinar si se trata de un producto con mas de una opcion seleccionada -->
+
+                        <div>
+                            <div>
+                                <div class="container__content__general-info__detail__options">
+                                    <div class="container__content__general-info__detail__options__text">
+                                    <p class="container__content__general-info__detail__options__text__p">Coca Cola</p>
+                                    </div>
+                                    <div class="container__content__general-info__detail__options__price">
+                                        $0
+                                    </div>
+                                </div>
+                                <p class="container__content__general-info__detail__item">- Grande</p>
+                            </div>
+                            
+                        </div>
+
+
+
+                        </div>
+
+                        <div class="container__content__general-info__detail__total">
+                    <div class="container__content__general-info__detail__total__text">
+                        <p class="container__content__general-info__detail__total__text__p">Total a pagar
+                        
+                            <b>
+                                <button v-tooltip="{
+                                    content: 'Todos nuestros precios incluyen IVA y se expresan en M.N.',
+                                    theme: 'tooltip-menu'
+                                    }"><img src="@/assets/info-icon-orange.svg" alt="" class="icon-tooltip">
+                                </button>
+                            </b>
+                        </p>
+                    </div>
+                    <div class="container__content__general-info__detail__total__price">
+                        $1000
                     </div>
                 </div>
             </div>
+
+            
 
 
         </div>
 
         <div class="container__content__buttons">
-            <button @click="addOrderDialog = true" class="container__content__buttons__add">
+            <button @click="addOrderDialog = true" class="container__content__button">
                 Agregar algo más
             </button>
-
-            <button @click="addGuestDialog = true" class="container__content__buttons__add-guest">
-                Agregar invitado
-            </button>
         </div>
+
+        <!-- <div class="divisor"></div> -->
+
     
     </div>
 
@@ -357,7 +534,7 @@
             ¿Se te antoja algo mas?
         </h4>
         <div class="container__recomendation__cards">
-             <carousel class="container__recomendation__cards__carousel" :items-to-show="2.5">
+             <carousel class="container__recomendation__cards__carousel" :items-to-show="2.5" >
                 <slide @click="selectedRecomendation = slide; extraDialog = true" class="container__recomendation__cards__carousel__slide" v-for="slide in recomendaciones" :key="slide.id">
                 <div class="container__recomendation__cards__carousel__slide__card">
                     <img :src=slide.img alt="" class="container__recomendation__cards__carousel__slide__card__img">
@@ -370,8 +547,12 @@
     </div>
 
     <div class="container__footer">
+        <button @click="pagoPorPersonaDialog = true" class="container__footer__button">
+            Pago por persona
+        </button>
+
         <button class="container__footer__button">
-            Confirmar orden
+            Pago total
         </button>
     </div>
   
@@ -413,7 +594,11 @@ export default {
             selectedRecomendation : {},
             recomendationOptionSelected: null,
             tooltipInfoActive: false,
-            someToTakeAway: false,
+            currentPage: 7,
+            totalSelected: true,
+            customerTabSelected: false,
+            pagoPorPersonaDialog: false,
+            popUpPedirMas: false,
 
             // Data
 
@@ -451,12 +636,6 @@ export default {
         }
     },
     methods:{
-        someToTakeAwayInArray(){
-            const someIsToTakeAway = this.productsSort.some(obj => obj.para_llevar == true);
-
-            someIsToTakeAway ? this.someToTakeAway = true : this.someToTakeAway = false;
-        },
-
         totalCalculate(){
             let prices = []
             const sum = (arr) => arr.reduce((a, b) => a + b, 0);
@@ -491,7 +670,6 @@ export default {
 
             }).then( () =>{
                 this.totalCalculate()
-                this.someToTakeAwayInArray()
             }) 
         },
         findOrder(){
@@ -536,14 +714,7 @@ export default {
                 'Unidad_ID'
             ]
         )
-    },
-    // watch:{
-    //     productsSort(value){
-    //         console.log(value);
-    //         this.someToTakeAwayInArray()
-    //     },
-    //     deep: true
-    // }
+    }
 
 
 }
@@ -551,64 +722,29 @@ export default {
 
 <style lang="scss" scoped>
 
+.active{
+    border-bottom: #F58220 1px solid;
+    color: #f58220;
+}
+
+.divisor{
+    border-top: #979797 1px solid;
+
+}
+
+
 .container{
-    &__header{
-        width: 100%;
-        background-color:red;
-        position: relative;
-        &__img{
-            width: 100%;
-            max-height: 12em;
-
-        }
-        &__span{
-            position: absolute;
-            display: flex;
-            background-color: white;
-            color: #383838;
-            width: 12em;
-            height: 2em;
-            border-radius: 1em;
-            font-size: 0.6em;
-            font-weight: lighter;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-content: center;
-            justify-content: center;
-            padding: 0 1em;
-            top:16.5em;
-            left: 0.375em;
-        }
-
-        &__span-right{
-            position: absolute;
-            display: flex;
-            background-color: #f58220;
-            color: white;
-            border-radius: 1.25em;
-            font-size: 0.8em;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-content: center;
-            top:11.2em;
-            right: 0.375em;
-            width: 30%;
-            padding: 0.5em 0.8em;
-            align-items: center;
-            font-weight: bold;
-            &__img{
-                margin-right: 5px;
-                width:23px;
-            }
-        }
-    }
     &__content{
             padding: 2em 1.5em;
         &__general-info{
             &__h2{
-                font-weight: 500;
+                font-weight: bolder;
                 font-size: 1em;
 
+            }
+            &__p{
+                font-size: 0.8em;
+                margin-bottom: 1.5em;
             }
             &__detail{
                 &__main-title{
@@ -617,8 +753,6 @@ export default {
                     &__text{
                     display: flex;
                     align-items: center;
-                    margin-bottom: 0.3em;
-
                         &__p{
                         margin-right: 5px;
                         font-size: 0.75em;
@@ -655,6 +789,7 @@ export default {
                 }
                 &__total{
                     margin-top: 1em;
+                    margin-bottom: 2em;
                     display: flex;
                     justify-content: space-between;
                     &__text{
@@ -665,11 +800,13 @@ export default {
                         gap: 0.5em;
                         align-items: center;
                         font-weight: bold;
+                        color: #F58220;
 
                     }
                     }
                     &__price{
                         font-weight: bold;
+                        color: #f58220;
                     }
                 }
                 &__item{
@@ -678,31 +815,47 @@ export default {
                     font-style: italic;
                     color: #595959;
                 }
+                &__header{
+                    margin-bottom: 0.4em;
+                    border-bottom: #E1E1E1 1px solid;
+                    width: 100%;
+                    &__title{
+                        display: flex;
+                        font-size: 0.8em;
+                        font-weight: bold;
+                        align-items: center;
+                        width: 6em;
+                        justify-content: center;
+                        padding: 0.5em 0;
+                        
+                        &__img{
+                            width: 15px;
+                            height: 14px;
+                        }
+                    }
+                    } 
+                &__content{
+                    margin-top: 0.8em;
+                    &__clients{
+                        &__client{
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 0.8em;
+                        &__p{
+                            font-weight: bold;
+                        }
+                    }
+                    }
+                }
             }
         }
 
-        &__buttons{
-            padding-top: 1.5em;
-            display: flex;
-            justify-content: space-between;
-            &__add{
-                color: black;
-                border: 1px solid black;
-                border-radius: 10px;
-                width: 12em;
-                font-size: 0.8em;
-                padding: 0.7em 1em;
-            }
-            &__add-guest{
-                color: black;
-                border: 1px solid black;
-                border-radius: 10px;
-                width: 12em;
-                font-size: 0.8em;
-                padding: 0.7em 1em;
-
-
-            }
+        &__button{
+            margin-top: 0.6em;
+            border: 1px solid black;
+            padding: 0.5em 0;
+            width: 19.875em;
+            border-radius: 6px;
         }
     }
     &__recomendation{
@@ -726,7 +879,7 @@ export default {
                             border-radius: 10px;
                             height: 6em;
                         }
-                        &__title{
+                        &__title{ 
                             padding: 1em 0;
                             font-size: 0.7em;
                         }          
@@ -735,19 +888,24 @@ export default {
                 }
             }
         }
+        
     }
 
     &__footer{
+        background-color: white;
         border-top: 1px solid #E1dede;
         display: flex;
+        position: sticky;
+        bottom: 0;
         justify-content: center;
         &__button{
-            color: white;
-            background-color: black;
+            color: black;
+            background-color: white;
             border-radius: 10px;
-            width: 90%;
+            border: 1px solid black;
+            width: 60%;
             height: 2.75em;
-            margin: 1em 0;
+            margin: 1em 0.5em;
         }
     }
 
@@ -801,6 +959,15 @@ export default {
   margin-right: 0.6em;
 }
 
+.close-popup {
+    color: #000;
+  float: left;
+  font-size: 20px;
+  font-weight: normal;
+  margin-left: 1em;
+  margin-top: 0.7em;
+}
+
 .close:hover,
 .close:focus {
   color: #000;
@@ -817,6 +984,13 @@ export default {
   justify-content: space-between;
   &__close-title{
     display: flex;
+    &__text{
+        &__p{
+            font-size: 0.65em;
+            line-height: 1.125em;
+            color: #333333;
+        }
+    }
   }
   &__btn{
     background-color: #979797;
@@ -897,9 +1071,80 @@ export default {
 .save-btn-active{
         background-color: #000 !important;
     }
+.modal-body-pago{
+    &__all{
+        margin-top: -0.5em; 
 
+        border-top: 1px solid #dddddd;
+        &__element{
+        margin: 0 1.125em;
+        padding: 0.8em 0;
+
+
+            display: flex;
+            &__p{
+                margin-left: 0.5em;
+                font-size: 0.8em;
+
+            }
+        }
+    }
+    &__elements{
+        
+        &__element{
+        border-top: 1px solid #dddddd;
+
+        padding: 1em 0;
+
+
+            display: flex;
+            align-items: center;
+
+            justify-content: space-between;
+
+            &__left{
+                margin: 0 1.125em;
+
+                display: flex;
+                align-items: center;
+                font-size: 1em;
+                &__p{
+                    margin-left: 0.5em;
+                }
+                &__img{
+                    margin-left: 0.5em;
+                    width: 20px;
+                }
+                &__special{
+                    margin-left: 0.5em;
+
+                    display: flex;
+                    align-items: center;
+                    font-size: 0.5em;
+                    &__img{
+                    margin-right: 0.5em;
+
+                        width: 12px;
+                    }
+                    &__p{
+                        color: #f58220;
+                    }
+                }
+            }
+
+            &__right{
+        margin: 0 1.125em;
+
+            }
+        }
+
+    }
+}
 .modal-body {
     margin: 0 1.125em;
+    
+
+
     &__image-content{
         &__img-price{
             display: flex;
@@ -1124,12 +1369,20 @@ export default {
     }
 
 .modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
+  border-top: 1px solid #dddddd;
+  display: flex;
+  justify-content: center;
+  padding: 0.8em 1.2em;
+  &__button{
+    font-size: 0.85em;
+    width: 100%;
+    padding: 0.6em 0;
+    border-radius: 6px;
+    color: white;
+    background-color: #979797;
+
+  }
 }
-
-
 
 
 
@@ -1170,6 +1423,7 @@ export default {
 .custom-totakeaway{
     margin-left: 3em;
 }
+
 
 
 </style>

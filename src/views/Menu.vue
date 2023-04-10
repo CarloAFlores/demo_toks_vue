@@ -144,7 +144,7 @@ export default {
     
         async getMenuData(){
             // await axios.get('http://189.161.36.232:8000/api/menus/'+ this.$route.params.id).then(
-            await axios.get('http://localhost:8000/api/menus/'+ this.$route.params.id).then(
+            await axios.get(this.base_url_services+'/api/menus/'+ this.$route.params.id).then(
                 response => this.menuData = response.data.menu.categorias
             ).then(
                 response => {
