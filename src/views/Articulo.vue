@@ -36,23 +36,23 @@
                 <p class="content__general-descripcion">{{product.producto_descripción}}</p>
             </div>
 
-            <div v-if="product.tiempos.length === 1" class="steps">
+            <div v-if="product.producto_pasos.length === 1" class="steps">
                 <!-- TODO: Variantes cuando sea un solo paso -->
                 <div class="steps__title">
                     <div class="steps__title__header">
                         <h4 class="steps__title__header__h4">
-                            {{product.tiempos[0].seccion_tiempo_nombre}}
+                            {{product.producto_pasos[0].seccion_tiempo_nombre}}
                         </h4>
 
-                        <span class="steps__title__header__span" v-if="product.tiempos[0].seccion_tiempo_obligatorio">Obligatorio</span>
+                        <span class="steps__title__header__span" v-if="product.producto_pasos[0].seccion_tiempo_obligatorio">Obligatorio</span>
                     </div>
 
-                    <p class="steps__title__p">{{product.tiempos[0].seccion_tiempo_descripcion}}</p>
+                    <p class="steps__title__p">{{product.producto_pasos[0].seccion_tiempo_descripcion}}</p>
                 </div>
 
                 <div class="steps__options">
                 
-                    <div :class="{'card-inactive' : grupo.producto_id != optionSelected.producto_id, 'card-active' : grupo.producto_id === optionSelected.producto_id}" @click="selectOption(grupo)" v-for="grupo in product.tiempos[0].grupos" :key="grupo.grupo_id" class="steps__options__card">
+                    <div :class="{'card-inactive' : grupo.producto_id != optionSelected.producto_id, 'card-active' : grupo.producto_id === optionSelected.producto_id}" @click="selectOption(grupo)" v-for="grupo in product.producto_pasos[0].grupos" :key="grupo.grupo_id" class="steps__options__card">
                         <img class="steps__options__card__img" v-if="grupo.type === 1" :src=grupo.grupo_img alt="img-grupo">
                         <img class="steps__options__card__img" v-if="grupo.type === 2" :src=grupo.producto_img alt="img-grupo">
                         <h5 class="steps__options__card__h5" v-if="grupo.type === 1">{{grupo.grupo_nombre}}</h5>
@@ -70,35 +70,66 @@
                     </div>
             </div>
 
-            <div v-if="product.tiempos.length > 1" class="steps">
+            <div v-if="product.producto_pasos.length > 1" class="steps">
                  <div class="steps__title">
                     <div class="steps__title__header">
                         <h4 class="steps__title__header__h6">
-                            ¡Completa tu orden en tan sólo {{product.tiempos.length}} pasos!
+                            ¡Completa tu orden en tan sólo {{product.producto_pasos.length}} pasos!
                         </h4>
                     </div>
                 </div>
 
                 <div class="steps__content">    
-                    <div v-for="(step, index) in product.tiempos" :key="step.tiempo_id" class="steps__content__list-element">
+                    <div v-for="(step, index) in product.producto_pasos" :key="step.paso_id" class="steps__content__list-element">
                         <div class="steps__content__list-element__div">
                             <span class="steps__content__list-element__span"> {{index + 1}} </span> 
-                            <p>{{step.tiempo_nombre}}</p>
+                            <p>{{step.paso_nombre}}</p>
                         </div>
 
-                        <div v-if="index != product.tiempos.length - 1" class="vl"></div>
+                        <div v-if="index != product.producto_pasos.length - 1" class="vl"></div>
                     </div>
                 </div>
-            </div>            
+            </div>    
+
+            <div v-if="product.producto_pasos.length === 0 && product.producto_opciones_personalizacion.length > 0">
+                <div v-for="opcion in product.producto_opciones_personalizacion" :key="opcion" class="steps">
+                <div class="steps__container">
+                    <div class="steps__container__header">
+                        <p class="steps__container__header__nombre">
+                        {{opcion.opcion_personalizacion_nombre}}
+                        </p>
+
+                        <span class="steps__title__header__span" v-if="opcion.opcion_personalizacion_obligatorio">Obligatorio</span>
+
+                        
+                    </div>
+                    <p class="steps__container__description">
+                    {{opcion.opcion_personalizacion_descripcion}}
+                    </p>
+                    <div class="steps__container__opciones-grid">
+                        <div v-for="item in opcion.opcion_personalizacion_items" @click="selectCustomOption(item)" :key="item.item_opcion_personalizacion_id" class="steps__container__opciones-grid__opcion">
+                            <img :src=item.item_opcion_personalizacion_img alt="imagen_opcion" class="steps__container__opciones-grid__opcion__img">
+
+                            <p class="steps__container__opciones-grid__opcion__p">
+                            {{item.item_opcion_personalizacion_nombre}}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>        
         
         </div>
 
         <div class="footer">
-                <button @click="addToCart()" :class="{'active': optionSelected.producto_id || sinGuarnicionOption}" :disabled="sinGuarnicionOption" v-if="product.tiempos.length === 1" class="footer__btn">Agregar al carrito | ${{product.producto_precio}}</button>
+                <button @click="addToCart()" :class="{'active': optionSelected.producto_id || sinGuarnicionOption}" :disabled="!sinGuarnicionOption" v-if="product.producto_pasos.length === 1" class="footer__btn">Agregar al carrito | ${{product.producto_precio}}</button>
 
-                <button @click="addToCart()" v-if="product.tiempos.length === 0" class="footer__btn active">Agregar al carrito | ${{product.producto_precio}}</button>
+                <button @click="addToCart()" :disabled="requiredCustomOptionsSelected == false" :class="{'active':requiredCustomOptionsSelected == true}" v-if="product.producto_pasos.length === 0 && product.producto_opciones_personalizacion.length > 0" class="footer__btn">Agregar al carrito | ${{product.producto_precio}}</button>
 
-                <button v-if="product.tiempos.length > 1" class="footer__btn active" @click="goToSteps()">Agregar a la orden</button>
+                <button @click="addToCart()" v-if="product.producto_pasos.length === 0 && product.producto_opciones_personalizacion.length === 0" class="footer__btn active">Agregar al carrito | ${{product.producto_precio}}</button>
+
+                <button v-if="product.producto_pasos.length > 1" class="footer__btn active" @click="goToSteps()">Agregar a la orden</button>
         </div>
     </div> 
 
@@ -135,13 +166,37 @@ export default {
             currentProductSteps: 0,
             optionSelected: {},
             modalValue: false,
+            customOptionSelected: null,
+            requiredCustomOptionsSelected: false,
+            requiredCustomOption: [],
 
         }
     },
     created(){
         this.getProduct()
+
+
     },
     methods:{
+        makeModelCustomOptionCount(){
+             this.product.producto_opciones_personalizacion.forEach(opcion => {
+                let opcionTemplate = {
+                    "opcion_id": opcion.opcion_personalizacion_id,
+                    "opcion_nombre": opcion.opcion_personalizacion_nombre,
+                    "opcion_item_id_selected": "",
+                    "opcion_item_nombre_selected": "",
+                    "opcion_item_nombre_required": opcion.opcion_personalizacion_obligatorio
+
+                }  
+                
+                this.requiredCustomOption.push(opcionTemplate);
+            });
+        },
+        selectCustomOption(value){
+            this.customOptionSelected = value
+            this.requiredCustomOption[0].opcion_item_id_selected = this.customOptionSelected.item_opcion_personalizacion_id
+            this.requiredCustomOption[0].opcion_item_nombre_selected = this.customOptionSelected.item_opcion_personalizacion_nombre
+        },
         addToCart(){
             if (Object.keys(this.optionSelected).length > 0) {
                 store.dispatch('addProduct',{"producto":this.product,"opciones_seleccionadas":[this.optionSelected],"para_llevar":false}).then( ()=> {
@@ -149,6 +204,11 @@ export default {
     
                 })
                 
+            }else if(this.requiredCustomOptionsSelected){
+                store.dispatch('addProduct',{"producto":this.product,"opciones_seleccionadas":[this.customOptionSelected],"para_llevar":false}).then( ()=> {
+                         this.modalValue = true
+    
+                })
             }else{
                 store.dispatch('addProduct',{"producto":this.product,"opciones_seleccionadas":[],"para_llevar":true}).then( ()=> {
                          this.modalValue = true
@@ -165,7 +225,7 @@ export default {
         getProduct(){
             this.product = store.state.productData
             this.countSteps()
-
+            this.makeModelCustomOptionCount()
         },
         goToSteps(){
             let currentStep = 0;
@@ -178,7 +238,7 @@ export default {
                     break;
             }
 
-            store.dispatch('setTiempo',this.product.tiempos[currentStep - 1]);
+            store.dispatch('setTiempo',this.product.producto_pasos[currentStep - 1]);
 
             let currentDish = {
                 "producto_principal": this.product,
@@ -191,13 +251,21 @@ export default {
             router.push({path:'/producto/'+this.product.producto_id+'/'+currentStep})
         },
         countSteps(){
-            this.productStepsCount = this.product.tiempos.length
-            this.currentProductSteps = this.product.tiempos
+            this.productStepsCount = this.product.producto_pasos.length
+            this.currentProductSteps = this.product.producto_pasos
         },
     },
     watch:{
         sinGuarnicionOption(value){
             value ? this.optionSelected = {} : ''
+        },
+        requiredCustomOption:{
+            handler(value){
+                if (value[0].opcion_item_nombre_required && value[0].opcion_item_id_selected) {
+                    this.requiredCustomOptionsSelected = true;
+                }
+            },
+            deep: true
         }
     },
     computed:{
@@ -261,8 +329,10 @@ export default {
     width: 100%;
     justify-content: center;
     bottom: 0;
+    position: relative;
     padding-bottom: 1em;
     padding-top: 1em;
+    background: white;
     border-top: #DDDDDD solid 0.5px;
     &__btn{
       color: #FFFFFF;
@@ -288,6 +358,7 @@ export default {
 }
 
 .section{
+
     &__img{
         height: 12em;
     }
@@ -382,6 +453,40 @@ export default {
         }
    } 
 
+   &__container{
+    margin-top: 2em;
+    &__header{
+        font-size: 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+    }
+    &__description{
+        font-size: 0.85em;
+        color: #474747;
+    }
+    &__opciones-grid{
+        margin-top: 0.5em;
+        width: 100%;
+        display: grid;
+        &__opcion{
+            width: 6.25em;
+            border: 1px solid #dddddd;
+            border-radius: 10px; 
+            &__img{
+                height: 4.25em;
+            }
+            &__p{
+                text-align: center;
+                font-size: 0.7em;
+                padding:0.4em 0.3em 0.4em 0.3em;
+                line-height: 0.9em;
+            }
+        }
+    }
+   }
+
    &__options{
         width: 100%;
         display: grid;
@@ -437,6 +542,8 @@ export default {
         }
     }
 
+
+
     @media (max-width: 360px) {
         .steps{
             &__options{ 
@@ -445,6 +552,25 @@ export default {
         }
     }
 
+    @media (min-width: 360px) {
+        .steps{
+            &__container__opciones-grid{ 
+                grid-template-columns: repeat(3, 1fr); 
+            } 
+        }
+    }
+
+    
+
+    @media (max-width: 360px) {
+        .steps{
+            &__container__opciones-grid{ 
+                grid-template-columns: repeat(2, 1fr); 
+            } 
+        }
+    }
+
+    
 }
 
 </style>

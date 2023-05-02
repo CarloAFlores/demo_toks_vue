@@ -1,5 +1,5 @@
 <template>
-  <Header :currentPage="6" titleArticle="Resumen de tu orden" />
+  <Header :currentPage=currentPage titleArticle="Resumen de tu orden" />
   <!-- MODAL -->
   <!-- Modal se te antoja algo más -->
 <div :class="{'block': extraDialog}" id="myModal" class="modal">
@@ -291,10 +291,10 @@
                 <div v-if="product.opciones_seleccionadas.length == 1">
                     <div v-for="opcion in product.opciones_seleccionadas" :key="opcion" class="container__content__general-info__detail__options">
                         <div class="container__content__general-info__detail__options__text">
-                            <p class="container__content__general-info__detail__options__text__p">  {{opcion.producto_nombre}}</p>
+                            <p class="container__content__general-info__detail__options__text__p">  {{opcion.producto_nombre || opcion.item_opcion_personalizacion_nombre}}</p>
                         </div>
                         <div class="container__content__general-info__detail__options__price">
-                            ${{opcion.producto_precio || 0}}
+                            ${{opcion.producto_precio || opcion.item_opcion_personalizacion_precio || 0}}
                         </div>
                     </div>
                 </div>
@@ -370,7 +370,7 @@
     </div>
 
     <div class="container__footer">
-        <button class="container__footer__button">
+        <button @click="$router.push({path: '/loading'})" class="container__footer__button">
             Confirmar orden
         </button>
     </div>
@@ -414,6 +414,8 @@ export default {
             recomendationOptionSelected: null,
             tooltipInfoActive: false,
             someToTakeAway: false,
+            currentPage: 88,
+
 
             // Data
 
@@ -740,7 +742,12 @@ export default {
     &__footer{
         border-top: 1px solid #E1dede;
         display: flex;
+        background: white;
         justify-content: center;
+        width: 100%;
+        justify-content: center;
+        bottom: 0;
+        position: sticky;
         &__button{
             color: white;
             background-color: black;

@@ -56,6 +56,7 @@
             <img :src=producto.producto_img class="card__div__img">
             <div class="informe">
                 <div class="informe__div">
+                    <img v-if="producto.producto_icon_especial" class="informe__div__img" :src=producto.producto_icon_especial alt="icon-new">
                     <p>{{producto.producto_nombre}}</p>
                     <span class="informe__div__span">${{producto.producto_precio}}</span>
                 </div>
@@ -126,7 +127,7 @@ export default {
             })
         },
         setProducts(){
-            this.products = this.subcategory.productos
+            this.products = this.subcategory.subcategoria_productos
         },
         selectProduct(producto){
             let isCategoryActive = store.state.categoryData.categoria_id === store.state.dayPartCategory ? true : false;
@@ -161,7 +162,7 @@ export default {
     background-color: #ECECEC;
     width: 100%;
     // margin-top: 5em;
-    height: 100%;
+    height: 100vh;
     .header{
         position: relative;
         font-size: 1.8em;
@@ -269,6 +270,12 @@ export default {
                 &__div{
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
+
+                    &__img{
+                        width: 1.5em;
+                        margin-right: -1.5em;
+                    }
 
                     &__p{
                         width: 90%;

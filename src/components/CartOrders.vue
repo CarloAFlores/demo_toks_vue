@@ -4,13 +4,17 @@
         <h6>Órdenes</h6>
     </div>
 
-    <div class="cart__content">
+    <div v-if="orders.length > 0" class="cart__content">
         <p class="cart__content__p">Orden de {{comensal}}</p>
 
         <img @click="openList = true" v-if="!openList" class="cart__content__icon-arrow" src="./../assets/arrow-down.svg" alt="">
         <img @click="openList = false" v-if="openList" class="cart__content__icon-arrow active-arrow" src="./../assets/arrow-down-orange.svg" alt="">
         <img class="cart__content__icon-pen" src="./../assets/edit-pen.svg" alt="">
         <img class="cart__content__icon-basura" src="./../assets/basura-icon.svg" alt="">
+    </div>
+
+    <div v-if="orders.length === 0" class="empty-cart">
+        <h5>No hay articulos en el carrito</h5>
     </div>
 
     <div v-if="openList">
@@ -52,8 +56,9 @@ export default {
             // await axios.get('http://189.161.36.232:8000/api/customers')
             await axios.get(this.base_url_services+'/api/customers')
             .then( response => {
+                console.log(response);
                 this.customerData = JSON.parse(response.data.data)
-                this.comensal = this.customerData.comensal
+                this.comensal = this.customerData.comensal_nombre
             })
             },
         getOrderData(){
@@ -96,6 +101,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.empty-cart{
+    text-align:  center;
+    font-size: 0.8em;
+    color: #3e3e3e;
+    padding: 0.3em 0.1em;
+}
 
 .active-arrow{
     transform: rotate(180deg);

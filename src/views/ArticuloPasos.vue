@@ -32,52 +32,52 @@
             <div class="content__steps-section">
         
 
-                <div v-for="(tiempo, index) in product.tiempos" :key="tiempo.tiempo_id" class="content__steps-section__steps">
+                <div v-for="(tiempo, index) in product.producto_pasos" :key="tiempo.paso_id" @click="backStep(tiempo)" class="content__steps-section__steps">
                     <div class="content__steps-section__step">
-                        <span :class="{'active-step__span': index + 1 === this.tiempo.tiempo_id}" class="content__steps-section__step__span">{{index + 1}}</span>
-                        <p :class="{'active-step__p': index + 1 === this.tiempo.tiempo_id}" class="content__steps-section__step__p">{{tiempo.tiempo_nombre_extracto}}</p>                
+                        <span :class="{'active-step__span': tiempo.paso_orden === this.tiempo.paso_orden}" class="content__steps-section__step__span">{{index + 1}}</span>
+                        <p :class="{'active-step__p': tiempo.paso_orden === this.tiempo.paso_orden}" class="content__steps-section__step__p">{{tiempo.paso_nombre_extracto}}</p>                
                     </div>
-                    <div  v-if="index != product.tiempos.length - 1" class="hl"></div>
+                    <div  v-if="index != product.producto_pasos.length - 1" class="hl"></div>
                 </div>
             
             </div>
 
-            <div v-for="seccion in tiempo.secciones_tiempo" :key="seccion.seccion_tiempo_id" class="content__steps-info">
+            <div v-for="seccion in tiempo.paso_secciones" :key="seccion.seccion_paso_id" class="content__steps-info">
                 <div class="content__steps-info__title">
                     <div class="content__steps-info__title__header">
                         <h4 class="content__steps-info__title__header__h4">
-                            {{seccion.seccion_tiempo_nombre}}
+                            {{seccion.seccion_paso_nombre}}
                         </h4>
 
                         <span class="content__steps-info__title__header__span">Obligatorio</span>
                     </div>
 
-                    <p class="content__steps-info__title__p">{{seccion.seccion_tiempo_descripcion}}</p>
+                    <p class="content__steps-info__title__p">{{seccion.seccion_paso_descripcion}}</p>
                 </div>
 
                 <div class="content__steps-info__options">
                 
-                    <div v-for="grupo in seccion.grupos" :key="grupo.grupo_id" class="content__steps-info__options__card" @click="selectGroup(grupo)">
-                        <img class="content__steps-info__options__card__img" v-if="grupo.type === 1" :src=grupo.grupo_img alt="img-grupo">
-                        <img class="content__steps-info__options__card__img" v-if="grupo.type === 2" :src=grupo.producto_img alt="img-grupo">
-                        <h5 class="content__steps-info__options__card__h5" v-if="grupo.type === 1">{{grupo.grupo_nombre}}</h5>
-                        <h5 class="content__steps-info__options__card__h5" v-if="grupo.type === 2">{{grupo.producto_nombre}}</h5>
-                        <p class="content__steps-info__options__card__p" v-if="grupo.type === 1">{{grupo.grupo_descripcion}}</p>
-                        <p class="content__steps-info__options__card__p" v-if="grupo.type === 2">{{grupo.producto_descripcion}}</p>
+                    <div v-for="grupo in seccion.seccion_paso_grupos" :key="grupo.grupo_id" class="content__steps-info__options__card" @click="selectGroup(grupo)">
+                        <img class="content__steps-info__options__card__img" v-if="grupo.grupo_tipo === 1" :src=grupo.grupo_img alt="img-grupo">
+                        <img class="content__steps-info__options__card__img" v-if="grupo.grupo_tipo === 2" :src=grupo.producto_img alt="img-grupo">
+                        <h5 class="content__steps-info__options__card__h5" v-if="grupo.grupo_tipo === 1">{{grupo.grupo_nombre}}</h5>
+                        <h5 class="content__steps-info__options__card__h5" v-if="grupo.grupo_tipo === 2">{{grupo.producto_nombre}}</h5>
+                        <p class="content__steps-info__options__card__p" v-if="grupo.grupo_tipo === 1">{{grupo.grupo_descripcion}}</p>
+                        <p class="content__steps-info__options__card__p" v-if="grupo.grupo_tipo === 2">{{grupo.producto_descripcion}}</p>
                     </div>
 
                 
                 </div>
 
                 <!--En caso de ser un grupo de productos  -->
-                <div v-if="groupSelected && groupSelected.type === 1" class="content__steps-info__group-items">
+                <div v-if="groupSelected && groupSelected.grupo_tipo === 1" class="content__steps-info__group-items">
                     <div class="content__steps-info__group-items__header">
                         <h5 class="content__steps-info__group-items__header__title">{{groupSelected.grupo_title}}</h5>
 
                         <span class="content__steps-info__group-items__header__span">Obligatorio</span>
                     </div>
                     <div v-if="groupSelected" class="content__steps-info__group-items__cards">
-                        <div  @click="selectItem(item)" v-for="item in groupSelected.grupo_items" :key="item.producto_id" class="content__steps-info__group-items__cards__card">
+                        <div  @click="selectItem(item)" v-for="item in groupSelected.grupo_productos" :key="item.producto_id" class="content__steps-info__group-items__cards__card">
 
                             <img class="content__steps-info__group-items__cards__card__img" :src=item.producto_img alt="card_img">
 
@@ -88,26 +88,35 @@
                 </div>
 
                 <div v-if="itemSelected" class="content__steps-info__customizable">
-                    <div v-for="(opcion, index) in itemSelected.opciones_personalizacion" :key="opcion.opcion_personalizacion_id" class="content__steps-info__customizable__custom-section">
+                    <div v-for="(opcion, index) in itemSelected.producto_opciones_personalizacion" :key="opcion.opcion_personalizacion_id" class="content__steps-info__customizable__custom-section">
                         <div class="content__steps-info__customizable__custom-section__header">
                             <h5 class="content__steps-info__customizable__custom-section__header__title">{{opcion.opcion_personalizacion_nombre}}</h5>
 
                             <span v-if="opcion.opcion_personalizacion_obligatorio" class="content__steps-info__customizable__custom-section__header__span">Obligatorio</span>
                         </div>
 
-                        <section>
-                            <div v-for="item in opcion.items" :key="item.item_id" class="content__steps-info__customizable__custom-section__content">
-                            <div class="content__steps-info__customizable__custom-section__content__text">
-                                <p class="content__steps-info__customizable__custom-section__content__text__p">{{item.item_nombre}}</p>
-                                <q class="content__steps-info__customizable__custom-section__content__text__q">{{item.item_descripcion}}</q>
-                                <b v-if="item.item_precio > 0" class="content__steps-info__customizable__custom-section__content__text__b">| +${{item.item_precio}}</b>
+                        <section class="content__steps-info__customizable__custom-section__content__grid" v-if="opcion.opcion_personalizacion_vista === 1" >
+                            <div v-for="item in opcion.opcion_personalizacion_items" :key="item.item_opcion_personalizacion_id" @click="arrayChanges(arrayOptions),addItemName(index,item.item_opcion_personalizacion_nombre),clickInCard(index, item.item_opcion_personalizacion_id)" class="content__steps-info__customizable__custom-section__content__grid__item" :class="{'card-active': item.item_opcion_personalizacion_id == this.arrayOptions[0].item_opcion_personalizacion_id}">
+                                    <img :src=item.item_opcion_personalizacion_img alt="img-opcion-personalizacion" class="content__steps-info__customizable__custom-section__content__grid__item__img">
+                                    <p class="content__steps-info__customizable__custom-section__content__grid__item__p">
+                                        {{item.item_opcion_personalizacion_nombre}}
+                                    </p>
                             </div>
-                            <div class="content__steps-info__customizable__custom-section__content__input">
-                                <input class="content__steps-info__customizable__custom-section__content__input__radio" v-model="arrayOptions[index].item_id" @change="arrayChanges(arrayOptions),addItemName(index,item.item_nombre)" :value=item.item_id type="radio" name="" id="">
-                                <!-- v-model="itemOpciones[index].opcion_personalizacion_selected" -->
+                        </section>
+
+                        <section v-if="opcion.opcion_personalizacion_vista === 2">
+                            <div v-for="item in opcion.opcion_personalizacion_items" :key="item.item_opcion_personalizacion_id" class="content__steps-info__customizable__custom-section__content">
+                                <div class="content__steps-info__customizable__custom-section__content__text">
+                                    <p class="content__steps-info__customizable__custom-section__content__text__p">{{item.item_opcion_personalizacion_nombre}}</p>
+                                    <q class="content__steps-info__customizable__custom-section__content__text__q">{{item.item_opcion_personalizacion_descripcion}}</q>
+                                    <b v-if="item.item_precio > 0" class="content__steps-info__customizable__custom-section__content__text__b">| +${{item.item_opcion_personalizacion_precio}}</b>
+                                </div>
+                                <div class="content__steps-info__customizable__custom-section__content__input">
+                                    <input class="content__steps-info__customizable__custom-section__content__input__radio" v-model="arrayOptions[index].item_opcion_personalizacion_id" @change="arrayChanges(arrayOptions),addItemName(index,item.item_opcion_personalizacion_nombre)" :value=item.item_opcion_personalizacion_id type="radio" name="" id="">
+                                    <!-- v-model="itemOpciones[index].opcion_personalizacion_selected" -->
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
 
                     </div>
@@ -198,19 +207,22 @@ export default {
 
         },
         addItemName(index,name){
-            console.log({index,name});
+            // console.log({index,name});
             this.arrayOptions[index].item_nombre = name
         },
         countSteps(){
-            this.productStepsCount = this.product.tiempos.length
+            this.productStepsCount = this.product.producto_pasos.length
             const sortSteps = new Promise ( (resolve) => {
-                this.currentProductSteps = this.product.tiempos
+                this.currentProductSteps = this.product.producto_pasos
 
                 resolve()
             });
 
             sortSteps.then(() => {
+                // console.log(this.currentProductSteps.length)
                 this.currentProductSteps.sort((a, b) => a.orden - b.orden);
+            }).then( ()=>{
+                
             })
         },
         getProduct(){
@@ -228,7 +240,15 @@ export default {
         },
         changeNextStep(){
             const changeStep = new Promise( (resolve) =>{
-                store.dispatch('setTiempo',this.product.tiempos[this.tiempo.tiempo_id]);
+                // TODO: error al pasar al siguiente paso
+
+                // funcion para buscar el paso que sigue dentro de los pasos del producto
+               const index = this.product.producto_pasos.findIndex(item => item.paso_id === this.tiempo.paso_id);
+                console.log('currentStep',index);
+
+                const nextElement = this.product.producto_pasos[index + 1]
+
+                store.dispatch('setTiempo', nextElement);
                 
                 this.itemSelected = null
                 this.itemOpciones = null
@@ -247,6 +267,43 @@ export default {
 
 
         },
+        backStep(tiempo){
+            const index = this.product.producto_pasos.findIndex(item => item.paso_id === this.tiempo.paso_id);
+
+            console.log({"currentStep":this.tiempo,"selectedStep":tiempo});
+
+            this.isBeforeStep(this.tiempo,tiempo)
+
+            // const changeStep = new Promise( (resolve) =>{
+            //     // TODO: error al pasar al siguiente paso
+
+            //     // funcion para buscar el paso que sigue dentro de los pasos del producto
+            //    const index = this.product.producto_pasos.findIndex(item => item.paso_id === this.tiempo.paso_id);
+
+            //     const beforeElement = this.product.producto_pasos[index - 1]
+
+            //     store.dispatch('setTiempo', beforeElement);
+                
+            //     this.itemSelected = null
+            //     this.itemOpciones = null
+            //     this.arrayOptions= []
+            //     this.requiredOptionsSelected = false;
+            //     this.groupSelected = null
+
+
+
+            //     resolve()
+            // })
+
+            // changeStep.then( () => {
+            //     this.tiempo = store.state.tiempoData
+            // })
+
+
+        },
+        isBeforeStep(currentStep, selectedStep){
+            console.log({"currenStepOrden":currentStep.paso_orden,"selectedStepOrden":selectedStep.paso_orden});
+        },
         selectGroup(grupo){
             this.itemSelected = null
             this.itemOpciones = null
@@ -255,13 +312,13 @@ export default {
 
 
             this.groupSelected = grupo
-            this.groupSelected.type == 2 ? this.selectItem(this.groupSelected) : ''
+            this.groupSelected.grupo_tipo == 2 ? this.selectItem(this.groupSelected) : ''
 
 
         },
         selectItem(item){
             this.itemSelected = item
-            this.itemOpciones = this.itemSelected.opciones_personalizacion
+            this.itemOpciones = this.itemSelected.producto_opciones_personalizacion
            if(this.itemOpciones.length>0){
              this.arrayChanges(this.itemOpciones)
 
@@ -293,9 +350,11 @@ export default {
             return option.required
         },
         isSelected(option){
-            return option.item_id > 0
+            return option.item_opcion_personalizacion_id > 0
         },
         arrayChanges(value){
+            console.log(value.length);
+            console.log({value});
             let statusRequiredOptions = [];
             if(value.length > 0){
                 value.forEach(option => {
@@ -344,7 +403,7 @@ export default {
             store.dispatch('addOptionsProductOrder',partialOpciones).then( ()=>{
                 const lastElement = this.currentProductSteps[this.currentProductSteps.length - 1];
 
-                if (this.tiempo.tiempo_id != lastElement.tiempo_id) {
+                if (this.tiempo.paso_id != lastElement.paso_id) {
                     this.changeNextStep()
                 }else{
                     this.addToCart()
@@ -361,6 +420,10 @@ export default {
 
             })
         },
+        clickInCard(index,value){
+            // console.log({"index": index,"value":value});
+            this.arrayOptions[index].item_opcion_personalizacion_id = value
+        }
     },
     watch:{
         
@@ -372,6 +435,39 @@ export default {
 
 <style lang="scss" scooped>
 
+.modal-cart{
+    padding: 2em;
+    &__content{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        row-gap: 1em;
+            
+        &__p{
+            font-size: 0.875em;
+            width: 18em;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 1.5em;
+        }
+        &__boton-carro{
+            font-size: 0.875em;
+            border-radius: 0.7em;
+            width: 12em;
+            padding: 0.8em;
+            border: 1px solid black;
+        }
+        &__boton-continuar{
+            font-size: 0.875em;
+            border-radius: 0.7em;
+            width: 12em;
+            padding: 0.8em;
+            background-color: black;
+            color: white;
+        }
+    }
+}
 
 
 .footer{
@@ -379,8 +475,10 @@ export default {
     width: 100%;
     justify-content: center;
     bottom: 0;
+    position: sticky;
     padding-bottom: 1em;
     padding-top: 1em;
+    background: white;
     border-top: #DDDDDD solid 0.5px;
     &__btn{
       color: #FFFFFF;
@@ -682,6 +780,27 @@ export default {
                     }
 
                 }
+                &__grid{
+                    margin-top: 0.5em;
+                    width: 100%;
+                    display: grid;
+                    gap: .8rem;
+                    &__item{
+                        text-align: center;
+                        padding: 1em;
+                        border: #dddddd 1px solid;
+                        border-radius: 10px;
+                        background: white;
+                        width: 6.25em;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        &__img{
+                            width: 3.5em;
+                            height: 3.5em;
+                        }
+                    }
+                }
                 
             }
         }
@@ -719,6 +838,22 @@ export default {
             }
         }
 
+         @media (min-width: 360px) {
+            .content__steps-info__customizable__custom-section__content{
+                &__grid{ 
+                    grid-template-columns: repeat(3, 1fr); 
+                } 
+            }
+        }
+
+        @media (max-width: 360px) {
+            .content__steps-info__customizable__custom-section__content{
+                &__grid{ 
+                    grid-template-columns: repeat(2, 1fr); 
+                } 
+            }
+        }
+
     }
 
     
@@ -738,6 +873,10 @@ export default {
             } 
         }
     }
+}
+
+.card-active{
+    border: #F58220 1px solid;
 }
 
 .active-step{

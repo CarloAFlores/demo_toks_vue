@@ -1,5 +1,5 @@
 <template>
-  <CartOrders :carroActivado="carroActivado"/>
+  <CartOrders v-if="currentPage != 1" :carroActivado="carroActivado"/>
   <PeopleList :listaPersonasActivado="listaPersonasActivado" />
 
   <section class="header">
@@ -15,7 +15,7 @@
       <img src="@/assets/toks-logo.svg" alt="Logo de la marca">
     </div>
 
-    <div :class="{'titleAdjust':currentPage == 6, 'titleAdjustExtend': currentPage == 7}" class="titleProduct adjust" v-if="currentPage >= 4">
+    <div :class="{'titleAdjust':currentPage === 6, 'titleAdjustExtend': currentPage === 7}" class="titleProduct adjust" v-if="currentPage >= 4">
       <h2>{{titleArticle}}</h2>
     </div>
 
@@ -96,7 +96,7 @@ export default {
   margin-left: 6em;
 }
 .titleAdjustExtend{
-  margin-left: 10em;
+  margin-left: 8em;
 
 }
 .titleProduct{
@@ -107,6 +107,7 @@ export default {
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
 }
 .header{
   background: black;

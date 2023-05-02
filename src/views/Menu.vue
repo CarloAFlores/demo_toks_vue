@@ -46,7 +46,7 @@
 
         <div v-if="currentCategory" class="comida">
 
-            <div v-for="subcategory in currentCategory.subcategorias" :key="subcategory.subcategoria_id" class="items" :class="{principal: subcategory.subcategoria_jerarquia === 1, secundaria_l: subcategory.subcategoria_jerarquia === 2, secundaria_c: subcategory.subcategoria_jerarquia === 3}"  @click="selectSubcategory(currentCategory.categoria_id,subcategory)">
+            <div v-for="subcategory in currentCategory.categoria_subcategorias" :key="subcategory.subcategoria_id" class="items" :class="{principal: subcategory.subcategoria_jerarquia === 1, secundaria_l: subcategory.subcategoria_jerarquia === 2, secundaria_c: subcategory.subcategoria_jerarquia === 3}"  @click="selectSubcategory(currentCategory.categoria_id,subcategory)">
                 <div class="items__div">
                     <h2 class="items__div__h2"> {{subcategory.subcategoria_nombre}}</h2>
                     <p class="items__div__p">{{subcategory.subcategoria_descripcion}}</p>
@@ -135,7 +135,7 @@ export default {
             })
 
             this.currentCategory = category[0];
-            this.subcategories = this.currentCategory.subcategorias;
+            this.subcategories = this.currentCategory.categoria_subcategorias;
             this.categorieSelected = this.currentCategory.categoria_id
             store.dispatch('setCurrentCategory',category[0])
 

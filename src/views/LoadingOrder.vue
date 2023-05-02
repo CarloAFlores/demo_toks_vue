@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="container__content">
+    <div :class="{'icon':charged === false}" class="container__content">
         <div class="container__content__icon">
         <img src="@/assets/icon-loading.svg" alt="icon_loading">
     </div>
@@ -17,7 +17,7 @@
     </div>
 
     <div v-show="charged" class="footer">
-        <button class="footer__btn">
+        <button @click="$router.push({path:'/resumenCuenta'})" class="footer__btn">
             Ver orden
         </button>
     </div>
@@ -28,7 +28,7 @@
 export default {
     data(){
         return{
-            charged: true ,
+            charged: false ,
         }
     }
 
@@ -36,6 +36,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
+.icon {
+        -webkit-animation: flickerAnimation 3s infinite;
+        -moz-animation: flickerAnimation 3s infinite;
+        -o-animation: flickerAnimation 3s infinite;
+            animation: flickerAnimation 3s infinite;
+        }
+
+        @keyframes flickerAnimation {
+        0%   { opacity:1; }
+        50%  { opacity:0; }
+        100% { opacity:1; }
+        }
+        @-o-keyframes flickerAnimation{
+        0%   { opacity:1; }
+        50%  { opacity:0; }
+        100% { opacity:1; }
+        }
+        @-moz-keyframes flickerAnimation{
+        0%   { opacity:1; }
+        50%  { opacity:0; }
+        100% { opacity:1; }
+        }
+        @-webkit-keyframes flickerAnimation{
+        0%   { opacity:1; }
+        50%  { opacity:0; }
+        100% { opacity:1; }
+        }
 
 .container{
     width: 100%;
